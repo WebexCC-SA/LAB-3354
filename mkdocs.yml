@@ -45,10 +45,10 @@ extra_javascript:
 plugins:
   - search
   - macros
-  - with-pdf:
-      cover_title: LAB-3354
-      cover_subtitle: Empowering agents with custom desktop experiences in Webex Contact Center
-      cover_logo: template_assets/Wx1_25_PDF_image.jpg
+  # - with-pdf:
+  #     cover_title: LAB-3354
+  #     cover_subtitle: Empowering agents with custom desktop experiences in Webex Contact Center
+  #     cover_logo: template_assets/Wx1_25_PDF_image.jpg
   - glightbox:
       touchNavigation: true
       loop: false
