@@ -1,6 +1,6 @@
 ---
-site_name: Empowering agents with custom desktop experiences in Webex Contact Center # This must begin with the session ID, e.g. LABXXX-1234 This is my Cisco Live Lab
-site_description: Empowering agents with custom desktop experiences in Webex Contact Center # must be same as "site_name"
+site_name: "LAB-3354: Empowering agents with custom desktop experiences in Webex Contact Center" # This must begin with the session ID, e.g. LABXXX-1234 This is my Cisco Live Lab
+site_description: "Empowering agents with custom desktop experiences in Webex Contact Center" # must be same as "site_name"
 site_author: Kevin Simpson, Shrishail Doddalinganavar
 copyright: Copyright &copy; 2025 Cisco
 theme:
@@ -45,10 +45,10 @@ extra_javascript:
 plugins:
   - search
   - macros
-  # - with-pdf:
-  #     cover_title: LABXXX-1234
-  #     cover_subtitle: My famous WebexOne Lab
-  #     cover_logo: template_assets/wx1Splash_new.gif
+  - with-pdf:
+      cover_title: LAB-3354
+      cover_subtitle: Empowering agents with custom desktop experiences in Webex Contact Center
+      cover_logo: template_assets/Wx1_25_PDF_image.jpg
   - glightbox:
       touchNavigation: true
       loop: false
