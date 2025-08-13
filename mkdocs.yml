@@ -1,7 +1,7 @@
 ---
 site_name: "LAB-3354: Empowering agents with custom desktop experiences in Webex Contact Center" # This must begin with the session ID, e.g. LABXXX-1234 This is my Cisco Live Lab
 site_description: "Empowering agents with custom desktop experiences in Webex Contact Center" # must be same as "site_name"
-site_author: Kevin Simpson, Shrishail Doddalinganavar
+site_author: Kevin Simpson, Shrishail Doddalinganavar, David Finnegan
 copyright: Copyright &copy; 2025 Cisco
 theme:
   name: material
@@ -88,7 +88,8 @@ nav:
   - Home: index.md
   - Lab:
       - Overview: overview.md
-      - Lab 1 - Getting Started: lab1_getting_started.md
+      - Lab 1 - Exploring Web Components: lab1_exploring_wc.md
+      # - Lab 1 - Getting Started: lab1_getting_started.md
       - Conclusion: conclusion.md
   - Topologies: topologies.md
   - How to use this guide:
