@@ -52,3 +52,6 @@ form#info button{
 form#info button:hover{
     background-color:rgb(195, 193, 201);
 }
+.w50{
+    width: 50%;
+}
