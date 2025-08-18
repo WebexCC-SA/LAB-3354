@@ -12,18 +12,17 @@ Although the lab design and configuration examples could be used as a reference,
 In this lab we will be using:
 <div class="grid" markdown>
 
-<u>Tools</u>:  
-Yarn  
-Vite + Lit  
-VS Code Extensions  
-Postman  
-JSON Path Finder  
+!!! tool "Tools"
+    Yarn  
+    Vite + Lit  
+    VS Code Extensions  
+    Postman  
+    JSON Path Finder  
 
-
-<u>Software Requirements (preinstalled in lab)</u>:  
-Node JS  
-Visual Studio Code  
-Git
+!!! tool "Software Requirements (preinstalled in lab)"
+    Node JS  
+    Visual Studio Code  
+    Git
 
 
 

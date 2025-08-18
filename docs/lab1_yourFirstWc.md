@@ -14,7 +14,7 @@
 > ??? Note w50 "You should have a scaffold to build your new component"
     ![alt text](assets/scaffold.jpg)
 >
----
+> ---
 
 ## Add a new property and state
 > Insert a line above Static Styles (line 6)
