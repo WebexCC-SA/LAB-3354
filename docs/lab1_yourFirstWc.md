@@ -28,16 +28,16 @@
 ## Add some HTML elements to the html template in the render method
 > In the render() method add a few lines between the back ticks in of the return html`` line
 >
-> On the line below return ```` html` ````, add a div tag by typing `<div>`
+> On the line below return ```` html` ````, add a div tag by typing: `<div>`
 >
-> Hit the enter button and add an h1 tag which will contain the value of the myprop property `<h1>${this.myprop}</h1>`
+> Hit the enter button and add an h1 tag which will contain the value of the myprop property: `<h1>${this.myprop}</h1>`
 >
 > Below the h1 tag you just created, add the following code which includes:
 > > An h2 tag with the value of mystate
 > >
-> > An input box with the value of myprop which will update the value of the property when the input box is updated  
+> > An input box with the value of myprop which will update the value of the property when the input box is changed  
 > >
-> > An input box with the value of mystate which will update the value of the state when the input box is updated 
+> > An input box with the value of mystate which will update the value of the state when the input box is changed 
 >
 ```html
             <h2>${this.mystate}</h2>
@@ -93,34 +93,71 @@
 > ---
 
 ### Update values using the input boxes
-> In the input box which has the value of My Property, change the value to <copy>Prop From Component</copy>
+> In the input box which has the value of My Property, change the value to: <copy>Prop From Component</copy>
 >
-> In the input box which has the value of My State, change the value to <copy>State From Component</copy>
+> In the input box which has the value of My State, change the value to: <copy>State From Component</copy>
 >
-> ??? challenge w50 "What happens when you change the values in the input boxes?"
+> ??? question w50 "What happens when you change the values in the input boxes?"
      When you click out of the input box or press enter, the UI updates with the new value.
 >
 > ---
 
 ### Add property and state declarations in index.html
-> Inside the opening tag of hello-world add <copy> myprop="set in html" mystate="set in html"</copy>
+> Inside the opening tag of hello-world add: <copy> myprop="set in html" mystate="set in html"</copy>
 >
 > Save the file (ctrl + s or File > Save)
 > 
-> ??? challenge w50 "What happens in your component?"
+> ??? question w50 "What happens in your component?"
     The value of the property gets it's value from the parent Dom.  
     The value of the state does not update.
-    ??? challenge "Why didn't the state update?"
+    ??? question "Why didn't the state update?"
         state is a private internal variable
 >
 > ---
 
 
-### Change the value of the passed property from the browser's developer tools
+<!-- ### Change the value of the passed property from the browser's developer tools -->
 
+## Add a new method to change the values of myprop and mystate
+> Above the render method create a new method called change values
+>
+> <copy>changeValues(){}</copy>
+>
+> ??? challenge w50 "Inside the curly braces, set the value of myprop and mystate to set by method"
+    ```TS
+        changeValues(){
+        this.myprop = "set by method"
+        this.mystate = "set by method"
+        }
+    ```
+>
+> ---
+> 
+## Add a button to call the new method when clicked
+> Inside the html template below the input tags and still inside the div tags add this line:
+> 
+>  <copy>`<button @click=${this.changeValues}>Call Method</button>`</copy>
+>
+> Save the file
+>
+> Click the new Call Method button to test the functionality
+> 
+> ---
 
-
-
+## Edit the changeValues method and Call Method button to pass a value and update the value of myprop
+> Inside the parentheses of the changeValues method add a string variable named newValue: <copy>newValue:string</copy>
+>
+> Change the value you are setting this.myprop to: <copy>newValue</copy> 
+>
+> In the render method, change the @click listener to: <copy>${this.changeValues.bind(this,"set by button")}</copy>
+>
+> ??? code w50 "This is how your code should look"
+    ![](assets/setByButton.jpg)
+> Save the file
+>
+> Click the Call Method button
+>
+> 
 
 
 
