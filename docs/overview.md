@@ -11,11 +11,11 @@ Although the lab design and configuration examples could be used as a reference,
 ## Tools and Other Lab Requirements
 In this lab we will be using:
 <div class="grid" markdown>
-
 !!! tool "Tools"
     Yarn  
     Vite + Lit  
     VS Code Extensions  
+    GraphQL Workbench  
     Postman  
     JSON Path Finder  
 
@@ -23,15 +23,11 @@ In this lab we will be using:
     Node JS  
     Visual Studio Code  
     Git
-
-
-
 </div>
 
 ---
 
 ## Lab Access
-
 
 
 <!-- ## Getting Started

@@ -26,9 +26,9 @@
 > ---
 
 ## Add some HTML elements to the html template in the render method
-> In the render() method add a few lines between the back ticks in of the return html`` line
+> In the render() method add a few lines between the back ticks in of the ```return html`` ``` line
 >
-> On the line below return ```` html` ````, add a div tag by typing: `<div>`
+> On the line below ````return html` ````, add a div tag by typing: `<div>`
 >
 > Hit the enter button and add an h1 tag which will contain the value of the myprop property: `<h1>${this.myprop}</h1>`
 >
@@ -39,6 +39,7 @@
 > >
 > > An input box with the value of mystate which will update the value of the state when the input box is changed 
 >
+
 ```html
             <h2>${this.mystate}</h2>
             <input value=${this.myprop} @change=${(e: any) => this.myprop = e.target.value}> 
@@ -81,6 +82,9 @@
 ```html 
 <hello-world></hello-world>
 ```
+>
+>> Save the file (ctrl + s or File > Save)
+
 > ---
 
 
