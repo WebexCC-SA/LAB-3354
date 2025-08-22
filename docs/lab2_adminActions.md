@@ -58,3 +58,10 @@ You can now see the Arguments and Fields available
 ### Use API to log out agents
 > Navigate to the [Agent Logout API documentation](https://developer.webex.com/webex-contact-center/docs/api/v1/agents/logout){:target="_blank"}
 
+
+
+??? question w50 "Do we have all of the data we need to to make the logout API call?"
+    You will also need the agentID of the agent you want to log out.  
+    > Add agentId to the GQL query fields
+
+
