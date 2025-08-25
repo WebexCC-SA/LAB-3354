@@ -182,9 +182,25 @@ You can now see the Arguments and Fields available
 >
 > --- 
 
-### Add the code to the getAgents method 
+### Add the code to the getAgents method and make these changes
 > Between the curly braces of the getAgents method, press enter then paste the copied code from postman  
-> 
+> In the headers section of the method, find the Authorization header and change "Bearer placeHolder" to <copy> ```Bearer ${this.token}` ``</copy>  
+> In the **raw** section which holds the stringified JSON:
+>> Change the from variable value to represent a time 24 hours (86400000 ms) before the current time (Date.now()) using a string literal expression: <copy>```${Date.now() - 86400000}` ``</copy>  
+>>
+>> Change the to variable value to represent the time now: <copy>```${Date.now()}` ``</copy>  
+>
+> Make requestOptions an object type by adding <copy>: object</copy> after its name and before the equals sign
+>
+> In the try section of the method:  
+>> Change result to equal: <copy>response.json()</copy> instead of response.text()  
+>
+> ---
+
+
+
+
+
 
 
 
