@@ -113,5 +113,80 @@ You can now see the Arguments and Fields available
 >
 > ---
 
-## 
+## Creating the Web Component
+> Now that you have the basic data and API elements understood and tested, it is time to put them together in code and orchestrate a good experience.
+
+### Create a new Web Component
+> Create a new file in the src directory named <copy>admin-actions.ts</copy>
+> 
+> In the new file type (not paste) littemplate
+>
+> Select the **Create LitElement Component With lit-html**
+> 
+> ---
+
+### Add a string Property to hold your Access Token
+> <copy>@property() token?: string</copy>
+>
+> ---
+
+### Add an array State to hold the data you will return in the query
+> <copy>@state() agentList = []</copy>
+>
+> ---
+
+### Create an Async method to call teh search API
+> <copy>async getAgents(){}</copy>
+
+### Refactor and Export your Graph QL Query
+> ??? note w50 "In your GraphQL Workbench browser tab, click on the "suitcase" icon on the left menu bar then click Refactor Query"
+    ![](assets/refactorQuery.gif)
+> 
+> Change the name of the query from refactored### to: <copy>activeAgents</copy>  
+> Compress the query (suitcase menu > Compress)  
+> Copy as cURL (suitcase menu > Copy as cURL)  
+> ??? note w50 "Show me the steps"
+    ![](assets/compressAndCopy.gif)
+>
+> ---
+
+
+### Import cURL into Postman
+> Open Postman
+> Click Import  
+> ??? note w50 "Paste the cURL from the GraphQL Workbench into the import text box"
+    ![](assets/importToPostman.gif)
+>
+> ---
+
+### Update Headers in Postman
+> Uncheck all headers except: Content-Type and Accept  
+> Add an Authorization Header:  
+> > Key: <copy>Authorization</copy>  
+>> Value: <copy>Bearer placeHolder</copy>
+>
+> ---
+
+### Format the request Body
+> Click on Body  
+> Click the Text dropdown and select JSON  
+> Click Beautify  
+>
+> ---
+
+### Turn the request into code  
+> Click the Code button  
+> Select JavaScript - Fetch for the language  
+> Click the settings cog and ensure the Use async/await is toggled on  
+> Copy the code using the copy button.  
+>
+> --- 
+
+### Add the code to the getAgents method 
+> Between the curly braces of the getAgents method, press enter then paste the copied code from postman  
+> 
+
+
+
+
 
