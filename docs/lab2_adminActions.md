@@ -43,6 +43,10 @@ You can now see the Arguments and Fields available
 > You now have a query template in the first pane of Altair     
 > ??? note w50 "Delete the "has" section and all of its fields"
     ![](assets/removeHas_agentSession.gif)
+>
+> In the Fields section of the query (agentSessions section):  
+> > Delete the lines for intervalStartTime(sort: asc) and aggregation as we are not using them in this query.
+> 
 > In the Arguments section of the query (top section):
 >> Delete the lines for aggregation, aggregations, and aggregationInterval as we are not using aggregations in this query.  
 >
@@ -50,18 +54,64 @@ You can now see the Arguments and Fields available
      - Agent name = agentName
      - Team name = teamName
      - Login time = startTime
-     - Current Status = 
-     - Last Activity time = 
+     - Current Status = channelInfo => currentState (note that this is not the same as the state field)
+     - Last Activity time = channelInfo => lastActivityTime
+    ??? note "currentState and lastActivityTime have a special method of being addressed in the query"
+        ```GraphQl
+        channelInfo{
+            currentState
+            lastActivityTime
+        }
+        ```
+        Update the channelInfo fields in the query.
+>
+> ??? note w50 "Use the Time Widget in the Graph QL Workbench to update the Arguments section of the query selecting From: 1 day ago and To: Now.  Then copy the values into the query."
+    ![](assets/timeWidget.gif)
+>
+> Press the green Send Request button  
+> Scroll through the results in the middle pane of Altair  
+> > Note that there is a lot of extra information you will not need to satisfy the requirements. 
+>
+> Add filters to the Arguments section of the query to only return agent data for agent which are currently active (logged in) and only return the status information for the telephony channel
+> Inside the curly braces after filter add this compound filter  
+> ```GraphQL
+    and:[
+      {isActive:{equals:true}}
+      {channelInfo:{channelType:{equals:"telephony"}}}
+    ]
+  ```
+> 
+> Press the green Send Request button 
+>> Note there are still fields you will not need to satisfy your requirements
 
-
+> Comment out any fields you will not need by using ctrl + / in front of the field name (you can comment more than one line at a time by selecting multiple lines)  
+> Press the green Send Request button to see the results.
+> 
+> Do not close this tab as you will be using it in an upcoming step
+> 
+> ---
 
 ### Use API to log out agents
 > Navigate to the [Agent Logout API documentation](https://developer.webex.com/webex-contact-center/docs/api/v1/agents/logout){:target="_blank"}
-
-
-
-??? question w50 "Do we have all of the data we need to to make the logout API call?"
+>
+> Log into the developer portal using your admin credentials  
+> > Login: <copy><w>admin login</w></copy>  
+> > Password: <copy><w>password</w></copy> 
+>
+> In the logoutReason field enter <copy>Admin Logout</copy>
+> 
+> In the search API results in the the GraphQL Workbench, find your agent's information.
+> ??? question w50 "Do you have all of the data we need to to make the logout API call?"
     You will also need the agentID of the agent you want to log out.  
-    > Add agentId to the GQL query fields
+    > Uncomment out agentId in the fields of the GQL query if they were previously commented out and rerun the request
+> Enter your agent's agentId in the agentId field  
+> Click on the option to see the Request Body (JSON)  
+> Click on the RUN button
+>> You should receive a 202 response  
+> 
+> Do not close this tab as you will be using it in an upcoming step  
+>
+> ---
 
+## 
 
