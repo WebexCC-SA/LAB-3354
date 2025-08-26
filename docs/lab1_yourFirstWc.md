@@ -165,7 +165,7 @@
     The value for myprop changed to "set by button"
     The value for mystate changes to "set by method"
     ??? question "Why?"
-        The value of "set by button" was passed to the changeValues method as a parameter when teh button was clicked and you only changed the value of myprop to use the passed value while mystate was set to the value defined in the method.
+        The value of "set by button" was passed to the changeValues method as a parameter when the button was clicked and you only changed the value of myprop to use the passed value while mystate was set to the value defined in the method.
 >
 > ---
 

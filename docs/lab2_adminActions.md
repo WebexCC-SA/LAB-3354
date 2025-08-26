@@ -332,7 +332,146 @@ You can now see the Arguments and Fields available
 >
 > ---
 
-Desktop Layout
+## Adding the Web Component to the agent desktop
+
+### Download the Desktop Layout
+> In [Control Hub](https://admin.webex.com){:target="_blank"} navigate to Contact Center => Desktop Layouts  
+> Locate the Desktop Layout named <w class="layoutName">placeholder for layout name</w>  
+> Click the name of the Desktop Layout to access the details  
+> !!! Note w50 
+    - Desktop Layouts are assigned to agents based on the team they have logged in with.
+    - You can download the existing Desktop Layout JSON if you would like to see the configuration or make edits.
+    - You can download the default Desktop Layout if you want to start fresh or see what new options may be available on the agent desktop.
+    - If you do not upload a custom desktop layout, new features will automatically appear on the agent desktop for the assigned teams as they become available.
+>
+> Click the button to download the default desktop layout.  
+> Open the JSON file in Visual Studio Code  
+>> In the Explorer pane (left pane) of VS Code, click on the Outline to expand it.  
+>>> You may choose to click on HELLO-WORLD at the top of the Explored pane to collapse the file list of your web components while you explore the Desktop Layout outline.  
+>> Hover over OUTLINE to expose the Collapse All ![](assets/outlineCollapseAll.jpg) button and click on it.  
+>> !!! Note w50
+    - The JSON layout contains sections for agent, supervisor, and supervisorAgent
+    - The layout options will be based on the role the user is logging in with in addition to the team they are logging into.
+>> Expand agent > area > advancedHeader and click on advancedHeader to jump to that section
+>> 
+<div class="grid" markdown>
+!!! question "Look at the first entry in the advancedHeader array"
+    - Based on what you have been adding to the index.html file, what similarities do you notice?
+        - comp - component and is the same as the html tag value you would put in the html body
+        - script - same as the script src value in the html header
+        - attributes - similar to properties, but limited to only containing strings, are the same (well similar) as passing a property in the opening component tag in the html  
+    - Notice that the attributes (similar to properties) are being set with a variable
+        - There is a data provider named STORE which will pass realtime updated to your web component so that it can update.
+        - [STORE attribute documentation for reference](https://developer.webex-cx.com/documentation/guides/desktop){:target="_blank"}
+
+!!! code
+    ```JSON
+        {
+          "comp": "digital-outbound",
+          "script": "https://wc.imiengage.io/AIC/engage_aic.js",
+          "attributes": {
+            "darkmode": "$STORE.app.darkMode",
+            "accessToken": "$STORE.auth.accessToken",
+            "orgId": "$STORE.agent.orgId",
+            "dataCenter": "$STORE.app.datacenter",
+            "emailCount": "$STORE.agent.channels.emailCount",
+            "socialCount": "$STORE.agent.channels.socialCount"
+          }
+        }
+    
+    ```
+
+</div>
+---
+
+### Adding your widget to a Navigation Page
+> In the Desktop Layout Outline, Expand agent > area > navigation and click on navigation to jump to that section of the JSON.  
+> > ??? note "After the closing curly brace of the last item in the navigation array and before the closing square bracket of the navigation array:"
+    ![](assets/aa_layout_here.jpg)
+>> Add a comma and press enter  
+>> Paste this JSON into the layout  
+>> 
+```JSON
+{
+          "nav": {
+            "label": "Admin Actions",
+            "icon": "admin-regular",
+            "iconType": "momentumDesign",
+            "navigateTo": "aActions",
+            "align": "top"
+          },
+          "page": {
+            "id": "aActions",
+          
+            "widgets": {
+              "comp1": {
+                "comp": "admin-actions",
+                "script":"http://localhost:4173/index.js",
+                "attributes": {
+                  "token": "$STORE.auth.accessToken"
+                }
+              }
+            },
+            "layout": {
+          "areas": [["comp1"]],
+          "size": {
+            "cols": [1],
+            "rows": [1]
+          }
+        }
+          }
+        }
+```
+>
+> ---
+
+### Save and update the new layout JSON
+> In the Desktop Layout  
+> > Save the file as ...  
+>> Navigate to the Desktop Layout section of Control Hub
+>> Locate your assigned Desktop Layout
+>> Upload the new JSON by dragging the file into the import box or clicking Replace file and navigating to the file using the file explorer
+>> Click Save in the lower right corner
+>
+> ---
+
+## Testing
+
+### Build and server your widget code
+> In the terminal at the bottom of VS Code:  
+> Use press ctrl + c to shut down the development server  
+> Build the externally usable code by entering the command: <copy>yarn build</copy>  
+> Start the preview server with the build command in watch mode by entering the command: <copy>yarn game</copy>  
+>
+> ---
+
+
+### Log into the agent desktop
+> Log into the [Agent Desktop](https://desktop.wxcc-us1.cisco.com){:target="_blank"} if you are not already logged in.  
+> > Login: <copy><w>admin login</w></copy>  
+> > Password: <copy><w>password</w></copy>  
+> > Team: <copy><w>team</w></copy> 
+> ---
+
+### Testing steps
+> The Navigation pane should include the icon you defined in the agent desktop ![](assets/AAicon.jpg){style="height:.8rem"}  
+> Click on the icon to show the Admin Actions screen
+> > Does the tool render?  
+> 
+> Click the Refresh Agent List button  
+> > Do you see a list of logged in users with all of the fields populated?  
+> 
+> Click on the avatar (your initials) in the upper right corner of the screen to open the desktop settings  
+>> Toggle to dark mode  
+>>> Does the tool render correctly in both light and dark mode?  
+> 
+> Find a buddy next to you in the room and one of you log the other person out using the logout button.
+> > Did the agent get logged out?
+> >> Refresh the list using the button to make sure.  
+>
+> ---
+
+
 
 
 
