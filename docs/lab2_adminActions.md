@@ -262,7 +262,7 @@ You can now see the Arguments and Fields available
 
 ### Add to index.html passing the Bearer token as a property
 > ??? challenge w50 "Add the script tag in the header of index.html"
-    <script type="module" src="/src/admin-actions.ts"></script>
+    <copy>`<script type="module" src="/src/admin-actions.ts"></script>`</copy>
 > ??? challenge w50 "Add the custom element tag to the html body of index.html"
     <copy>`<admin-actions token="Replace with the token value from the GraphQL Workbench"></admin-actions>`</copy>
 >
