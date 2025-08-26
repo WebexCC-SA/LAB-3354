@@ -197,7 +197,105 @@ You can now see the Arguments and Fields available
 >
 > ---
 
+### Return to the GraphQL Workbench to understand how to use the returned data
+> In the center pane of Altair, copy the data returned from the query  
+> Open [JSON Path Finder](https://jsonpathfinder.com){:target="_blank"}  
+> Paste the copied data into the left pane  
+> In the right pane, navigate until you find the array of agentSessions  
+> ??? question w50 "What is the JSON path which will return the array of agentSessions?"
+    x.data.agentSession.agentSessions
+    ??? challenge "In the agent-actions.ts file, set the value of agentList to this JSON path"  
+        Add <copy>this.agentList = result.data.agentSession.agentSessions;</copy> in the try section of the getAgents method, below the **const result = await response.json();** line
+        ![](assets/addJSONpathAgent_actions.jpg)
+>
+> Back in JSON Path Finder, make the data mimic what you set agentList to in the previous step and only keeping the agentSessions array
+>> On line 4 double click next to the opening bracket of agentSessions to select teh entire array.  
+>> Copy the array (ctrl + c)  
+>> Delete all the data (ctrl + a and delete)  
+>> Paste the previously copied array (ctrl + v)
+>> ??? note w50 "Show me"
+    ![](assets/jsonPathDig.gif)
+>
+> ---
 
+### Update the html template in the render method
+> In the render() method add a few lines between the back ticks in of the ```return html`` ``` line  
+> Add an title header for the web component: <copy>`<h1 class="title">Admin Actions</h1>`  
+> Create a table with headers for Agent Name, Team, Login Time, and Status  
+>> Add a `<table>` tag  
+>> Inside the table tags add a table head tag `<thead>`  
+>> Inside the table head tag add table headers for the table as listed above.  Example: <copy>`<th>Agent Name</th>`</copy>
+> ??? note w50 "Check your code"
+    ![](assets/tableHeaders.jpg)
+>
+> ---
+
+### Create the table body using the data from the agentList array
+> In this section you are going to use the map method which will preform an action for each object in an array.  Each iteration of the map method will produce an object from that index of the array which you will refer to as t and will represent the root of the JSON path.  You will be using JSON Path Finder to understand the JSON path addresses as you progress through the fields.  You will also be doing some math and other formatting to the returned values to produce a more user friendly table.
+
+### Create the map method to render the html of the table body
+```TS
+    ${this.agentList?.map((t: any) => html`
+    <tbody>
+
+    </tbody>
+    `)}
+```
+
+---
+
+### Inside the tbody tags create the table data cells
+> Using JSON Path Finder, Create the field for agentName  
+> > <copy>`<td>t.agentName</td>`</copy>>  
+> ??? challenge w50 "Create the field for Team  "
+    <copy>`<td>t.agentName</td>`</copy>>  
+> Create the value of startTime in a human readable datetime stamp  
+> > <copy>`<td>${new Date(t.startTime).toLocaleString()}</td>`</copy>  
+> ??? challenge w50 "Create the value of currentState" 
+    <copy>`<td>${t.channelInfo[0].currentState}</td>`</copy>
+> Create the duration of time in the current state  
+> > <copy>`<td>${new Date(Date.now() - t.channelInfo[0].lastActivityTime).toISOString().slice(11, -5)}</td>`</copy>
+>
+> ---
+
+### Add to index.html passing the Bearer token as a property
+> 
+
+
+### Make the output look a better by adding this CSS to the static styles:
+> ```CSS
+            :host{
+            display: flex;
+            flex-direction: column;
+            border: solid 3px var(--md-primary-text-color);
+            padding: 2em;
+            color:var(--md-primary-text-color)
+            }
+            .title{
+            text-align: center
+            }
+            table{
+            display:table;
+            border-collapse:collapse;
+            border-spacing: 0;
+            margin-top: 15px;
+            }
+            tr, th, td{
+            border: solid 1px;
+            text-align: center;
+            }
+            .hidden{
+            display:none;
+            }
+  ```
+>
+> ---
+
+### add the agent logout method  
+
+### add the agent logout button
+
+Desktop Layout
 
 
 
