@@ -135,7 +135,7 @@ You can now see the Arguments and Fields available
 >
 > ---
 
-### Create an Async method to call teh search API
+### Create an Async method to call the search API
 > <copy>async getAgents(){}</copy>
 
 ### Refactor and Export your Graph QL Query
@@ -209,7 +209,7 @@ You can now see the Arguments and Fields available
         ![](assets/addJSONpathAgent_actions.jpg)
 >
 > Back in JSON Path Finder, make the data mimic what you set agentList to in the previous step and only keeping the agentSessions array
->> On line 4 double click next to the opening bracket of agentSessions to select teh entire array.  
+>> On line 4 double click next to the opening bracket of agentSessions to select the entire array.  
 >> Copy the array (ctrl + c)  
 >> Delete all the data (ctrl + a and delete)  
 >> Paste the previously copied array (ctrl + v)
@@ -221,6 +221,7 @@ You can now see the Arguments and Fields available
 ### Update the html template in the render method
 > In the render() method add a few lines between the back ticks in of the ```return html`` ``` line  
 > Add an title header for the web component: <copy>`<h1 class="title">Admin Actions</h1>`  
+> Add a button to call the getAgents method: <copy>`<div><button @click=${this.getAgents}>Refresh Agent List</button></div>`</copy>  
 > Create a table with headers for Agent Name, Team, Login Time, and Status  
 >> Add a `<table>` tag  
 >> Inside the table tags add a table head tag `<thead>`  
@@ -234,6 +235,7 @@ You can now see the Arguments and Fields available
 > In this section you are going to use the map method which will preform an action for each object in an array.  Each iteration of the map method will produce an object from that index of the array which you will refer to as t and will represent the root of the JSON path.  You will be using JSON Path Finder to understand the JSON path addresses as you progress through the fields.  You will also be doing some math and other formatting to the returned values to produce a more user friendly table.
 
 ### Create the map method to render the html of the table body
+>   
 ```TS
     ${this.agentList?.map((t: any) => html`
     <tbody>
@@ -241,8 +243,8 @@ You can now see the Arguments and Fields available
     </tbody>
     `)}
 ```
-
----
+>
+> ---
 
 ### Inside the tbody tags create the table data cells
 > Using JSON Path Finder, Create the field for agentName  
@@ -259,8 +261,12 @@ You can now see the Arguments and Fields available
 > ---
 
 ### Add to index.html passing the Bearer token as a property
-> 
-
+> ??? challenge w50 "Add the script tag in the header of index.html"
+    <script type="module" src="/src/admin-actions.ts"></script>
+> ??? challenge w50 "Add the custom element tag to the html body of index.html"
+    <copy>`<admin-actions token="Replace with the token value from the GraphQL Workbench"></admin-actions>`</copy>
+>
+> ---
 
 ### Make the output look a better by adding this CSS to the static styles:
 > ```CSS
@@ -291,9 +297,40 @@ You can now see the Arguments and Fields available
 >
 > ---
 
-### add the agent logout method  
+### Convert the Logout Agents API call into code
+> In the browser tab with the developer portal open to the agent logout API:  
+>> Click on Code Snippets  
+>> Select Curl  
+>> Click the Copy button in the upper right corner of the code   
+>  Open Postman and import the cURL  
+>> Click the code button in Postman
+>>> Make sure that you have selected Javascript - Fetch with async/await  
+>> Copy the code  
+>
+> ---
 
-### add the agent logout button
+### Create a new async method to log out agents
+> <copy>async logOutAgent(e: any){}</copy>  
+> Between the curly braces, press enter then paste the copied code from postman.  
+> Make the following edits to the method code:  
+>> Change the Authorization header to use the token property  
+>> Make requestOptions an object type  
+>> Change the agentId in the raw variable to use <copy>`e.target.value`</copy>
+> ??? note w50 "Check your code"
+    ![](assets/agentLogoutMethod.jpg)
+
+> 
+> ---
+
+
+### Add a button to log out the agent in every row of the table
+> Add a header to the bottom of the `<thead>` section: <copy>`<th>Action</th>`</copy>  
+> Add another column to the table data map at the bottom of the `<tbody>` section:  <copy>`<td><button value=${t.agentId} @click="${this.logOutAgent}">Log Out</button></td>`</copy>
+> ??? note w50 "Check your code"
+    ![](assets/admin-actionsRender.jpg)
+
+>
+> ---
 
 Desktop Layout
 
