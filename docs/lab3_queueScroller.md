@@ -65,11 +65,11 @@ For this query you will be using aggregations and a compound filter to retrieve 
     Set the URL: <copy>https://api.wxcc-us1.cisco.com/search</copy>  
 > Open the Docs pane and add the query for task using the ADD QUERY button  
 > Remove the has section  
-> Remove the intervalInfo section  
+> Remove the intervalInfo and pageInfo sections  
 > Remove all fields in the tasks section except lastQueue and aggregation  
 > After lastQueue add: <copy>{name}</copy>  
 > After aggregation add: <copy>{name value}</copy>
-> In the Arguments section of the query, remove the lines for aggregation and aggregationInterval  
+> In the Arguments section of the query, remove the lines for aggregation, aggregationInterval, and pagination  
 > Click the suitcase icon and select Prettify  
 > 
 > ---
@@ -84,12 +84,49 @@ They can be further bifurcated by having other fields in the query.  In our case
 > Replace the aggregating template example in the query with your new aggregation leaving the square brackets. Then press enter twice to move the closing square bracket down to make room for the next aggregation.
 > ??? challenge w50 "Create an aggregation to return the min createdTime and name it oldestStart"
     { field: "createdTime", type: min, name: "oldestStart" }
-> Add this aggregating directly below the one you just created.
+> Add this aggregation directly below the one you just created.
 > Prettify your query. 
+>
+> ---
 
 
 #### Creating the compound filter
+In the previous lab, you used an **and** filter group to exclude records and fields which did not match the filter criteria.  In this query you will be nesting an inclusive **or** filter group inside an excluding **and** filter group.
+> Inside the curly braces of the filter, type: `and:[]`, then press enter between the square brackets  
+> ??? challenge w50 "How would you add a filter if you only want to return contacts which are active?"
+    `{isActive:{equals:true}}`
+> After adding the previous filter, on the next line type: `{or:[]}`, then press enter between the square brackets.  
+> Using the Queue IDs returned from the List references for a specific Team API query you have in Postman:  
+>> For each of the Queue IDs add a new filter inside the or square brackets with the Queue ID inside the quotes for equals:  
+>> <copy>`{lastQueue:{id:{equals:""}}}`</copy>  
+>> ??? note w50 "Check your filters"
+    ![](assets/compoundFliterQueue.jpg)
+>
+> ---
 
+#### Testing the query
+> Place a call to your assigned inbound number: <copy><w class="dn"></w></copy>  
+> > You can mute the volume for the call as you will not actually be answering the call.  
+> Use the time tool to set the from: 1 day ago and to: Now  
+> Press the Send Request button  
+> 
+> ---
+
+#### Optimizing and exporting the query
+> Using the options in the suitcase menu
+> > Refactor the query  
+> > Rename the query to <copy>queueStats</copy>  
+> > Export the cURL and import it into Postman
+>
+> Do not close the browser tab
+>
+>  In Postman:
+> > Uncheck all headers except: Content-Type and Accept  
+> Add an Authorization Header:  
+> > Key: <copy>Authorization</copy>  
+>> Value: <copy>Bearer placeHolder</copy>  
+> Change the body type to JSON and Beautify it  
+> ---
 
 
 ## Creating the Web Component
@@ -104,18 +141,36 @@ They can be further bifurcated by having other fields in the query.  In our case
 > ---
 
 ### Create Properties for the required variables
-> token  
-> orgId  
-> teamId  
-> agentId  
+> <copy>@property() token?: string</copy>  
+> <copy>@property() orgId?: string</copy>  
+> <copy>@property() teamId?: string</copy>  
+> <copy>@property() agentId?: string</copy>  
+>
+> ---
 
 ### Create States for the required data elements
-> Array of queues  
-> queueFilter
+> 
+> queueFilter  
+> refreshTime
 > _timerInterval
+>
+> ---
 
-### Create method
-
+### Create a new async method to query the Search API
+> <copy>async getStats(){}</copy>  
+> In Postman, 
+> Between the curly braces of the getAgents method, press enter then paste the copied code from postman  
+> In the headers section of the method, find the Authorization header and change "Bearer placeHolder" to <copy> ```Bearer ${this.token}` ``</copy>  
+> In the **raw** section which holds the stringified JSON:
+>> Change the from variable value to represent a time 24 hours (86400000 ms) before the current time (Date.now()) using a string literal expression: <copy>```${Date.now() - 86400000}` ``</copy>  
+>>
+>> Change the to variable value to represent the time now: <copy>```${Date.now()}` ``</copy>  
+>
+> Make requestOptions an object type by adding <copy>: object</copy> after its name and before the equals sign
+>
+> In the try section of the method:  
+>> Change result to equal: <copy>response.json()</copy> instead of response.text()  
+>
 
 ### Create method
 

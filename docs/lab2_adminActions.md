@@ -175,10 +175,12 @@ You can now see the Arguments and Fields available
 > ---
 
 ### Turn the request into code  
-> Click the Code button  
+> Click the Code button  ![](assets/codeButtonPostman.jpg)  
 > Select JavaScript - Fetch for the language  
 > Click the settings cog and ensure the Use async/await is toggled on  
 > Copy the code using the copy button.  
+> ??? note w50 "Show me"
+    ![](assets/codeFromPostman.gif)
 >
 > --- 
 
@@ -190,8 +192,8 @@ You can now see the Arguments and Fields available
 >>
 >> Change the to variable value to represent the time now: <copy>```${Date.now()}` ``</copy>  
 >
-> Make requestOptions an object type by adding <copy>: object</copy> after its name and before the equals sign
->
+> Set the **type** of requestOptions to be an object by adding this notation ,after its name and before the equals sign: <copy>`: object`</copy>    
+> 
 > In the try section of the method:  
 >> Change result to equal: <copy>response.json()</copy> instead of response.text()  
 >
