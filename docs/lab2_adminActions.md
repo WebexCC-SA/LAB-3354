@@ -74,12 +74,13 @@ You can now see the Arguments and Fields available
 >
 > Add filters to the Arguments section of the query to only return agent data for agent which are currently active (logged in) and only return the status information for the telephony channel
 > Inside the curly braces after filter add this compound filter  
-> ```GraphQL
-    and:[
-      {isActive:{equals:true}}
-      {channelInfo:{channelType:{equals:"telephony"}}}
-    ]
-  ```
+> !!! blank w50 ""
+    ```GraphQL
+        and:[
+        {isActive:{equals:true}}
+        {channelInfo:{channelType:{equals:"telephony"}}}
+        ]
+    ```
 > 
 > Press the green Send Request button 
 >> Note there are still fields you will not need to satisfy your requirements
@@ -192,7 +193,7 @@ You can now see the Arguments and Fields available
 >>
 >> Change the to variable value to represent the time now: <copy>```${Date.now()}` ``</copy>  
 >
-> Set the **type** of requestOptions to be an object by adding this notation ,after its name and before the equals sign: <copy>`: object`</copy>    
+> Set the **type** of requestOptions to be an object by adding this notation, after its name and before the equals sign: <copy>`: object`</copy>    
 > 
 > In the try section of the method:  
 >> Change result to equal: <copy>response.json()</copy> instead of response.text()  
@@ -237,14 +238,14 @@ You can now see the Arguments and Fields available
 > In this section you are going to use the map method which will preform an action for each object in an array.  Each iteration of the map method will produce an object from that index of the array which you will refer to as t and will represent the root of the JSON path.  You will be using JSON Path Finder to understand the JSON path addresses as you progress through the fields.  You will also be doing some math and other formatting to the returned values to produce a more user friendly table.
 
 ### Create the map method to render the html of the table body
->   
-```TS
-    ${this.agentList?.map((t: any) => html`
-    <tbody>
+> !!! blank w50 ""
+    ```TS
+        ${this.agentList?.map((t: any) => html`
+        <tbody>
 
-    </tbody>
-    `)}
-```
+        </tbody>
+        `)}
+    ```
 >
 > ---
 
@@ -271,31 +272,32 @@ You can now see the Arguments and Fields available
 > ---
 
 ### Make the output look a better by adding this CSS to the static styles:
-> ```CSS
-            :host{
-            display: flex;
-            flex-direction: column;
-            border: solid 3px var(--md-primary-text-color);
-            padding: 2em;
-            color:var(--md-primary-text-color)
-            }
-            .title{
-            text-align: center
-            }
-            table{
-            display:table;
-            border-collapse:collapse;
-            border-spacing: 0;
-            margin-top: 15px;
-            }
-            tr, th, td{
-            border: solid 1px;
-            text-align: center;
-            }
-            .hidden{
-            display:none;
-            }
-  ```
+> !!! blank w50 ""
+    ```CSS
+                :host{
+                display: flex;
+                flex-direction: column;
+                border: solid 3px var(--md-primary-text-color);
+                padding: 2em;
+                color:var(--md-primary-text-color)
+                }
+                .title{
+                text-align: center
+                }
+                table{
+                display:table;
+                border-collapse:collapse;
+                border-spacing: 0;
+                margin-top: 15px;
+                }
+                tr, th, td{
+                border: solid 1px;
+                text-align: center;
+                }
+                .hidden{
+                display:none;
+                }
+    ```
 >
 > ---
 
@@ -388,42 +390,42 @@ You can now see the Arguments and Fields available
 
 ### Adding your widget to a Navigation Page
 > In the Desktop Layout Outline, Expand agent > area > navigation and click on navigation to jump to that section of the JSON.  
-> > ??? note "After the closing curly brace of the last item in the navigation array and before the closing square bracket of the navigation array:"
+> > ??? note w50 "After the closing curly brace of the last item in the navigation array and before the closing square bracket of the navigation array:"
     ![](assets/aa_layout_here.jpg)
 >> Add a comma and press enter  
 >> Paste this JSON into the layout  
->> 
-```JSON
-{
-          "nav": {
-            "label": "Admin Actions",
-            "icon": "admin-regular",
-            "iconType": "momentumDesign",
-            "navigateTo": "aActions",
-            "align": "top"
-          },
-          "page": {
-            "id": "aActions",
-          
-            "widgets": {
-              "comp1": {
-                "comp": "admin-actions",
-                "script":"http://localhost:4173/index.js",
-                "attributes": {
-                  "token": "$STORE.auth.accessToken"
-                }
-              }
+>> !!! blank w50 ""
+    ```JSON
+    {
+            "nav": {
+                "label": "Admin Actions",
+                "icon": "admin-regular",
+                "iconType": "momentumDesign",
+                "navigateTo": "aActions",
+                "align": "top"
             },
-            "layout": {
-          "areas": [["comp1"]],
-          "size": {
-            "cols": [1],
-            "rows": [1]
-          }
-        }
-          }
-        }
-```
+            "page": {
+                "id": "aActions",
+            
+                "widgets": {
+                "comp1": {
+                    "comp": "admin-actions",
+                    "script":"http://localhost:4173/index.js",
+                    "attributes": {
+                    "token": "$STORE.auth.accessToken"
+                    }
+                }
+                },
+                "layout": {
+            "areas": [["comp1"]],
+            "size": {
+                "cols": [1],
+                "rows": [1]
+            }
+            }
+            }
+            }
+    ```
 >
 > ---
 
