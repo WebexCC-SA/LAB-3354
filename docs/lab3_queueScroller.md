@@ -40,7 +40,7 @@
 > ---
 
 ??? question w50 "Did you notice anything interesting about the API calls and responses?"
-    - All three use the dame method (GET)
+    - All three use the same method (GET)
     - The returned JSON has nearly the same structure
     - All three calls are using the same headers
     - All three are using the same URL root
@@ -194,16 +194,16 @@ In this line of code you are going set the value of the state **queueStats** usi
 > ??? challenge "Insert this updated line of code using the information from JSON path Finder:<br> this.queueStats = await result.(JSON path to the array items).map((item: any) =>{})"
     <copy>this.queueStats = await result.data.task.tasks.map((item: any) => {})</copy>
 > !!! challenge "In the curly bracket of the arrow function use insert this html template then update the template to use the array values:"  
-    <copy>``html`<li> | Queue: ${<replace with queue name>} Contacts: ${<replace with the count of contacts>} Wait: ${new Date(Date.now() - <replace with the oldestSrart time>).toISOString().slice(11, -5)} |</li>` ``</copy>
+    <copy>``return html`<li> | Queue: ${<replace with queue name>} Contacts: ${<replace with the count of contacts>} Wait: ${new Date(Date.now() - <replace with the oldestSrart time>).toISOString().slice(11, -5)} |</li>` ``</copy>
     ??? answer
-        <copy>``html`<li> | Queue: ${item.lastQueue.name} Contacts: ${item.aggregation[1].value} Wait: ${new Date(Date.now() - item.aggregation[0].value).toISOString().slice(11, -5)} |</li>` ``</copy>
+        <copy>``return html`<li> | Queue: ${item.lastQueue.name} Contacts: ${item.aggregation[1].value} Wait: ${new Date(Date.now() - item.aggregation[0].value).toISOString().slice(11, -5)} |</li>` ``</copy>
 > ---
 
 ### Update the render method
 Add this code, which includes an unordered list and a temporary testing button, into the html template of the render method.
 !!! blank w50 ""
     ```TS
-            <button @click=${this.getQueues}>test</button>     
+            <button @click=${this.getStats}>test</button>     
             <div class="marquee-container">
                 <ul class="marquee">
                     ${this.queueStats}
@@ -222,12 +222,59 @@ Add this code, which includes an unordered list and a temporary testing button, 
 
 #### Testing
 
+
+
 ### Create a new async method to aggregate a list of queues for the agent signed in and update the query filter with those queue values
+
+!!! abstract w50
+    There are three APIs you will need to call in order to retrieve a full list of queues from which the agent may receive calls.  However, this does not mean that you will need three different methods added to your web component, and with the URL paths and returned JSON being very similar, you have the ability to reuse code.
+
+    The URLs are formatted with the root: `https://api.wxcc-us1.cisco.com/organization/{orgId}`  
+    And the paths:  
+    `/team/{teamId}/incoming-references`  
+    `/v2/contact-service-queue/by-user-id/{agentId}/skill-based-queues`  
+    `/v2/contact-service-queue/by-user-id/{agentId}/agent-based-queues`  
 
 
 > <copy>async getQueues(){}</copy>  
-> 
+> In Postman, copy the code (Javascript - Fetch with async/await) for the List references for a specific Team API call 
+> Between the curly braces of the getAgents method, press enter then paste the copied code from postman  
+> ??? challenge w50 "Update the Authorization header to use the property token"
+    <copy> ```Bearer ${this.token}` ``</copy>  
+> Bellow the headers, add a new constant which holds an array of the URL paths:  
+> > <copy>``const paths = [`/v2/contact-service-queue/by-user-id/${this.agentId}/agent-based-queues`, `/v2/contact-service-queue/by-user-id/${this.agentId}/skill-based-queues`, `/team/${this.teamId}/incoming-references`]``</copy>  
+>
+> On the next line, make sure that the state queueFilter is an empty array before you add values by setting like this: <copy>this.queueFilter = []</copy>  
+> Set the **type** of requestOptions to be an object by adding this notation, after its name and before the equals sign: <copy>`: object`</copy>  
 
+!!! abstract w50
+    In the next steps you will use a forEach method iterate through the **paths** array, making an API call "for each" path in the array.  During each iteration you will use another forEach method to iterate through the returned data, then add a formatted object to the queueFilter array.  After creating the queueFilter, you will call the getStats() method to populate the queue information.
+
+> Wrap the try/catch section in a forEach method:  
+> > On the line above the try, insert: <copy>`paths.forEach(async (path, i) => {`</copy>  
+> > Below the closing curly brace of the catch. insert: <code>`})`</code>  
+> 
+> Change the URL in the fetch command to <copy>`` `https://api.wxcc-us1.cisco.com/organization/${this.orgId}${path}` ``</copy>  
+> Change result to equal: <copy>response.json()</copy> instead of response.text()  
+> Add the forEach to iterate through the returned data and push the formatted object into the queueFilter array:  
+> > <copy>result.data.forEach((q: any) => this.queueFilter.push({ lastQueue: { id: { equals: q.id } } }))</copy>  
+>
+> After the closing curly brace of the catch and before the closing `})`, add an if statement to check if the forEach method has completed so that you can call the getStats method and populate the UI:  
+> >  <copy>if (i >= paths.length - 1) {this.getStats()}</copy>
+> ---
+
+
+### Update the get Stats method to use the new filter
+> In the getStats method, find the or filter group in the query variables:  
+> > Replace the square braces and JSON contained in the square braces with: <copy>this.queueFilter</copy>
+> ??? note w50 "Show me"
+    ![](assets/update_queueFilter.gif)
+> ---
+
+### Update the testing button in the render function
+> In the html template of teh render function:  
+> > change the @click from this.getStats to <copy>this.getQueues</copy>  
+> ---
 
 ### Add CSS Styling
 
@@ -281,12 +328,38 @@ Add this code, which includes an unordered list and a temporary testing button, 
     ```
 
 
-### Add auto refresh functionality
+#### Testing 
+
+### Add auto load and refresh functionality
+!!! abstract w50
+    
+
+
+> Add a new state <copy>@state() _timerInterval?: any </copy>
+
 > Connected callback  
 > Disconnected callback  
+>
+> 
+```
+    connectedCallback(): void {
+        super.connectedCallback()
+        this.getQueues()
+        this._timerInterval = setInterval(() => this.getStats(), 10000);
+    }
+    disconnectedCallback() {
+        super.disconnectedCallback();
+        clearInterval(this._timerInterval);
+    }
+```
 
-### Adjust the scrolling and refresh time to account for teh number of queues displayed
+> Remove the testing button
 
+
+### Adjust the scrolling and refresh time to account for the number of queues displayed
+- Add a count for the number of returned queues in the returned data * 10 (for 10 seconds to scroll each queue) and set the value of refreshTime with this number  
+- Add inline CSS to the UL element  
+- update the timer to use the refreshTime  
 
 ### Add to Desktop Layout
 
