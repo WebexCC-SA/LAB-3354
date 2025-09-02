@@ -329,10 +329,18 @@ Add this code, which includes an unordered list and a temporary testing button, 
 
 
 #### Testing 
-
+> Call your assigned DN to place a call in the queue <copy><w class="dn">dn</w></copy>  
+> Once the call is in queue, press the testing button  
+> > You should see the queue stats scrolling in your web component.
+>
+> ---
 ### Add auto load and refresh functionality
 !!! abstract w50
-    
+    - Instead of updating the widget data only when you push a button, you can execute your code automatically once the web component is loaded using the **connectedCallback** lifecycle.  
+    - You can also employ the **setInterval** method to run parts of your code on a set interval to refresh your data.  
+    - Since the queues the agent is assigned are not likely to change often, you only need to execute getQueues when the agent logs in.
+    - If you are setting up event listeners or timers via **connectedCallback**, it is a best practice to remove them from memory when you unload the web component using the **disconnectedCallback** lifecycle.  In order to clear the setInterval, you will create a state to reference it with later.  
+
 
 
 > Add a new state <copy>@state() _timerInterval?: any </copy>
@@ -360,7 +368,17 @@ Add this code, which includes an unordered list and a temporary testing button, 
 - Add a count for the number of returned queues in the returned data * 10 (for 10 seconds to scroll each queue) and set the value of refreshTime with this number  
 - Add inline CSS to the UL element  
 - update the timer to use the refreshTime  
-
+    ```TS
+    updateInterval(){
+        if(this.queueStats.length >=1){
+            this.refreshTime = this.queueStats.length * 10
+        }else{
+            this.refreshTime = 10
+        }
+        clearInterval(this._timerInterval)
+        this._timerInterval = setInterval(() => this.getStats(), this.refreshTime * 1000);
+    }
+    ```
 ### Add to Desktop Layout
 
 ## Testing

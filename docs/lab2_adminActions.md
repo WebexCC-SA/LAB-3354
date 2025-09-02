@@ -237,7 +237,7 @@ You can now see the Arguments and Fields available
 ### Create the table body using the data from the agentList array
 > In this section you are going to use the map method which will preform an action for each object in an array.  Each iteration of the map method will produce an object from that index of the array which you will refer to as t and will represent the root of the JSON path.  You will be using JSON Path Finder to understand the JSON path addresses as you progress through the fields.  You will also be doing some math and other formatting to the returned values to produce a more user friendly table.
 
-### Create the map method to render the html of the table body
+#### Use the map method to render the html of the table body below the `</thead>` closing tag 
 > !!! blank w50 ""
     ```TS
         ${this.agentList?.map((t: any) => html`
@@ -249,11 +249,11 @@ You can now see the Arguments and Fields available
 >
 > ---
 
-### Inside the tbody tags create the table data cells
+#### Inside the tbody tags create the table data cells
 > Using JSON Path Finder, Create the field for agentName  
-> > <copy>`<td>t.agentName</td>`</copy>>  
-> ??? challenge w50 "Create the field for Team  "
-    <copy>`<td>t.agentName</td>`</copy>>  
+> > <copy>`<td>t.agentName</td>`</copy>  
+> ??? challenge w50 "Create the field for Team"  
+    <copy>`<td>t.teamName</td>`</copy>  
 > Create the value of startTime in a human readable datetime stamp  
 > > <copy>`<td>${new Date(t.startTime).toLocaleString()}</td>`</copy>  
 > ??? challenge w50 "Create the value of currentState" 
