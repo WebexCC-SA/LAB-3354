@@ -107,9 +107,10 @@ In the previous lab, you used an **and** filter group to exclude records and fie
 #### Testing the query
 > Place a call to your assigned inbound number: <copy><w class="dn"></w></copy>  
 > > You can mute the volume for the call as you will not actually be answering the call.  
+> 
 > Use the time tool to set the from: 1 day ago and to: Now  
 > Press the Send Request button  
-> 
+> You can end the call once your query has returned the results  
 > ---
 
 #### Optimizing and exporting the query
@@ -149,16 +150,16 @@ In the previous lab, you used an **and** filter group to exclude records and fie
 > ---
 
 ### Create States for the required data elements
-> 
+> queueStats  
 > queueFilter  
-> refreshTime
-> _timerInterval
+> refreshTime (move down in instructions for future step)  
+> _timerInterval (move down in instructions for future step)  
 >
 > ---
 
 ### Create a new async method to query the Search API
 > <copy>async getStats(){}</copy>  
-> In Postman, 
+> In Postman, use the code feature to generate a JavaScript - Fetch using the async/await options and press copy  
 > Between the curly braces of the getAgents method, press enter then paste the copied code from postman  
 > In the headers section of the method, find the Authorization header and change "Bearer placeHolder" to <copy> ```Bearer ${this.token}` ``</copy>  
 > In the **raw** section which holds the stringified JSON:
@@ -166,22 +167,71 @@ In the previous lab, you used an **and** filter group to exclude records and fie
 >>
 >> Change the to variable value to represent the time now: <copy>```${Date.now()}` ``</copy>  
 >
-> Make requestOptions an object type by adding <copy>: object</copy> after its name and before the equals sign
+> Set the **type** of requestOptions to be an object by adding this notation, after its name and before the equals sign: <copy>`: object`</copy>  
 >
 > In the try section of the method:  
 >> Change result to equal: <copy>response.json()</copy> instead of response.text()  
->
+> ---
 
-### Create method
+#### Return to the GraphQL Workbench to understand how to use the returned data
+> In the center pane of Altair, copy the data returned from the query  
+> Open [JSON Path Finder](https://jsonpathfinder.com){:target="_blank"}  
+> Paste the copied data into the left pane  
+> In the right pane, navigate until you find the array of queues and their aggregations   
+> ??? question w50 "What is the JSON path which will return the array of queues and their aggregations?"  
+    x.data.task.tasks
+> ??? question w50 "What is the JSON path for the value of the queue name in the first array item?"
+    x.data.task.tasks[0].lastQueue.name
+> ??? question w50 "What is the JSON path for the value of the oldestStart aggregation in the first array item?"
+    x.data.task.tasks[0].aggregation[0].value
+> ??? question w50 "What is the JSON path for the value of the number of contacts in the first array item?"
+    x.data.task.tasks[0].aggregation[1].value
+> ---
 
+#### Use map to create an unordered list item for each item returned in the query
+In this line of code you are going set the value of the state **queueStats** using map on the JSON results from the Graph QL query. For each item in the array of queue information, you are going to create a list item of an unordered list using an html template.  Each list item will include; the queue name, number of contacts, and how long the contact has been in the queue. 
+> In the try section of the getStats method, below the line `const result = await response.json();`:  
+> ??? challenge "Insert this updated line of code using the information from JSON path Finder:<br> this.queueStats = await result.(JSON path to the array items).map((item: any) =>{})"
+    <copy>this.queueStats = await result.data.task.tasks.map((item: any) => {})</copy>
+> !!! challenge "In the curly bracket of the arrow function use insert this html template then update the template to use the array values:"  
+    <copy>``html`<li> | Queue: ${<replace with queue name>} Contacts: ${<replace with the count of contacts>} Wait: ${new Date(Date.now() - <replace with the oldestSrart time>).toISOString().slice(11, -5)} |</li>` ``</copy>
+    ??? answer
+        <copy>``html`<li> | Queue: ${item.lastQueue.name} Contacts: ${item.aggregation[1].value} Wait: ${new Date(Date.now() - item.aggregation[0].value).toISOString().slice(11, -5)} |</li>` ``</copy>
+> ---
 
 ### Update the render method
+Add this code, which includes an unordered list and a temporary testing button, into the html template of the render method.
+!!! blank w50 ""
+    ```TS
+            <button @click=${this.getQueues}>test</button>     
+            <div class="marquee-container">
+                <ul class="marquee">
+                    ${this.queueStats}
+                    ${this.queueStats}
+                </ul>
+            </div>
+    ```
 
 ### Add to index.html
+> In the index.html:  
+??? challenge w50 "Add the script tag for this web component into the header"
+    <copy>`<script type="module" src="/src/queue-scroll.ts"></script>`</copy>>
+??? challenge w50 "Add the web component's html tag and pass the property values for token, orgId, teamId, and agentId"
+    Fill in the empty values:  
+    <copy>`<queue-scroll token="" orgId="" teamId=""  agentId=""></queue-scroll>`</copy>
+
+#### Testing
+
+### Create a new async method to aggregate a list of queues for the agent signed in and update the query filter with those queue values
+
+
+> <copy>async getQueues(){}</copy>  
+> 
+
 
 ### Add CSS Styling
 
-!!! blank ""
+!!! blank w50 ""
     ```CSS
                 :host {
                 display: flex;
@@ -234,6 +284,8 @@ In the previous lab, you used an **and** filter group to exclude records and fie
 ### Add auto refresh functionality
 > Connected callback  
 > Disconnected callback  
+
+### Adjust the scrolling and refresh time to account for teh number of queues displayed
 
 
 ### Add to Desktop Layout
