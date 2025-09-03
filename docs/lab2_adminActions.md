@@ -251,9 +251,9 @@ You can now see the Arguments and Fields available
 
 #### Inside the tbody tags create the table data cells
 > Using JSON Path Finder, Create the field for agentName  
-> > <copy>`<td>t.agentName</td>`</copy>  
+> > <copy>`<td>${t.agentName}</td>`</copy>  
 > ??? challenge w50 "Create the field for Team"  
-    <copy>`<td>t.teamName</td>`</copy>  
+    <copy>`<td>${t.teamName}</td>`</copy>  
 > Create the value of startTime in a human readable datetime stamp  
 > > <copy>`<td>${new Date(t.startTime).toLocaleString()}</td>`</copy>  
 > ??? challenge w50 "Create the value of currentState" 

@@ -213,7 +213,7 @@ Add this code, which includes an unordered list and a temporary testing button, 
 ### Add to index.html
 > In the index.html:  
 ??? challenge w50 "Add the script tag for this web component into the header"
-    <copy>`<script type="module" src="/src/queue-scroll.ts"></script>`</copy>>
+    <copy>`<script type="module" src="/src/queue-scroll.ts"></script>`</copy>
 ??? challenge w50 "Add the web component's html tag and pass the property values for token, orgId, teamId, and agentId"
     Fill in the empty values:  
     <copy>`<queue-scroll token="" orgId="" teamId=""  agentId=""></queue-scroll>`</copy>
