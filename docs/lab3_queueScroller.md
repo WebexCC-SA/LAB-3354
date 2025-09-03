@@ -150,10 +150,8 @@ In the previous lab, you used an **and** filter group to exclude records and fie
 > ---
 
 ### Create States for the required data elements
-> queueStats  
-> queueFilter  
-> refreshTime (move down in instructions for future step)  
-> _timerInterval (move down in instructions for future step)  
+> <copy>@state() queueStats = []</copy>    
+> <copy>@state() queueFilter = []</copy>    
 >
 > ---
 
@@ -277,8 +275,8 @@ Add this code, which includes an unordered list and a temporary testing button, 
 > ---
 
 ### Add CSS Styling
-
-!!! blank w50 ""
+> Replace the static CSS with this CSS  
+> !!! blank w50 ""
     ```CSS
                 :host {
                 display: flex;
@@ -326,7 +324,7 @@ Add this code, which includes an unordered list and a temporary testing button, 
                 }
                 }
     ```
-
+> ---
 
 #### Testing 
 > Call your assigned DN to place a call in the queue <copy><w class="dn">dn</w></copy>  
@@ -339,35 +337,35 @@ Add this code, which includes an unordered list and a temporary testing button, 
     - Instead of updating the widget data only when you push a button, you can execute your code automatically once the web component is loaded using the **connectedCallback** lifecycle.  
     - You can also employ the **setInterval** method to run parts of your code on a set interval to refresh your data.  
     - Since the queues the agent is assigned are not likely to change often, you only need to execute getQueues when the agent logs in.
-    - If you are setting up event listeners or timers via **connectedCallback**, it is a best practice to remove them from memory when you unload the web component using the **disconnectedCallback** lifecycle.  In order to clear the setInterval, you will create a state to reference it with later.  
+    - If you are setting up event listeners or timers via **connectedCallback**, it is a best practice to remove them from memory when you unload the web component using the **disconnectedCallback** lifecycle.  In order to clear the setInterval, you will create a state so that you can reference it with later.  
 
-
-
-> Add a new state <copy>@state() _timerInterval?: any </copy>
-
-> Connected callback  
-> Disconnected callback  
->
-> 
-```
-    connectedCallback(): void {
-        super.connectedCallback()
-        this.getQueues()
-        this._timerInterval = setInterval(() => this.getStats(), 10000);
-    }
-    disconnectedCallback() {
-        super.disconnectedCallback();
-        clearInterval(this._timerInterval);
-    }
-```
+> Add a new state <copy>@state() _timerInterval?: any </copy>  
+> Add the connectedCallback and disconnectedCallback methods  
+> !!! blank w50 ""
+    ```
+        connectedCallback() {
+            super.connectedCallback()
+            this.getQueues()
+            this._timerInterval = setInterval(() => this.getStats(), 10000);
+        }
+        disconnectedCallback() {
+            super.disconnectedCallback();
+            clearInterval(this._timerInterval);
+        }
+    ```
 
 > Remove the testing button
+> Save and test by placing a call into your DN.  
+> ---
 
 
 ### Adjust the scrolling and refresh time to account for the number of queues displayed
-- Add a count for the number of returned queues in the returned data * 10 (for 10 seconds to scroll each queue) and set the value of refreshTime with this number  
-- Add inline CSS to the UL element  
-- update the timer to use the refreshTime  
+!!! abstract w50 
+    You may have noticed that the scroll speed and refresh rates are static.  That means that regardless of how may queues you are displaying stats for, it will scroll by in 10 seconds and it will refresh the data every 10 seconds.  In this step, you are going to further enhance the functionality by making the scroll speed appear consistent by making the total scroll time a variable.  You are also going to set the data refresh rate to use the same dynamic time so that you are able to display all of the stats before restarting the scroll with new data.  
+
+> Add a new state to hold the refresh time: <copy>@state() refreshTime = 10</copy>  
+> Add a new method to calculate and update the refreshTime (10 seconds per queue returned) as well as update the _timerInterval with a new setInterval
+> !!! blank w50 ""
     ```TS
     updateInterval(){
         if(this.queueStats.length >=1){
@@ -379,6 +377,14 @@ Add this code, which includes an unordered list and a temporary testing button, 
         this._timerInterval = setInterval(() => this.getStats(), this.refreshTime * 1000);
     }
     ```
+> Remove the `this._timerInterval = setInterval(() => this.getStats(), this.refreshTime * 1000);` line from the connectedCallback method  
+> In the getStats method, below where you are setting queueStats, call updateInterval: <copy>this.updateInterval()</copy>  
+> In the html template of the render method, in the opening ul tag, override the static CSS by adding: <copy>style="animation-duration: ${this.refreshTime}s"</copy>  
+> ---
+
+
 ### Add to Desktop Layout
+
+
 
 ## Testing
