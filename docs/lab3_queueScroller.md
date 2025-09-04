@@ -93,9 +93,12 @@ They can be further bifurcated by having other fields in the query.  In our case
 #### Creating the compound filter
 In the previous lab, you used an **and** filter group to exclude records and fields which did not match the filter criteria.  In this query you will be nesting an inclusive **or** filter group inside an excluding **and** filter group.
 > Inside the curly braces of the filter, type: `and:[]`, then press enter between the square brackets  
-> ??? challenge w50 "How would you add a filter if you only want to return contacts which are active?"
-    `{isActive:{equals:true}}`
-> After adding the previous filter, on the next line type: `{or:[]}`, then press enter between the square brackets.  
+> ??? challenge w50 "How would you add a filter if you only want to return contacts which are active and in queue?"
+    ```
+    {isActive:{equals:true}}
+    {status:{equals:"parked"}}
+    ```
+> After adding the previous filters inside the and **group**, on the next line type: `{or:[]}`, then press enter between the square brackets.  
 > Using the Queue IDs returned from the List references for a specific Team API query you have in Postman:  
 >> For each of the Queue IDs add a new filter inside the or square brackets with the Queue ID inside the quotes for equals:  
 >> <copy>`{lastQueue:{id:{equals:""}}}`</copy>  
@@ -346,7 +349,7 @@ Add this code, which includes an unordered list and a temporary testing button, 
         connectedCallback() {
             super.connectedCallback()
             this.getQueues()
-            this._timerInterval = setInterval(() => this.getStats(), 10000);
+            this._timerInterval = setInterval(() => this.getStats(), 30000);
         }
         disconnectedCallback() {
             super.disconnectedCallback();
@@ -359,32 +362,38 @@ Add this code, which includes an unordered list and a temporary testing button, 
 > ---
 
 
-### Adjust the scrolling and refresh time to account for the number of queues displayed
+### Fine tuning the experience
 !!! abstract w50 
-    You may have noticed that the scroll speed and refresh rates are static.  That means that regardless of how may queues you are displaying stats for, it will scroll by in 10 seconds and it will refresh the data every 10 seconds.  In this step, you are going to further enhance the functionality by making the scroll speed appear consistent by making the total scroll time a variable.  You are also going to set the data refresh rate to use the same dynamic time so that you are able to display all of the stats before restarting the scroll with new data.  
+    You may have noticed that the scroll speed and the time in queue fields are static, meaning that it will take 10 seconds for the entire list of queue stats to scroll by regardless of the number of queues you are displaying and the longest queue time only updates when the data gets updated.  In this step, you are going to address both shortcomings with just a few lanes of code.  
+> Create a new state to hold the data returned from the search API <copy>@state() queueData?: any</copy>  
+> Create a new state to hold the reference for a map update interval: <copy>@state() mapUpdate?: any</copy>  
+> In the getStats method after the `const result = await response.json();` line, add: <copy>`this.queueData = await result.data.task.tasks`</copy>  
+> Remove the line which maps the returned data in the list items  
+> Create a new method named: <copy>updateTemplate(){}</copy>  
+> In the curly braces of updateTemplate, paste this code: <copy>this.queueStats = this.queueData.map((item: any) => { return html`<li> | Queue: ${item.lastQueue.name} Contacts: ${item.aggregation[1].value} Wait: ${new Date(Date.now() - item.aggregation[0].value).toISOString().slice(11, -5)} |</li>` })</copy>  
+> In the connectedCallback method add: <copy>this.mapUpdate = setInterval(() => this.updateTemplate(), 1000);</copy>  
+> In the disconnectedCallback method add: <copy>clearInterval(this.mapUpdate);</copy>  
+> in the ul opening tag of the render method, after `class="marquee"`, add: <copy>style="animation-duration: ${this.queueStats.length * 10}s"</copy>
 
-> Add a new state to hold the refresh time: <copy>@state() refreshTime = 10</copy>  
-> Add a new method to calculate and update the refreshTime (10 seconds per queue returned) as well as update the _timerInterval with a new setInterval
-> !!! blank w50 ""
-    ```TS
-    updateInterval(){
-        if(this.queueStats.length >=1){
-            this.refreshTime = this.queueStats.length * 10
-        }else{
-            this.refreshTime = 10
-        }
-        clearInterval(this._timerInterval)
-        this._timerInterval = setInterval(() => this.getStats(), this.refreshTime * 1000);
-    }
-    ```
-> Remove the `this._timerInterval = setInterval(() => this.getStats(), this.refreshTime * 1000);` line from the connectedCallback method  
-> In the getStats method, below where you are setting queueStats, call updateInterval: <copy>this.updateInterval()</copy>  
-> In the html template of the render method, in the opening ul tag, override the static CSS by adding: <copy>style="animation-duration: ${this.refreshTime}s"</copy>  
-> ---
+
 
 
 ### Add to Desktop Layout
 
+
+!!! blank w50 ""
+    ```json
+    {
+        "comp": "queue-scroll",
+        "properties": {
+            "orgId": "$STORE.agent.orgId",
+            "token": "$STORE.auth.accessToken",
+            "teamId": "$STORE.agent.teamId",
+            "agentId": "$STORE.agent.agentId"
+        },
+        "script": "http://localhost:4173/index.js"
+    },
+    ```
 
 
 ## Testing
