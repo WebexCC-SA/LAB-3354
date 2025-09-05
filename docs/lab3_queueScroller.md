@@ -373,15 +373,17 @@ Add this code, which includes an unordered list and a temporary testing button, 
 > In the curly braces of updateTemplate, paste this code: <copy>this.queueStats = this.queueData.map((item: any) => { return html`<li> | Queue: ${item.lastQueue.name} Contacts: ${item.aggregation[1].value} Wait: ${new Date(Date.now() - item.aggregation[0].value).toISOString().slice(11, -5)} |</li>` })</copy>  
 > In the connectedCallback method add: <copy>this.mapUpdate = setInterval(() => this.updateTemplate(), 1000);</copy>  
 > In the disconnectedCallback method add: <copy>clearInterval(this.mapUpdate);</copy>  
-> in the ul opening tag of the render method, after `class="marquee"`, add: <copy>style="animation-duration: ${this.queueStats.length * 10}s"</copy>
+> In the ul opening tag of the render method, after `class="marquee"`, add: <copy>style="animation-duration: ${this.queueStats.length * 10}s"</copy>  
+> 
 
 
 
 
 ### Add to Desktop Layout
-
-
-!!! blank w50 ""
+> ??? note w50 "In the agent section of your desktop layout JSON file, locate the advancedHeader area."  
+    ![](assets/queue-scroll_JSON.jpg)
+>  Add this JSON above the entry for the digital-outbound component
+> !!! blank w50 ""
     ```json
     {
         "comp": "queue-scroll",
@@ -394,6 +396,19 @@ Add this code, which includes an unordered list and a temporary testing button, 
         "script": "http://localhost:4173/index.js"
     },
     ```
-
+>
+> Save the JSON file as ...   
+> Upload the JSON file  
+> ---
 
 ## Testing
+> In the terminal of VS Code, press ctrl + c to terminate the development server  
+> In the terminal of VS Code run: <copy>yarn game</copy>  
+> Log into the agent desktop  
+> > Login:  
+> > Password:  
+> > Team:  
+>
+> Place a call into your DN
+>
+> ---
