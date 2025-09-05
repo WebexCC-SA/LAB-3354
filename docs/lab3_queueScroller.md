@@ -75,9 +75,10 @@ For this query you will be using aggregations and a compound filter to retrieve 
 > ---
 
 #### Creating the aggregations
-An Aggregation can return a count, sum, average, max, min, or cardinality of a field along with a name you provide.  They can also have their own set of filters which can be used to further refine the data into the information you require.   
-In their most basic form an aggregation is represented like: `{ field: "string", type: count, name: "string" }` inside an array.
-They can be further bifurcated by having other fields in the query.  In our case we are going to slice our aggregations based on the lastQueue where they were assigned.  
+!!! abstract
+    An Aggregation can return a count, sum, average, max, min, or cardinality of a field along with a name you provide.  They can also have their own set of filters which can be used to further refine the data into the information you require.   
+    In their most basic form an aggregation is represented like: `{ field: "string", type: count, name: "string" }` inside an array.
+    They can be further bifurcated by having other fields in the query.  In our case we are going to slice our aggregations based on the lastQueue where they were assigned.  
 > ??? challenge w50 "Create an aggregation to return the count of contact"  
     { field: "id", type: count, name: "contacts" }
     > We are returning the count of the task IDs and naming is "contacts"
@@ -91,7 +92,8 @@ They can be further bifurcated by having other fields in the query.  In our case
 
 
 #### Creating the compound filter
-In the previous lab, you used an **and** filter group to exclude records and fields which did not match the filter criteria.  In this query you will be nesting an inclusive **or** filter group inside an excluding **and** filter group.
+!!! abstract
+    In the previous lab, you used an **and** filter group to exclude records and fields which did not match the filter criteria.  In this query you will be nesting an inclusive **or** filter group inside an excluding **and** filter group.
 > Inside the curly braces of the filter, type: `and:[]`, then press enter between the square brackets  
 > ??? challenge w50 "How would you add a filter if you only want to return contacts which are active and in queue?"
     ```
@@ -190,7 +192,8 @@ In the previous lab, you used an **and** filter group to exclude records and fie
 > ---
 
 #### Use map to create an unordered list item for each item returned in the query
-In this line of code you are going set the value of the state **queueStats** using map on the JSON results from the Graph QL query. For each item in the array of queue information, you are going to create a list item of an unordered list using an html template.  Each list item will include; the queue name, number of contacts, and how long the contact has been in the queue. 
+!!! abstract
+    In this line of code you are going set the value of the state **queueStats** using map on the JSON results from the Graph QL query. For each item in the array of queue information, you are going to create a list item of an unordered list using an html template.  Each list item will include; the queue name, number of contacts, and how long the contact has been in the queue. 
 > In the try section of the getStats method, below the line `const result = await response.json();`:  
 > ??? challenge "Insert this updated line of code using the information from JSON path Finder:<br> this.queueStats = await result.(JSON path to the array items).map((item: any) =>{})"
     <copy>this.queueStats = await result.data.task.tasks.map((item: any) => {})</copy>
@@ -201,8 +204,8 @@ In this line of code you are going set the value of the state **queueStats** usi
 > ---
 
 ### Update the render method
-Add this code, which includes an unordered list and a temporary testing button, into the html template of the render method.
-!!! blank w50 ""
+> Add this code, which includes an unordered list and a temporary testing button, into the html template of the render method:  
+> !!! blank w50 ""
     ```TS
             <button @click=${this.getStats}>test</button>     
             <div class="marquee-container">
@@ -212,6 +215,9 @@ Add this code, which includes an unordered list and a temporary testing button, 
                 </ul>
             </div>
     ```
+>
+> Save the file   
+> ---
 
 ### Add to index.html
 > In the index.html:  
@@ -220,8 +226,17 @@ Add this code, which includes an unordered list and a temporary testing button, 
 ??? challenge w50 "Add the web component's html tag and pass the property values for token, orgId, teamId, and agentId"
     Fill in the empty values:  
     <copy>`<queue-scroll token="" orgId="" teamId=""  agentId=""></queue-scroll>`</copy>
+>
+> Save the file  
+> ---
 
-#### Testing
+
+### Start the Development server and test
+> In the terminal of VS Code run: <copy>yarn dev</copy>  
+> Launch the [development server index page](http://localhost:5173/){:target="_blank"}  
+>> You should see your web component in the browser  
+>
+> ---
 
 
 
@@ -374,7 +389,8 @@ Add this code, which includes an unordered list and a temporary testing button, 
 > In the connectedCallback method add: <copy>this.mapUpdate = setInterval(() => this.updateTemplate(), 1000);</copy>  
 > In the disconnectedCallback method add: <copy>clearInterval(this.mapUpdate);</copy>  
 > In the ul opening tag of the render method, after `class="marquee"`, add: <copy>style="animation-duration: ${this.queueStats.length * 10}s"</copy>  
-> 
+> Save and test by placing a call into your DN.  
+> ---
 
 
 
@@ -404,11 +420,12 @@ Add this code, which includes an unordered list and a temporary testing button, 
 ## Testing
 > In the terminal of VS Code, press ctrl + c to terminate the development server  
 > In the terminal of VS Code run: <copy>yarn game</copy>  
-> Log into the agent desktop  
-> > Login:  
-> > Password:  
-> > Team:  
+> Log into the [Agent Desktop](https://desktop.wxcc-us1.cisco.com/){:target="_blank"}
 >
+> > Login: <copy><w>admin login</w></copy>  
+> > Password: <copy><w>password</w></copy>  
+> > Team: <copy><w>team</w></copy> 
+> ---
 > Place a call into your DN
 >
 > ---

@@ -261,6 +261,7 @@ You can now see the Arguments and Fields available
 > Create the duration of time in the current state  
 > > <copy>`<td>${new Date(Date.now() - t.channelInfo[0].lastActivityTime).toISOString().slice(11, -5)}</td>`</copy>
 >
+> Save the TS file  
 > ---
 
 ### Add to index.html passing the Bearer token as a property
@@ -270,6 +271,30 @@ You can now see the Arguments and Fields available
     <copy>`<admin-actions token="Replace with the token value from the GraphQL Workbench"></admin-actions>`</copy>
 >
 > ---
+
+### Start the Development server
+> In the terminal of VS Code run: <copy>yarn dev</copy>  
+> Launch the [development server index page](http://localhost:5173/){:target="_blank"}  
+>> You should see your web component in the browser  
+>
+> ---
+
+### Log into the Agent Desktop (so that you will have data to populate the web component)
+> Launch the [Agent Desktop](https://desktop.wxcc-us1.cisco.com/){:target="_blank"}
+>
+> > Login: <copy><w>admin login</w></copy>  
+> > Password: <copy><w>password</w></copy>  
+> > Team: <copy><w>team</w></copy> 
+>
+> Click the Refresh Agent List button  
+> > You should see the list of logged in agents populate  
+>
+> Keep this tab open for additional testing.  
+> 
+> ---
+
+
+
 
 ### Make the output look a better by adding this CSS to the static styles:
 > !!! blank w50 ""
@@ -298,7 +323,10 @@ You can now see the Arguments and Fields available
                 display:none;
                 }
     ```
->
+>      
+> Save the file  
+> Click the Refresh Agent List button  
+> Observe the changes to your web component  
 > ---
 
 ### Convert the Logout Agents API call into code
@@ -333,7 +361,9 @@ You can now see the Arguments and Fields available
 > ??? note w50 "Check your code"
     ![](assets/admin-actionsRender.jpg)
 
->
+> Save the file  
+> Click the Refresh Agent List button  
+> Observe the changes to your web component  
 > ---
 
 ## Adding the Web Component to the agent desktop
@@ -476,7 +506,9 @@ You can now see the Arguments and Fields available
 > ---
 
 
-
+### Stop the testing server
+> In the terminal of VS Code press ctrl + c  
+> ---
 
 
 
