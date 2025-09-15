@@ -9,7 +9,8 @@
 >> Add .gitignore: No .gitignore  
 >> Add license: No License  
 >
-> Click Create repository  
+> Click Create repository   
+> Leave this tab open for use in future steps  
 > 
 > ---
 
@@ -30,8 +31,8 @@
 
 ## Update Git settings on the lab PC
 > In the terminal of VS Code enter the following commands one at a time:  
-> <copy>git config user.email "<w class="ghEmail"><w/>"</copy>  
-> <copy>git config user.name "<w class="gh"><w/>"</copy>
+> <copy>git config user.email "<w class="ghEmail"><w/>""</copy>  
+> <copy>git config user.name "<w class="gh"><w/>""</copy>
 >
 > ---
 
@@ -53,13 +54,41 @@
 > ---
 
 
-## Option 1: Using Github Pages
+## Option 1: Using Github Pages 
+> In your github repository Click Seccings on the top ribbon  
+> Select Pages on the left side menu  
+> Under Branch, Select main  
+> Leave /(root) selected  
+> Click Save  
+> ??? note w50 "Show Me"
+    ![](assets/enablePages.gif)
+> Click Code in the top ribbon  
+> ??? note w50 "It will take a few minutes to publish the new site, refresh the page until you see the Deployments section populated like this"  
+    ![alt text](assets/pagesReady.jpg)
+>
+> ---
+
+## Update You Desktop Layout JSON to Use the Hosted Version of your Web Components
+> Open your Desktop Layout JSON on VS Code  
+> Use the ctrl + f keyboard shortcut to find <copy>http://localhost:4173/index.js</copy>   
+> Replace all instances with <copy>https://<w class="gh">yourGHAccount</w>.github.io/Wx1-Web-Components/dist/index.js</copy>  
+> Save and Upload your Desktop JSON Layout  
+> Login as an agent and test.  
+> ---
+
+## Option 2: Using JSDelivr (Demo Only)
+> [Documentation](https://www.jsdelivr.com/documentation#id-github){:target="_blank"}  
 > 
 
 
-## Option 2: Using JSDelivr
-
-## Update You Desktop Layout JSON to Use the Hosted Version of your Web Components
 
 ### Remove your Credentials from the lab PC
+!!! note w50
+    As this is a shared lab PC, we will remove your Github credentials from the Windows Credential Manager.  If you are completing this step on your own personal PC, you do not need to complete this step.
+> Press the Windows key and type Credential Manager, and press Enter.  
+> Click on "Windows Credentials".  
+> Under "Generic Credentials", look for entries that start with git: or github.com (e.g., git:https://github.com).  
+> Expand each relevant entry and click "Remove" or "Delete".  
+> Confirm the deletion.  
+
 
