@@ -92,16 +92,17 @@ nav:
       - Your First Web Component: lab1_yourFirstWc.md
       - Lab 2 - Admin Actions: lab2_adminActions.md
       - Lab 3 - Scrolling Queue Statistics: lab3_queueScroller.md
+      - Hosting Your Code: hostingYourCode.md
       # - Lab 1 - Getting Started: lab1_getting_started.md
       # - Conclusion: conclusion.md
   # - Topologies: topologies.md
-  - How to use this guide:
-      - Setting up and using the tool:
-        - Initial Setup: howToUse/initialSetup.md
-        - Using the tool after the initial setup: howToUse/postInitial.md
-        - Publishing your changes: howToUse/syncChanges.md
-      - Styling and Advanced Features:
-        - Markdown and Other References: howToUse/references.md
-        - Custom Features: howToUse/customFeatures.md
-        - Custom Admonitions: howToUse/admonition.md
+  # - How to use this guide:
+  #     - Setting up and using the tool:
+  #       - Initial Setup: howToUse/initialSetup.md
+  #       - Using the tool after the initial setup: howToUse/postInitial.md
+  #       - Publishing your changes: howToUse/syncChanges.md
+  #     - Styling and Advanced Features:
+  #       - Markdown and Other References: howToUse/references.md
+  #       - Custom Features: howToUse/customFeatures.md
+  #       - Custom Admonitions: howToUse/admonition.md
  
