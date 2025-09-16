@@ -60,7 +60,7 @@
 > ---
 
 ### Install dependencies and run the setup script
-> Execute the setup script to check prerequisites and install dependencies:  
+> Execute the setup script from terminal to check prerequisites and install dependencies:  
 > <copy>./setup.sh</copy>  
 > This script will:
 > > - Verify Node.js installation  
@@ -192,6 +192,7 @@
 ## Testing and Validation
 
 ### Comprehensive call flow testing
+> From the terminal run 'npm run dev', this will spin up your application automatically in the browser.
 > Before testing, you need to configure the CRM with your phone number for automatic customer lookup:
 > Open `crm-app.js` and edit the customer record from line 40 with your details:
 > ??? note w50 "Update Customer Record"
@@ -224,7 +225,7 @@
 > > Open browser Developer Tools (F12)  
 > > Navigate to the Console tab  
 > > Repeat the call flow test from above  
-> > Observe the SDK event logs and API responses  
+> > Observe the SDK event logs, Filter console logs with [WX1-SDK] to see SDK related logs and [BANKING-CRM] to see CRM related logging.
 > > Review the source code implementation during testing based on logs.
 >
 > Test the logout functionality:
