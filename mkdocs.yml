@@ -99,6 +99,9 @@ nav:
       # - Lab 1 - Getting Started: lab1_getting_started.md
       # - Conclusion: conclusion.md
   # - Topologies: topologies.md
+  - References:
+    - Create a Vite Web Component from Scratch: WCfromScratch.md
+    - Documentation Links: documentationLinks.md
   - How to use this guide:
       - Setting up and using the tool:
         - Initial Setup: howToUse/initialSetup.md
