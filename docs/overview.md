@@ -28,7 +28,54 @@ In this lab we will be using:
 ---
 
 ## Lab Access
+In this lab we will be using Webex for making calls into the Contact Center and for viewing demos which will be shared by the instructor.  We will be using the same account for Admin and Agent activities in the Contact Center.  Your guide will reflect your specific environment variables, including login information, Channels, Queues, Teams, and assigned numbers in the steps of the actual lab as you progress.
 
+
+> Login: <copy><w class="login">Provided by proctor</w></copy>
+> 
+> Password: <copy><w class="PW">Provided by proctor</w></copy>
+>
+> Webex Phone Number: <copy><w class="WxC">Provided by proctor</w></copy>
+> 
+> Assigned Inbound Channel Number: <copy><w class="dn">Provided by proctor</w></copy>
+>
+> Assigned Queue Name: <copy><w class="Queue">Provided by proctor</w></copy>
+>
+> Assigned Team name: <copy><w class="Team">Provided by proctor</w></copy>
+>
+> Assigned Desktop Layout Name: <w class="layoutName">Provided by proctor</w>
+
+---
+
+
+## Getting Started
+
+> Log into Webex on your PC:
+>
+> - Username: <copy><w class="login">Provided by proctor</w></copy>
+> - Password: <copy><w class="PW">Provided by proctor</w></copy>
+> 
+
+---
+> Log into [Webex Control Hub](https://admin.webex.com){:target="_blank"} in Chrome
+
+> Login: <copy><w class="login">Provided by proctor</w></copy>
+> 
+> Password: <copy><w class="PW">Provided by proctor</w></copy>
+
+---
+### Testing your lab setup
+> 1. Launch the [Agent Desktop](https://desktop.wxcc-us1.cisco.com/){:target="_blank"} and log in selecting the Desktop option for your Voice connection.
+1. From the Webex App, dial <copy><w class="dn">Provided by proctor</w></copy>
+      1. You will hear a greeting message which will include the pod number which you have been assigned.
+      2. The call will be place in your queue.
+      3. You will hear the hold music until the call is answered
+2. In the agent desktop, set your status to Available and answer the call.
+      1. Confirm that you can hear audio being passed in both directions.
+      2. Disconnect the call
+      3. Select a Wrap-up Code
+      4. Set your status to Meeting
+---
 
 <!-- ## Getting Started
 

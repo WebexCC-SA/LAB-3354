@@ -57,8 +57,8 @@ For this query you will be using aggregations and a compound filter to retrieve 
      Click the Add New button  
 > === "If your previous session is no longer valid"
       Use the Authorization Tool (Tools > Authorization)
-     > Login: <copy><w>admin login</w></copy>  
-     > Password: <copy><w>password</w></copy>
+     > Login: <copy><w class="login">admin login</w></copy>  
+     > Password: <copy><w class="PW">password</w></copy>
     >
     ??? note w50 "Copy the authorization header into the environment variables"
         ![](assets/GQL_token.gif)
@@ -425,9 +425,9 @@ For this query you will be using aggregations and a compound filter to retrieve 
 > In the terminal of VS Code run: <copy>yarn game</copy>  
 > Log into the [Agent Desktop](https://desktop.wxcc-us1.cisco.com/){:target="_blank"}
 >
-> > Login: <copy><w>admin login</w></copy>  
-> > Password: <copy><w>password</w></copy>  
-> > Team: <copy><w>team</w></copy> 
+> > Login: <copy><w class="login">admin login</w></copy>  
+> > Password: <copy><w class="PW">password</w></copy>  
+> > Team: <copy><w class="team">team</w></copy> 
 > ---
 > Place a call into your DN
 >

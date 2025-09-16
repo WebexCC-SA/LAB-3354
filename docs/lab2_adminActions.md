@@ -15,17 +15,17 @@
 ### Log into the Agent Desktop (so that you have data to query against)
 > Launch the [Agent Desktop](https://desktop.wxcc-us1.cisco.com/){:target="_blank"}
 >
-> > Login: <copy><w>admin login</w></copy>  
-> > Password: <copy><w>password</w></copy>  
-> > Team: <copy><w>team</w></copy> 
+> > Login: <copy><w class="login">admin login</w></copy>  
+> > Password: <copy><w class="PW">password</w></copy>  
+> > Team: <copy><w class="team">team</w></copy> 
 > ---
 
 ### Use the Search API GraphQL Workbench to create the query for the Search API 
 > Open the [Search API GraphQL Workbench](https://webexcc-sa.github.io/tools/gqlWorkbench/){:target="_blank"}
 >
 > > Use the Authorization Tool (Tools > Authorization)
-> >> Login: <copy><w>admin login</w></copy>  
-> >> Password: <copy><w>password</w></copy>
+> >> Login: <copy><w class="login">admin login</w></copy>  
+> >> Password: <copy><w class="PW">password</w></copy>
 >>
 >> ??? note w50 "Copy the authorization header into the environment variables"
     ![](assets/GQL_token.gif)
@@ -96,8 +96,8 @@ You can now see the Arguments and Fields available
 > Navigate to the [Agent Logout API documentation](https://developer.webex.com/webex-contact-center/docs/api/v1/agents/logout){:target="_blank"}
 >
 > Log into the developer portal using your admin credentials  
-> > Login: <copy><w>admin login</w></copy>  
-> > Password: <copy><w>password</w></copy> 
+> > Login: <copy><w class="login">admin login</w></copy>  
+> > Password: <copy><w class="PW">password</w></copy> 
 >
 > In the logoutReason field enter <copy>Admin Logout</copy>
 > 
@@ -286,9 +286,9 @@ You can now see the Arguments and Fields available
 ### Log into the Agent Desktop (so that you will have data to populate the web component)
 > Launch the [Agent Desktop](https://desktop.wxcc-us1.cisco.com/){:target="_blank"}
 >
-> > Login: <copy><w>admin login</w></copy>  
-> > Password: <copy><w>password</w></copy>  
-> > Team: <copy><w>team</w></copy> 
+> > Login: <copy><w class="login">admin login</w></copy>  
+> > Password: <copy><w class="PW">password</w></copy>  
+> > Team: <copy><w class="team">team</w></copy> 
 >
 > Click the Refresh Agent List button  
 > > You should see the list of logged in agents populate  
@@ -486,9 +486,9 @@ You can now see the Arguments and Fields available
 
 ### Log into the agent desktop
 > Log into the [Agent Desktop](https://desktop.wxcc-us1.cisco.com){:target="_blank"} if you are not already logged in.  
-> > Login: <copy><w>admin login</w></copy>  
-> > Password: <copy><w>password</w></copy>  
-> > Team: <copy><w>team</w></copy> 
+> > Login: <copy><w class="login">admin login</w></copy>  
+> > Password: <copy><w class="PW">password</w></copy>  
+> > Team: <copy><w class="team">team</w></copy> 
 > ---
 
 ### Testing steps
