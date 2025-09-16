@@ -223,7 +223,7 @@ You can now see the Arguments and Fields available
 
 ### Update the html template in the render method
 > In the render() method add a few lines between the back ticks in of the ```return html`` ``` line  
-> Add an title header for the web component: <copy>`<h1 class="title">Admin Actions</h1>`</copy>  
+> Add a title header for the web component: <copy>`<h1 class="title">Admin Actions</h1>`</copy>  
 > Add a button to call the getAgents method: <copy>`<div><button @click=${this.getAgents}>Refresh Agent List</button></div>`</copy>  
 > Create a table with headers for Agent Name, Team, Login Time, and Status  
 >> Add a `<table>` tag  

@@ -156,7 +156,7 @@ For this query you will be using aggregations and a compound filter to retrieve 
 
 ### Create States for the required data elements
 > <copy>@state() queueStats = []</copy>    
-> <copy>@state() queueFilter = []</copy>    
+> <copy>@state() object[] = []</copy>    
 >
 > ---
 
