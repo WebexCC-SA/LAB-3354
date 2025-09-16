@@ -37,7 +37,7 @@
 > Navigate to line 194 in `banking-crm.html` to see how the LitElement web component is integrated:
 > ??? note w50 "LitElement Integration Example"
     ```html
-    <wx1-sdk accesstoken="${accessToken}"></wx1-sdk>
+    <wx1-sdk></wx1-sdk>
     ```
 >
 > ---
@@ -113,19 +113,38 @@
 > ??? note w50 "Key Event Listeners"
     ```typescript
     // Agent state changes
-    this.webex.cc.on("AgentStateChangeSuccess", (event) => {
-        // Handle idle code updates
-    });
+     this.webex.cc.on("AgentStateChangeSuccess", (event: any) => {
+            // console.log(event)
+            this.idleCode.value = event.auxCodeId
+        });
     
     // Incoming calls
-    this.webex.cc.on("task:incoming", (task) => {
-        // Process new call data
-    });
+    this.webex.cc.on("task:incoming", (task: ITask) => {
+
+            Logger.webex('TASK-INCOMING', 'New incoming task received', { 
+                taskUuid: (task as any).uuid, 
+                ani: (task.data as any)?.interaction?.callAssociatedDetails?.ani 
+            });
+            this.task = task
+            this.cad = Object.entries(this.task.data.interaction.callAssociatedDetails).map(([key, value]) => { return html`<p>${key}: ${value}</p>` })
+            
+            this.ani = this.task.data.interaction.callAssociatedDetails.ani
+            Logger.debug('ANI-EXTRACT', 'Extracted ANI from task', { ani: this.ani });
+            // Call CRM app's searchCustomers function dynamically
+            this.callCrmSearch(this.ani);
+            
+            this.tControls = html`<button @click=${this.actionTask.bind(this, 'hold')}>Hold</button><button @click=${this.actionTask.bind(this, 'resume')}>Resume</button><button @click=${this.actionTask.bind(this, 'end')}>End</button>`
+    }
     
     // Call completion
-    this.task.once("task:end", (task) => {
-        // Handle wrap-up selection
-    });
+    this.task.once("task:end", (task: ITask) => {
+                Logger.webex('TASK-END', 'Task ended', { taskUuid: (task as any).uuid });
+                // alert(`end ${JSON.stringify(task)}`)
+                this.tControls = html`<select @change=${(e: any) => this.handleWrapupSelection(e)}>
+                    <option value="">Select wrap-up reason...</option>
+                    ${this.task.wrapupData.wrapUpProps.wrapUpReasonList.map((i:any)=>{return html`<option value=${i.id} data-name=${i.name}>${i.name}</option>`})}
+                </select>`
+            })
     ```
 >
 > ---
