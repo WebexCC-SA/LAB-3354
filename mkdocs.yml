@@ -86,8 +86,10 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_code_format
 nav:
   - Home: index.md
-  - Lab:
-      - Overview: overview.md
+  - Welcome: 
+    - Let's Set the Stage: welcome.md
+    - Overview: overview.md
+  - Labs:
       - Lab 1 - Exploring Web Components: lab1_exploring_wc.md
       - Your First Web Component: lab1_yourFirstWc.md
       - Lab 2 - Admin Actions: lab2_adminActions.md
