@@ -20,21 +20,29 @@
 
 ## Data and Actions
 
-### Set up the development environment
-> Create a new folder for your CRM banking application:  
-> <copy>mkdir crm_bank_app && cd crm_bank_app</copy>  
-> From terminal clone the repository containing the SDK implementation:  
-> <copy>git clone https://github.com/shrishailsd/WX12025 .</copy>  
+### Clone the repository with git
+> Open Visual Studio Code
 >
-> ---
+> Click the Source Control button in the left menu ![](howToUse/assets/sourceControl.png)
+>
+> Click Clone Repository
+>
+> Enter the repository source: <copy>https://github.com/shrishailsd/WX12025</copy>
+>
+> Select or create a new folder to clone the repository into.
+>
+> When prompted to open the cloned repository, select open.
+> 
+---
 
 ### Review the project structure and key files
-> Open the project in VS code and examine the three critical files:
+> Once the project is opened in the VS code and examine the three critical files:
 > > **banking-crm.html** - Contains the HTML structure for the CRM application  
 > > **crm-app.js** - Handles CRM functionality and customer data management  
 > > **wx1-sdk.ts** - Implements Webex Contact Center SDK integration  
 >
-> Navigate to line 194 in `banking-crm.html` to see how the LitElement web component is integrated:
+> Navigate to line 198 in `banking-crm.html` to see how the LitElement web component is integrated within the CRM html template  
+> Notice line 206
 > ??? note w50 "LitElement Integration Example"
     ```html
     <wx1-sdk></wx1-sdk>
@@ -44,18 +52,21 @@
 
 ### Examine the SDK implementation architecture
 > Open `wx1-sdk.ts` and review the class structure and key methods:
-> > **@customElement("wx1-sdk")** - Defines the custom web component  
+> > **@customElement("wx1-sdk")** - Defines the custom web component that you saw in previous step  
 > > **@property({ reflect: true }) accesstoken** - Access token property binding  
 > > **@state()** decorators - Component state management  
-> > **startConnection()** - Initializes Webex SDK connection  
-> > **getOptions()** - Sets up agent options and event listeners  
-> > **actionTask()** - Handles call control operations  
+> > **startConnection()** - Initializes Webex SDK connection and obtains the webex object  
+> > **getOptions()** - Sets up agent information from profile object and registers event listeners for call handling  
+> > **actionTask()** - Handles call control operations like hold, resume, mute, unmute etc. 
 >
-> ??? question w50 "What SDK methods are being used for call handling?"
-    - `this.webex.cc.register()` - Register agent profile
-    - `this.webex.cc.on()` - Listen for events
-    - `task.hold()`, `task.resume()`, `task.end()` - Call controls
-    - `task.wrapup()` - Complete call with wrap-up reason
+> ??? question w50 "For example: Following are some of the SDK methods that are being used"
+    - `this.webex.cc.register()` - Register to webex contact center to obtain agent profile details.
+    - `this.webex.cc.on("AgentStateChangeSuccess", (event: any)` - Listen for events from webex contact center
+    - `task.hold()`, `task.resume()`, `task.end()` - Call controls for hold, resume and end.
+    - `this.task.wrapup({
+                    wrapUpReason:`${aux2}`,
+                    auxCodeId: `${aux1}`
+                })` - Complete call with wrap-up reason
 >
 > ---
 
@@ -70,6 +81,9 @@
 >
 > ---
 
+## Launch the CRM application
+> From the terminal run 'npm run dev', this will spin up your application automatically in the browser.
+
 ## SDK Authentication and Initialization
 
 ### Obtain and configure your access token
@@ -77,48 +91,40 @@
 > 
 > In the CRM application interface, locate the access token input field  
 > Paste the token you copied.
-> 
 > ---
 
 ### Initialize SDK connection and retrieve agent profile
-> Click the "connect" button to initialize the SDK connection  
+> Click the "start" button to initialize the SDK connection  
 > The system will automatically:
 > > - Validate your access token  
 > > - pulls your desktop profile 
-> > - Load available teams and login options 
+> > - Load available teams and telephony login options 
 >
 > ??? challenge w50 "What information is retrieved during agent registration?"
-    The profile object contains:
-    - Agent name and ID
-    - Available teams
-    - Voice login options (BROWSER, AGENT_DN, etc.)
-    - Idle codes and wrap-up codes
-    - Dial number assignments
+    The profile object contains multiple config entities but here the importnat ones we will be using for this lab:
+    > - Agent name and ID
+    > - Available teams
+    > - Voice login options (BROWSER, AGENT_DN, etc.)
+    > - Idle codes and wrap-up codes
+    > - Dial number assignments
 >
 > ---
 
 ### Agent login process
 > From the loaded profile information:
-> > Select your assigned team from the dropdown  
+> > Select your assigned team from the teams dropdown  
 > > Choose **AGENT_DN** as the login option  
 > > Select your provided dial number: <copy><w class="dn">your-assigned-dn</w></copy>  
-> > Click "Login" to establish your agent session  
+> > Click "Login" to establish your agent session , by default you will be in idle state.
 >
 > ---
 
 ## Call Handling Implementation
 
 ### Understanding the event-driven architecture
-> The SDK uses an event-driven pattern for real-time updates:
+> The SDK uses an event-driven pattern for real-time updates from webex contact center.
 > ??? note w50 "Key Event Listeners"
     ```typescript
-    // Agent state changes
-     this.webex.cc.on("AgentStateChangeSuccess", (event: any) => {
-            // console.log(event)
-            this.idleCode.value = event.auxCodeId
-        });
-    
-    // Incoming calls
     this.webex.cc.on("task:incoming", (task: ITask) => {
 
             Logger.webex('TASK-INCOMING', 'New incoming task received', { 
@@ -130,31 +136,62 @@
             
             this.ani = this.task.data.interaction.callAssociatedDetails.ani
             Logger.debug('ANI-EXTRACT', 'Extracted ANI from task', { ani: this.ani });
-            // Call CRM app's searchCustomers function dynamically
-            this.callCrmSearch(this.ani);
             
-            this.tControls = html`<button @click=${this.actionTask.bind(this, 'hold')}>Hold</button><button @click=${this.actionTask.bind(this, 'resume')}>Resume</button><button @click=${this.actionTask.bind(this, 'end')}>End</button>`
-    }
-    
-    // Call completion
-    this.task.once("task:end", (task: ITask) => {
+            // Play incoming call audio notification
+            this.playIncomingCallAudio();
+            
+            // Check if this is an outbound call we initiated - skip CRM search for outbound calls
+            Logger.debug('OUTBOUND-FLAG', 'Checking isOutboundCall flag in task:incoming', { isOutboundCall: this.isOutboundCall });
+            
+            if (!this.isOutboundCall) {
+                // Only search CRM for inbound calls
+                Logger.info('CRM-SEARCH', 'Inbound call detected - performing CRM search');
+                this.callCrmSearch(this.ani);
+            } else {
+                Logger.info('CRM-SEARCH', 'Outbound call detected - skipping CRM search');
+            }
+            
+            // Check if browser login is selected to show answer/decline buttons
+            const isBrowserLogin = this.agentLogin.loginOption === 'BROWSER';
+            Logger.debug('LOGIN-OPTION', 'Checking login option for task controls', { 
+                loginOption: this.agentLogin.loginOption, 
+                isBrowserLogin: isBrowserLogin 
+            });
+            
+            if (isBrowserLogin) {
+                // Show answer/decline buttons for browser login
+                this.tControls = html`
+                    <button @click=${this.actionTask.bind(this, 'answer')}>Answer</button>
+                    <button @click=${this.actionTask.bind(this, 'decline')}>Decline</button>
+                `
+                Logger.info('TASK-CONTROLS', 'Browser login detected - showing answer/decline buttons');
+            } else {
+                // For non-browser login (phone/desk phone), show incoming call message only
+                this.tControls = html`<p>📞 Incoming call from ${this.ani} - Please answer on your phone</p>`
+                Logger.info('TASK-CONTROLS', 'Non-browser login detected - showing incoming call message');
+            }
+            this.task.once("task:end", (task: ITask) => {
                 Logger.webex('TASK-END', 'Task ended', { taskUuid: (task as any).uuid });
+                // Stop incoming call audio when task ends
+                this.stopIncomingCallAudio();
+                
                 // alert(`end ${JSON.stringify(task)}`)
                 this.tControls = html`<select @change=${(e: any) => this.handleWrapupSelection(e)}>
                     <option value="">Select wrap-up reason...</option>
                     ${this.task.wrapupData.wrapUpProps.wrapUpReasonList.map((i:any)=>{return html`<option value=${i.id} data-name=${i.name}>${i.name}</option>`})}
                 </select>`
             })
+        })
     ```
 >
 > ---
 
 ### Test incoming call handling
+> Change the agent state to available.
 > Place a test call to your assigned number: <copy><w class="dn">your-test-number</w></copy>  
 > Observe the automatic processes:
 > > - Call details populate in the SDK component  
-> > - ANI (caller number) is extracted and displayed  
-> > - CRM automatically searches for customer records  
+> > - ANI (caller number) is extracted and displayed   
 > > - Call control buttons become available  
 >
 > ??? challenge w50 "How does the CRM integration work with incoming calls?"
@@ -189,6 +226,13 @@
             this.actionTask("wrapup", selectedValue, wrapupName);
         }
     }
+
+    // SDK warpup method
+
+    this.task.wrapup({wrapUpReason:`${aux2}`,
+                      auxCodeId: `${aux1}`
+                    })
+
     ```
 > Select an appropriate wrap-up reason from the dropdown  
 > The call will be completed and you'll return to available status  
@@ -200,10 +244,10 @@
 > ??? challenge w50 "How can you extend this to add custom state monitoring?"
     Add additional event listeners for specific state changes:
     ```typescript
-    this.webex.cc.on("AgentStateChange", (event) => {
-        // Custom state change handling
-        console.log("Agent state changed:", event);
-    });
+            this.webex.cc.on("AgentStateChangeSuccess", (event: any) => {
+            Logger.debug('AGENT-STATE', 'AgentStateChangeSuccess event', event);
+            this.idleCode.value = event.auxCodeId
+        });
     ```
 >
 > ---
@@ -211,8 +255,8 @@
 ## Testing and Validation
 
 ### Comprehensive call flow testing
-> From the terminal run 'npm run dev', this will spin up your application automatically in the browser.
-> Before testing, you need to configure the CRM with your phone number for automatic customer lookup:
+
+> Before testing SDK with CRM, you need to configure the CRM with your phone number for automatic customer lookup and click to dial.
 > Open `crm-app.js` and edit the customer record from line 40 with your details:
 > ??? note w50 "Update Customer Record"
     ```javascript
@@ -228,7 +272,7 @@
         notes: 'Preferred customer, has premium account package.'
     }
     ```
-> Replace the firstName, lastName and phone number (the number you'll be calling from)
+> Replace the firstName, lastName and phone number (the number you will be calling from)
 >
 > Perform end-to-end testing of the complete call workflow:
 > > 1. Place an inbound call: <copy><w class="dn">test-number</w></copy>  
@@ -239,16 +283,93 @@
 >
 > ---
 
+### Browser login testing and comparison
+> Now test the browser-based call handling functionality:
+> > 1. **Logout** from your current agent session  
+> > 2. **Login again** using the **'BROWSER'** option instead of AGENT_DN  
+> > 3. **Repeat the complete call flow test** from above steps.
+>
+> ??? note w50 "Key Differences with Browser Login"
+    When using BROWSER login option:
+    > - **Answer/Decline buttons** appear for incoming calls
+    - **Mute/Unmute functionality** is available during active calls
+    - **Audio streams** are handled through WebRTC in the browser
+    - **No physical phone** is required for call handling
+>
+> **Browser Login Test Steps:**
+> > 1. Place an inbound call: <copy><w class="dn">test-number</w></copy>  
+> > 2. **Click "Answer"** button in the SDK interface (not on a physical phone)  
+> > 3. Verify **mute/unmute** buttons appear in call controls  
+> > 4. Test **audio functionality** - speak and listen through your computer  
+> > 5. Test **hold/resume** and **mute/unmute** functions  
+> > 6. **End the call** using the interface and complete wrap-up  
+>
+??? challenge w50 "Compare the Two Login Methods"
+    **AGENT_DN (Physical Phone):**
+    > - Calls are answered on a physical desk phone/mobile
+    - Limited browser-based call controls
+    - Traditional telephony experience
+
+    **BROWSER (Software):**
+    > - Calls are answered directly in the web browser
+    - Full WebRTC functionality with mute/unmute
+    - Complete software-based call handling
+    - Enhanced integration with CRM interface
+> ---
+
 ### Advanced testing with browser console
-> Launch the browser console to observe SDK event logs during testing:
+> On your current session -
 > > Open browser Developer Tools (F12)  
 > > Navigate to the Console tab  
 > > Repeat the call flow test from above  
-> > Observe the SDK event logs, Filter console logs with [WX1-SDK] to see SDK related logs and [BANKING-CRM] to see CRM related logging.
-> > Review the source code implementation during testing based on logs.
->
-> Test the logout functionality:
-> > Click the 'Logout' button in the SDK component  
-> > Ensure you are returned to the home screen 
+> > Observe the SDK event logs, Filter console logs with [WX1-SDK] to see SDK related logs and [BANKING-CRM] to see CRM related logging  
+> > Review the source code implementation during testing based on logs you see on the console.
 >
 > ---
+
+### Test click to dial functionality
+> Now test the outbound calling capability integrated into the CRM interface:
+> > 1. **Ensure agent is logged in**  
+> > 2. **Navigate to the CRM customer list** in the banking application  
+> > 3. **Look for clickable phone numbers** (they should appear as blue, underlined links)  
+> > 4. **Click on any phone number** that you added earlier to initiate an outbound call  
+>
+> ??? note w50 "Click-to-Dial Implementation"
+    The CRM application automatically makes phone numbers clickable:
+    ```javascript
+        async placeClicktoDialcall(phone: string)
+
+        //Following is the SDK method used for outdial call.
+        await this.webex.cc.startOutdial(cleanedPhone);
+
+    ```
+>
+> **Outbound Call Testing Process:**
+> > 1. **Click a phone number** from the record that you updated with your phone number.
+> > 2. **Observe the SDK console logs** showing outbound call initiation  
+> > 3. **Verify call controls appear**, Click on answer button.
+> > 4. **Note that CRM search is skipped** for outbound calls.
+> > 5. **System will dial to your number**, Answer it.
+> > 6. **disconnect** the call from phone.
+>
+
+
+> **Advanced Click-to-Dial Testing:** 
+> > 1. **Verify error handling** - try clicking while already on a call  
+> > 2. **Test with invalid numbers** - ensure proper error messages  
+> > 3. **Check console logs** for detailed outbound call tracking  
+>
+??? question w50 "What validation occurs before placing an outbound call?"
+    The `placeClicktoDialcall()` method performs several validations:  
+    - Agent login status verification  
+    - Phone number format validation and cleaning  
+    - Existing call conflict detection  
+    - SDK initialization check  
+>
+> **Browser vs Phone Login Differences for Outbound:**
+> > - **BROWSER login**: Full WebRTC outbound calling through browser  
+> > - **AGENT_DN login**: Outbound calls bridge through assigned desk phone  
+> > - **Both modes**: Support click-to-dial from CRM interface  
+> ---
+
+
