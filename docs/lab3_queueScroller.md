@@ -85,8 +85,11 @@ For this query you will be using aggregations and a compound filter to retrieve 
 > Replace the aggregating template example in the query with your new aggregation leaving the square brackets. Then press enter twice to move the closing square bracket down to make room for the next aggregation.
 > ??? challenge w50 "Create an aggregation to return the min createdTime and name it oldestStart"
     { field: "createdTime", type: min, name: "oldestStart" }
+    > We are returning the min or lowest Epoch time
 > Add this aggregation directly below the one you just created.
 > Prettify your query. 
+> ??? Note w50 "Check your Aggregations"
+    ![](assets/aggregations.jpg)
 >
 > ---
 

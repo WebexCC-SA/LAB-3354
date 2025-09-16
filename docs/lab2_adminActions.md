@@ -261,7 +261,11 @@ You can now see the Arguments and Fields available
 > Create the duration of time in the current state  
 > > <copy>`<td>${new Date(Date.now() - t.channelInfo[0].lastActivityTime).toISOString().slice(11, -5)}</td>`</copy>
 >
+> ??? note w50 "Check your code"
+    ![](assets/adminActionsTable1.jpg)
+>
 > Save the TS file  
+> 
 > ---
 
 ### Add to index.html passing the Bearer token as a property
@@ -508,6 +512,7 @@ You can now see the Arguments and Fields available
 
 ### Stop the testing server
 > In the terminal of VS Code press ctrl + c  
+> 
 > ---
 
 
