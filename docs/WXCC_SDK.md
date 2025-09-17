@@ -72,7 +72,7 @@
 
 ### Install dependencies and run the setup script
 > Execute the setup script from terminal to check prerequisites and install dependencies:  
-> <copy>./setup.sh</copy>  
+> <copy>./setup-lab.sh</copy>  
 > This script will:
 > > - Verify Node.js installation  
 > > - Install required npm packages  
