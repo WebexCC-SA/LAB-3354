@@ -82,9 +82,10 @@
 > ---
 
 ## Launch the CRM application
-> From the terminal run 'npm run build', this will build your application. ensure there are no errors.
-> Copy the ringtone.wav to dist folder using this command in terminal 'cp ringtone.wav dist'
-> From the terminal run 'npm run dev', this will spin up your application automatically in the browser.
+> From the terminal run 'npm run build', this will build your application. ensure there are no errors  
+> if you encounter an error, then delete the dist folder and package-lock.json file, re-attempt 'npm run build'   
+> Copy the ringtone.wav to dist folder using this command in terminal 'cp ringtone.wav dist'  
+> From the terminal run 'npm run dev', this will spin up your application automatically in the browser  
 
 ## SDK Authentication and Initialization
 
