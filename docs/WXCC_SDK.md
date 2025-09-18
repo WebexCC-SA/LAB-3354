@@ -70,22 +70,13 @@
 >
 > ---
 
-### Install dependencies and run the setup script
-> Execute the setup script from terminal to check prerequisites and install dependencies:  
-> <copy>./setup-lab.sh</copy>  
-> This script will:
-> > - Verify Node.js installation  
-> > - Install required npm packages  
-> > - Set up TypeScript compilation  
-> > - Configure the development server  
->
-> ---
-
 ## Launch the CRM application
-> From the terminal run 'npm run build', this will build your application. ensure there are no errors  
-> if you encounter an error, then delete the dist folder and package-lock.json file, re-attempt 'npm run build'   
+> From the terminal in VS code run 'npm install', This will download node dependencies  
+> From the terminal in VS code run 'npm run build', this will build your application. ensure there are no errors  
+!!! note "Build Error Recovery"
+    If you encounter an error during build, then delete the `dist` folder, re-attempt `npm run build`.
 > Copy the ringtone.wav to dist folder using this command in terminal 'cp ringtone.wav dist'  
-> From the terminal run 'npm run dev', this will spin up your application automatically in the browser  
+> From the terminal run 'npm run dev', this will spin up your application automatically in the browser on http://localhost:1234
 
 ## SDK Authentication and Initialization
 
