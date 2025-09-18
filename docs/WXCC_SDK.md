@@ -117,7 +117,7 @@
 
 ### Understanding the event-driven architecture
 > The SDK uses an event-driven pattern for real-time updates from webex contact center.
-> ??? note w50 "Key Event Listeners"
+> ??? note w75 "Key Event Listeners"
     ```typescript
     this.webex.cc.on("task:incoming", (task: ITask) => {
 
