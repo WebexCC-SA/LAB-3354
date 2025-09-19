@@ -39,30 +39,30 @@
 > >
 > > An input box with the value of mystate which will update the value of the state when the input box is changed 
 >
-
-```html
-            <h2>${this.mystate}</h2>
-            <input value=${this.myprop} @change=${(e: any) => this.myprop = e.target.value}> 
-            <input value=${this.mystate} @change=${(e: any) => this.mystate = e.target.value}> 
-```
+!!! note ""
+    ```html
+        <h2>${this.mystate}</h2>
+        <input value=${this.myprop} @change=${(e: any) => this.myprop = e.target.value}> 
+        <input value=${this.mystate} @change=${(e: any) => this.mystate = e.target.value}> 
+    ```
 > 
 > ---
 
 
 ## Add some CSS to the static styles
 > In the css template add these styles below the :host entry closing curly brace:
->
-```CSS
-            div{
-                border:solid black 2px;
-            }
-            h1{
-                color:blue;
-            }
-            h2{
-                color:red;
-            }
-```
+> !!! note w50 ""
+    ```CSS
+                div{
+                    border:solid black 2px;
+                }
+                h1{
+                    color:blue;
+                }
+                h2{
+                    color:red;
+                }
+    ```
 >
 > ---
 
@@ -72,16 +72,16 @@
 > 
 > In the head section of the html:
 > > Add a script tag under the existing script tag (if you type it, intellisense will help with the autocomplete options)
-> >
-```html 
-<script type="module" src="/src/hello-world.ts"></script>
-```
+> > !!! note w50 ""
+    ```html 
+    <script type="module" src="/src/hello-world.ts"></script>
+    ```
 > > 
 > > In the body section add your new custom element tag above the existing my-element custom element tag:
-> >
-```html 
-<hello-world></hello-world>
-```
+> > !!! note w50 ""
+    ```html 
+    <hello-world></hello-world>
+    ```
 >
 >> Save the file (ctrl + s or File > Save)
 
@@ -90,7 +90,7 @@
 
 
 ## Start the development server and test
-> In the terminal run the command <copy>yarn dev</copy>
+> In the terminal run the command: <copy>yarn dev</copy>
 >
 > Open a browser tab to [http://localhost:5173/](http://localhost:5173/){:target="_blank"}
 >

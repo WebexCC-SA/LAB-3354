@@ -220,6 +220,7 @@ For this query you will be using aggregations and a compound filter to retrieve 
     ```
 >
 > Save the file   
+> 
 > ---
 
 ### Add to index.html
@@ -231,6 +232,7 @@ For this query you will be using aggregations and a compound filter to retrieve 
     <copy>`<queue-scroll token="" orgId="" teamId=""  agentId=""></queue-scroll>`</copy>
 >
 > Save the file  
+> 
 > ---
 
 
@@ -427,7 +429,7 @@ For this query you will be using aggregations and a compound filter to retrieve 
 >
 > > Login: <copy><w class="login">admin login</w></copy>  
 > > Password: <copy><w class="PW">password</w></copy>  
-> > Team: <copy><w class="team">team</w></copy> 
+> > Team: <copy><w class="Team">team</w></copy> 
 > ---
 > Place a call into your DN
 >

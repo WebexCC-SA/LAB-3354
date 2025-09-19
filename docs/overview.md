@@ -43,7 +43,7 @@ In this lab we will be using Webex for making calls into the Contact Center and 
 >
 > Assigned Team name: <copy><w class="Team">Provided by proctor</w></copy>
 >
-> Assigned Desktop Layout Name: <w class="layoutName">Provided by proctor</w>
+> Assigned Desktop Layout Name: <copy><w class="layoutName">Provided by proctor</w></copy>
 
 ---
 

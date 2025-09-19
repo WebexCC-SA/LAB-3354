@@ -17,7 +17,7 @@
 >
 > > Login: <copy><w class="login">admin login</w></copy>  
 > > Password: <copy><w class="PW">password</w></copy>  
-> > Team: <copy><w class="team">team</w></copy> 
+> > Team: <copy><w class="Team">team</w></copy> 
 > ---
 
 ### Use the Search API GraphQL Workbench to create the query for the Search API 
@@ -288,7 +288,7 @@ You can now see the Arguments and Fields available
 >
 > > Login: <copy><w class="login">admin login</w></copy>  
 > > Password: <copy><w class="PW">password</w></copy>  
-> > Team: <copy><w class="team">team</w></copy> 
+> > Team: <copy><w class="Team">team</w></copy> 
 >
 > Click the Refresh Agent List button  
 > > You should see the list of logged in agents populate  
@@ -488,7 +488,7 @@ You can now see the Arguments and Fields available
 > Log into the [Agent Desktop](https://desktop.wxcc-us1.cisco.com){:target="_blank"} if you are not already logged in.  
 > > Login: <copy><w class="login">admin login</w></copy>  
 > > Password: <copy><w class="PW">password</w></copy>  
-> > Team: <copy><w class="team">team</w></copy> 
+> > Team: <copy><w class="Team">team</w></copy> 
 > ---
 
 ### Testing steps
