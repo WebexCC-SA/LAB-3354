@@ -3,7 +3,7 @@
 
 !!! abstract w50 "Requirements"
     1. SDK Integration:
-        - Initialize Webex Contact Center SDK with OAuth authentication
+        - Initialize Webex Contact Center SDK with OAuth token
         - Register agent profile and retrieve available teams and login options
         - Handle agent login/logout operations
     2. Call Handling: 
@@ -12,13 +12,17 @@
         - Handle wrap-up codes and call completion
     3. CRM Integration:
         - Automatically search customer records when calls arrive
-        - Display caller information and call associated details
+        - Display caller information and call associated details  
+        - Click to dial integration
     4. Real-time Updates:
         - Listen for agent state changes and task events
         - Update UI dynamically based on call status
         - Provide visual feedback for all operations
 
-## Data and Actions
+## Start here
+
+!!! important "Critical First Step"
+    Ensure you have logged out of your existing agent desktop session.
 
 ### Clone the repository with git
 > Open Visual Studio Code
@@ -71,12 +75,12 @@
 > ---
 
 ## Launch the CRM application
-> From the terminal in VS code run 'npm install', This will download node dependencies  
-> From the terminal in VS code run 'npm run build', this will build your application. ensure there are no errors  
+> From the terminal in VS code type 'npm install' and hit enter, This will download node dependencies  
+> From the terminal in VS code type 'npm run build', and hit enter, This will build your application. ensure there are no errors  
 !!! note "Build Error Recovery"
     If you encounter an error during build, then delete the `dist` folder, re-attempt `npm run build`.
 > Copy the ringtone.wav to dist folder using this command in terminal 'cp ringtone.wav dist'  
-> From the terminal run 'npm run dev', this will spin up your application automatically in the browser on http://localhost:1234
+> From the terminal type 'npm run dev', and hit enter, This will spin up your application automatically in the browser on http://localhost:1234
 
 ## SDK Authentication and Initialization
 
@@ -88,7 +92,7 @@
 > ---
 
 ### Initialize SDK connection and retrieve agent profile
-> Click the "start" button to initialize the SDK connection  
+> Click the "Login" button to initialize the SDK connection  
 > The system will automatically:
 > > - Validate your access token  
 > > - pulls your desktop profile 
@@ -108,8 +112,8 @@
 > From the loaded profile information:
 > > Select your assigned team from the teams dropdown  
 > > Choose **AGENT_DN** as the login option  
-> > Select your provided dial number: <copy><w class="dn">your-assigned-dn</w></copy>  
-> > Click "Login" to establish your agent session , by default you will be in idle state.
+> > Inout your mobile number with +1 prefix. 
+> > Click "Station Login" to establish your agent session , by default you will be in idle state.
 >
 > ---
 
@@ -266,7 +270,7 @@
         notes: 'Preferred customer, has premium account package.'
     }
     ```
-> Replace the firstName, lastName and phone number (the number you will be calling from)
+> Replace the firstName, lastName and phone number (the number you will be calling from use +1 prefix.)
 >
 > Perform end-to-end testing of the complete call workflow:
 > > 1. Place an inbound call: <copy><w class="dn">test-number</w></copy>  
@@ -349,9 +353,8 @@
 
 
 > **Advanced Click-to-Dial Testing:** 
-> > 1. **Verify error handling** - try clicking while already on a call  
-> > 2. **Test with invalid numbers** - ensure proper error messages  
-> > 3. **Check console logs** for detailed outbound call tracking  
+> > 1. **Verify error handling** - try clicking while already on a call    
+> > 2. **Check console logs** for detailed outbound call tracking  
 >
 ??? question w50 "What validation occurs before placing an outbound call?"
     The `placeClicktoDialcall()` method performs several validations:  
