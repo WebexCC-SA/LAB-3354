@@ -85,7 +85,11 @@
 ## SDK Authentication and Initialization
 
 ### Obtain and configure your access token
-> Navigate to the [Webex Developer Portal](https://developer.webex.com/){:target="_blank"} and login using your agent credentials. On the right side top click on the avatar and copy the bearer token.  
+> Navigate to the [Webex Developer Portal](https://developer.webex.com/){:target="_blank"} and login using your agent credentials. On the right side top click on the avatar and copy the bearer token. 
+> Use the credentials below.
+> Login: <copy><w class="login">Provided by proctor</w></copy>
+> 
+> Password: <copy><w class="PW">Provided by proctor</w></copy>
 > 
 > In the CRM application interface, locate the access token input field  
 > Paste the token you copied.
@@ -112,7 +116,7 @@
 > From the loaded profile information:
 > > Select your assigned team from the teams dropdown  
 > > Choose **AGENT_DN** as the login option  
-> > Inout your mobile number with +1 prefix. 
+> > Input your mobile number with +1 prefix. 
 > > Click "Station Login" to establish your agent session , by default you will be in idle state.
 >
 > ---
