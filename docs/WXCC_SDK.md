@@ -74,6 +74,27 @@
 >
 > ---
 
+### Configure CRM for testing
+> Before testing SDK with CRM, you need to configure the CRM with your phone number for automatic customer lookup and click to dial.
+> Open `crm-app.js` and edit the customer record from line 40 with your details:
+> ??? note w50 "Update Customer Record"
+    ```javascript
+    '1': {
+        id: '1',
+        firstName: 'john',         // Your FirstName
+        lastName: 'smith',         // Your lastName
+        phone: '(555) 987-6544',  // Replace with your ANI
+        email: 'john.smith@email.com',
+        address: '123 Main St, Anytown, ST 12345',
+        dob: '1985-06-15',
+        memberSince: '2020-03-10',
+        notes: 'Preferred customer, has premium account package.'
+    }
+    ```
+> Replace the firstName, lastName and phone number (the number you will be calling from use +1 prefix.)
+>
+> ---
+
 ## Launch the CRM application
 > From the terminal in VS code type 'npm install' and hit enter, This will download node dependencies  
 > From the terminal in VS code type 'npm run build', and hit enter, This will build your application. ensure there are no errors  
@@ -115,8 +136,7 @@
 ### Agent login process
 > From the loaded profile information:
 > > Select your assigned team from the teams dropdown  
-> > Choose **AGENT_DN** as the login option  
-> > Input your mobile number with +1 prefix. 
+> > Choose **BROWSER** as the login option  
 > > Click "Station Login" to establish your agent session , by default you will be in idle state.
 >
 > ---
@@ -188,13 +208,18 @@
 >
 > ---
 
-### Test incoming call handling
-> Change the agent state to available.
-> Place a test call to your assigned number: <copy><w class="dn">your-test-number</w></copy>  
-> Observe the automatic processes:
-> > - Call details populate in the SDK component  
-> > - ANI (caller number) is extracted and displayed   
-> > - Call control buttons become available  
+### Test incoming call handling with browser login
+> **Browser Login Test Steps:**
+> > 1. Change agent state to available  
+> > 2. Place an inbound call: <copy><w class="dn">test-number</w></copy>  
+> > 3. Notice that the lookup of your number in CRM successds and you will see a pop up. Close it.
+> > 3. **Click "Answer"** button in the SDK interface  
+> > 4. Verify **mute/unmute** buttons appear in call controls  
+> > 5. Test **audio functionality** - speak and listen through your computer  
+> > 6. Test **hold/resume** and **mute/unmute** functions  
+> > 7. **End the call** from your phone where you called from and complete wrap-up  
+
+
 >
 > ??? challenge w50 "How does the CRM integration work with incoming calls?"
     ```typescript
@@ -206,12 +231,7 @@
     ```
 >
 > ---
-
-### Implement call control operations
-> Test each call control function during an active call:
-> > **Hold** - Temporarily pause the call  
-> > **Resume** - Reactivate a held call  
-> > **End** - Terminate the call and initiate wrap-up  
+  
 >
 > ??? question w50 "What happens when you end a call?"
     The system automatically presents a wrap-up code selection interface, requiring the agent to categorize the call before becoming available for new calls.
@@ -236,7 +256,7 @@
                     })
 
     ```
-> Select an appropriate wrap-up reason from the dropdown  
+>
 > The call will be completed and you'll return to available status  
 >
 > The SDK automatically tracks and responds to agent state changes:
@@ -254,57 +274,38 @@
 >
 > ---
 
-## Testing and Validation
-
-### Comprehensive call flow testing
-
-> Before testing SDK with CRM, you need to configure the CRM with your phone number for automatic customer lookup and click to dial.
-> Open `crm-app.js` and edit the customer record from line 40 with your details:
-> ??? note w50 "Update Customer Record"
+### Test click to dial functionality
+> Now test the outbound calling capability integrated into the CRM interface:
+> > 1. **Ensure agent is logged in**  
+> > 2. **Navigate to the CRM customer list** in the banking application  
+> > 3. **Look for clickable phone numbers** (they should appear as blue, underlined links)  
+> > 4. **Click on any phone number** that you added earlier to initiate an outbound call  
+> > 5. **Verify call controls appear**, Click on answer button.
+> > 6. **Note that CRM search is skipped** for outbound calls.
+> > 7. **System will dial to your number**, Answer it.
+> > 8. **disconnect** the call from phone.
+>
+> ??? note w50 "Click-to-Dial Implementation"
+    The CRM application automatically makes phone numbers clickable:
     ```javascript
-    '1': {
-        id: '1',
-        firstName: 'john',         // Your FirstName
-        lastName: 'smith',         // Your lastName
-        phone: '(555) 987-6544',  // Replace with your ANI
-        email: 'john.smith@email.com',
-        address: '123 Main St, Anytown, ST 12345',
-        dob: '1985-06-15',
-        memberSince: '2020-03-10',
-        notes: 'Preferred customer, has premium account package.'
-    }
-    ```
-> Replace the firstName, lastName and phone number (the number you will be calling from use +1 prefix.)
->
-> Perform end-to-end testing of the complete call workflow:
-> > 1. Place an inbound call: <copy><w class="dn">test-number</w></copy>  
-> > 2. Verify automatic customer lookup in CRM displays your updated record  
-> > 3. Test all call control functions (hold, resume)  
-> > 4. End the call from the phone you dialed in and complete wrap-up  
-> > 5. Confirm return to available status  
->
-> ---
+        async placeClicktoDialcall(phone: string)
 
-### Browser login testing and comparison
-> Now test the browser-based call handling functionality:
+        //Following is the SDK method used for outdial call.
+        await this.webex.cc.startOutdial(cleanedPhone);
+
+    ```
+>
+
+
+### AGENT_DN login testing and comparison
+> Now test the agent device number (physical phone) call handling functionality:
 > > 1. **Logout** from your current agent session  
-> > 2. **Login again** using the **'BROWSER'** option instead of AGENT_DN  
-> > 3. **Repeat the complete call flow test** from above steps.
+> > 2. **Refresh the browser** using Ctrl + Shift + R  
+> > 3. **Login again** using the **'AGENT_DN'** option instead of BROWSER  
+> > 4. **Input your mobile number** with +1 prefix  
+> > 5. **Repeat the complete call flow test** from above steps.
 >
-> ??? note w50 "Key Differences with Browser Login"
-    When using BROWSER login option:
-    > - **Answer/Decline buttons** appear for incoming calls
-    - **Mute/Unmute functionality** is available during active calls
-    - **Audio streams** are handled through WebRTC in the browser
-    - **No physical phone** is required for call handling
->
-> **Browser Login Test Steps:**
-> > 1. Place an inbound call: <copy><w class="dn">test-number</w></copy>  
-> > 2. **Click "Answer"** button in the SDK interface (not on a physical phone)  
-> > 3. Verify **mute/unmute** buttons appear in call controls  
-> > 4. Test **audio functionality** - speak and listen through your computer  
-> > 5. Test **hold/resume** and **mute/unmute** functions  
-> > 6. **End the call** using the interface and complete wrap-up  
+
 >
 ??? challenge w50 "Compare the Two Login Methods"
     **AGENT_DN (Physical Phone):**
@@ -317,7 +318,8 @@
     - Full WebRTC functionality with mute/unmute
     - Complete software-based call handling
     - Enhanced integration with CRM interface
-> ---
+
+> 
 
 ### Advanced testing with browser console
 > On your current session -
@@ -328,32 +330,6 @@
 > > Review the source code implementation during testing based on logs you see on the console.
 >
 > ---
-
-### Test click to dial functionality
-> Now test the outbound calling capability integrated into the CRM interface:
-> > 1. **Ensure agent is logged in**  
-> > 2. **Navigate to the CRM customer list** in the banking application  
-> > 3. **Look for clickable phone numbers** (they should appear as blue, underlined links)  
-> > 4. **Click on any phone number** that you added earlier to initiate an outbound call  
->
-> ??? note w50 "Click-to-Dial Implementation"
-    The CRM application automatically makes phone numbers clickable:
-    ```javascript
-        async placeClicktoDialcall(phone: string)
-
-        //Following is the SDK method used for outdial call.
-        await this.webex.cc.startOutdial(cleanedPhone);
-
-    ```
->
-> **Outbound Call Testing Process:**
-> > 1. **Click a phone number** from the record that you updated with your phone number.
-> > 2. **Observe the SDK console logs** showing outbound call initiation  
-> > 3. **Verify call controls appear**, Click on answer button.
-> > 4. **Note that CRM search is skipped** for outbound calls.
-> > 5. **System will dial to your number**, Answer it.
-> > 6. **disconnect** the call from phone.
->
 
 
 > **Advanced Click-to-Dial Testing:** 
