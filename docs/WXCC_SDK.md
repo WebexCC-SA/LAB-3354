@@ -103,6 +103,15 @@
 > Copy the ringtone.wav to dist folder using this command in terminal 'cp ringtone.wav dist'  
 > From the terminal type 'npm run dev', and hit enter, This will spin up your application automatically in the browser on http://localhost:1234
 
+!!! warning "Troubleshooting Login Issues"
+    At any point during this lab, if you encounter issues with logging in to custom desktop:
+    
+    1. Login to [https://developer.webex.com/webex-contact-center/docs/api/v1/agents/logout](https://developer.webex.com/webex-contact-center/docs/api/v1/agents/logout){:target="_blank"} using your credentials
+    2. On the right side, Provide a logout reason as `API_Logout` and click on **run**   
+    3. From your VS Code, locate and delete the `dist` folder
+    4. Copy `ringtone.wav` file to the `dist` folder using: `cp ringtone.wav dist`
+    5. Hard refresh your application using **Ctrl + Shift + R** and try to relogin
+
 ## SDK Authentication and Initialization
 
 ### Obtain and configure your access token
