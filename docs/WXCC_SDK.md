@@ -99,8 +99,7 @@
 > From the terminal in VS code type 'npm install' and hit enter, This will download node dependencies  
 > From the terminal in VS code type 'npm run build', and hit enter, This will build your application. ensure there are no errors  
 !!! note "Build Error Recovery"
-    If you encounter an error during build, then delete the `dist` folder, re-attempt `npm run build`.
-> Copy the ringtone.wav to dist folder using this command in terminal 'cp ringtone.wav dist'  
+    If you encounter an error during build, then delete the `dist` folder, re-attempt `npm run build`. 
 > From the terminal type 'npm run dev', and hit enter, This will spin up your application automatically in the browser on http://localhost:1234
 
 !!! warning "Troubleshooting Login Issues"
@@ -109,8 +108,7 @@
     1. Login to [https://developer.webex.com/webex-contact-center/docs/api/v1/agents/logout](https://developer.webex.com/webex-contact-center/docs/api/v1/agents/logout){:target="_blank"} using your credentials
     2. On the right side, Provide a logout reason as `API_Logout` and click on **run**   
     3. From your VS Code, locate and delete the `dist` folder
-    4. Copy `ringtone.wav` file to the `dist` folder using: `cp ringtone.wav dist`
-    5. Hard refresh your application using **Ctrl + Shift + R** and try to relogin
+    4. Hard refresh your application using **Ctrl + Shift + R** and try to relogin
 
 ## SDK Authentication and Initialization
 
