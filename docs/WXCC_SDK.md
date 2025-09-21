@@ -113,12 +113,11 @@
 ## SDK Authentication and Initialization
 
 ### Obtain and configure your access token
-> Navigate to the [Webex Developer Portal](https://developer.webex.com/){:target="_blank"} and login using your agent credentials. On the right side top click on the avatar and copy the bearer token. 
-> Use the credentials below.
-> Login: <copy><w class="login">Provided by proctor</w></copy>
-> 
+> Navigate to the [Webex Developer Portal](https://developer.webex.com/){:target="_blank"} and login using your agent credentials below   
+> Login: <copy><w class="login">Provided by proctor</w></copy>  
 > Password: <copy><w class="PW">Provided by proctor</w></copy>
 > 
+> On the right side top click on the avatar and copy the bearer token  
 > In the CRM application interface, locate the access token input field  
 > Paste the token you copied.
 > ---
@@ -127,11 +126,11 @@
 > Click the "Login" button to initialize the SDK connection  
 > The system will automatically:
 > > - Validate your access token  
-> > - pulls your desktop profile 
+> > - Creates webex object and pulls your desktop profile 
 > > - Load available teams and telephony login options 
 >
 > ??? challenge w50 "What information is retrieved during agent registration?"
-    The profile object contains multiple config entities but here the importnat ones we will be using for this lab:
+    The profile object contains multiple config entities but here the important ones we will be using for this lab:
     > - Agent name and ID
     > - Available teams
     > - Voice login options (BROWSER, AGENT_DN, etc.)
@@ -218,8 +217,8 @@
 ### Test incoming call handling with browser login
 > **Browser Login Test Steps:**
 > > 1. Change agent state to available  
-> > 2. Place an inbound call: <copy><w class="dn">test-number</w></copy>  
-> > 3. Notice that the lookup of your number in CRM successds and you will see a pop up. Close it.
+> > 2. Place an inbound call: <copy><w class="dn">Provided by proctor</w></copy> 
+> > 3. Notice that the lookup of your number in CRM succeeds and you will see a popup with your details. Close it.
 > > 3. **Click "Answer"** button in the SDK interface  
 > > 4. Verify **mute/unmute** buttons appear in call controls  
 > > 5. Test **audio functionality** - speak and listen through your computer  
@@ -256,7 +255,7 @@
         }
     }
 
-    // SDK warpup method
+    // SDK wrapup method
 
     this.task.wrapup({wrapUpReason:`${aux2}`,
                       auxCodeId: `${aux1}`
@@ -286,11 +285,11 @@
 > > 1. **Ensure agent is logged in**  
 > > 2. **Navigate to the CRM customer list** in the banking application  
 > > 3. **Look for clickable phone numbers** (they should appear as blue, underlined links)  
-> > 4. **Click on any phone number** that you added earlier to initiate an outbound call  
+> > 4. **Click on  phone number** that you added earlier to initiate an outbound call  
 > > 5. **Verify call controls appear**, Click on answer button.
 > > 6. **Note that CRM search is skipped** for outbound calls.
 > > 7. **System will dial to your number**, Answer it.
-> > 8. **disconnect** the call from phone.
+> > 8. **Disconnect** the call from phone.
 >
 > ??? note w50 "Click-to-Dial Implementation"
     The CRM application automatically makes phone numbers clickable:
@@ -310,7 +309,7 @@
 > > 2. **Refresh the browser** using Ctrl + Shift + R  
 > > 3. **Login again** using the **'AGENT_DN'** option instead of BROWSER  
 > > 4. **Input your mobile number** with +1 prefix  
-> > 5. **Repeat the complete call flow test** from above steps.
+> > 5. **Repeat the inbound and outdial call that you tested in previous step.
 >
 
 >
@@ -332,7 +331,7 @@
 > On your current session -
 > > Open browser Developer Tools (F12)  
 > > Navigate to the Console tab  
-> > Repeat the call flow test from above  
+> > Place an inbound call    
 > > Observe the SDK event logs, Filter console logs with [WX1-SDK] to see SDK related logs and [BANKING-CRM] to see CRM related logging  
 > > Review the source code implementation during testing based on logs you see on the console.
 >
