@@ -108,7 +108,9 @@
     1. Login to [https://developer.webex.com/webex-contact-center/docs/api/v1/agents/logout](https://developer.webex.com/webex-contact-center/docs/api/v1/agents/logout){:target="_blank"} using your credentials
     2. On the right side, Provide a logout reason as `API_Logout` and click on **run**   
     3. From your VS Code, locate and delete the `dist` folder
-    4. Hard refresh your application using **Ctrl + Shift + R** and try to relogin
+    
+    !!! important "Critical Step"
+         **Hard refresh your application using Ctrl + Shift + R and try to relogin**
 
 ## SDK Authentication and Initialization
 
@@ -141,8 +143,8 @@
 
 ### Agent login process
 > From the loaded profile information:
-> > Select your assigned team from the teams dropdown  
 > > Choose **BROWSER** as the login option  
+> > Select your assigned team from the teams dropdown  
 > > Click "Station Login" to establish your agent session , by default you will be in idle state.
 >
 > ---
@@ -306,7 +308,7 @@
 ### AGENT_DN login testing and comparison
 > Now test the agent device number (physical phone) call handling functionality:
 > > 1. **Logout** from your current agent session  
-> > 2. **Refresh the browser** using Ctrl + Shift + R  
+> > 2. **Refresh the browser** using <span style="color: #FF6600; font-weight: bold; background-color: #FFF3CD; padding: 2px 4px; border-radius: 3px;">**Ctrl + Shift + R**</span>  
 > > 3. **Login again** using the **'AGENT_DN'** option instead of BROWSER  
 > > 4. **Input your mobile number** with +1 prefix  
 > > 5. **Repeat the inbound and outdial call that you tested in previous step.
