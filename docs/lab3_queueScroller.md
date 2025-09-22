@@ -16,26 +16,28 @@
 ## Data and Actions
 
 ### List all queues assigned to the agent by the team they are logged into
-> Navigate to the [List references for a specific Team API](https://developer.webex.com/webex-contact-center/docs/api/v1/team/list-references-for-a-specific-team){:target="_blank"}  
+> Navigate to [List references for a specific Team API](https://developer.webex.com/webex-contact-center/docs/api/v1/team/list-references-for-a-specific-team){:target="_blank"}  
 > ??? note w50 "Get the team ID for <w class="Team">your team</w> from Control Hub > Contact Center > Teams"
-    ![](assets/getTeamId.gif)
+    ![](assets/getTeamId.gif)  
+> Fill in the required details  
 > Click to run the request  
 > Copy the cURL and import it into Postman
 >
 > ---
 
 ### List all skilled queues from which the agent can receive calls
-> [List skill based Contact Service Queue(s)by user ID](https://developer.webex.com/webex-contact-center/docs/api/v1/contact-service-queues/list-skill-based-contact-service-queuesby-user-id){:target="_blank"}  
+> Navigate to [List skill based Contact Service Queue(s)by user ID](https://developer.webex.com/webex-contact-center/docs/api/v1/contact-service-queues/list-skill-based-contact-service-queuesby-user-id){:target="_blank"}  
 > ??? note w50 "Get the userId for <w class="login">your user</w> from Control Hub > Contact Center > Contact Center Users"
-    ![](assets/getUserId.gif)
+    ![](assets/getUserId.gif)  
+> Fill in the required details  
 > Click to run the request  
 > Copy the cURL and import it into Postman
 >
 > ---
 
 ### List all queues in which the agent is directly assigned
-> [List agent based Contact Service Queue(s)by user ID](https://developer.webex.com/webex-contact-center/docs/api/v1/contact-service-queues/list-agent-based-contact-service-queuesby-user-id){:target="_blank"}
-> Using the same userId as the previous request  
+> Navigate to [List agent based Contact Service Queue(s)by user ID](https://developer.webex.com/webex-contact-center/docs/api/v1/contact-service-queues/list-agent-based-contact-service-queuesby-user-id){:target="_blank"}  
+> Use the same userId as the previous request to fill in the required details  
 > Click to run the request  
 > Copy the cURL and import it into Postman
 >

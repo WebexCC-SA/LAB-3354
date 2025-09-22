@@ -115,7 +115,7 @@ You can now see the Arguments and Fields available
 > ---
 
 ## Creating the Web Component
-> Now that you have the basic data and API elements understood and tested, it is time to put them together in code to visulaize the data and orchestrate our actions all while creating a good experience for the end user.
+> Now that you have the basic data and API elements understood and tested, it is time to put them together in code to visualize the data and orchestrate our actions all while creating a good experience for the end user.
 
 ### Create a new Web Component
 > Create a new file in the src directory named <copy>admin-actions.ts</copy>
