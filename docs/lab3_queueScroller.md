@@ -17,7 +17,8 @@
 
 ### List all queues assigned to the agent by the team they are logged into
 > Navigate to the [List references for a specific Team API](https://developer.webex.com/webex-contact-center/docs/api/v1/team/list-references-for-a-specific-team){:target="_blank"}  
-> Get your team ID from Control Hub  
+> ??? note w50 "Get the team ID for <w class="Team">your team</w> from Control Hub > Contact Center > Teams"
+    ![](assets/getTeamId.gif)
 > Click to run the request  
 > Copy the cURL and import it into Postman
 >
@@ -25,7 +26,8 @@
 
 ### List all skilled queues from which the agent can receive calls
 > [List skill based Contact Service Queue(s)by user ID](https://developer.webex.com/webex-contact-center/docs/api/v1/contact-service-queues/list-skill-based-contact-service-queuesby-user-id){:target="_blank"}  
-> Get your userId from Control Hub
+> ??? note w50 "Get the userId for <w class="login">your user</w> from Control Hub > Contact Center > Contact Center Users"
+    ![](assets/getUserId.gif)
 > Click to run the request  
 > Copy the cURL and import it into Postman
 >
@@ -418,7 +420,7 @@ For this query you will be using aggregations and a compound filter to retrieve 
     },
     ```
 >
-> Save the JSON file as ...   
+> Save the JSON file as <copy><w class="Team">yourTeamName</w>.json</copy>   
 > Upload the JSON file  
 > ---
 

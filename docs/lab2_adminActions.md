@@ -115,7 +115,7 @@ You can now see the Arguments and Fields available
 > ---
 
 ## Creating the Web Component
-> Now that you have the basic data and API elements understood and tested, it is time to put them together in code and orchestrate a good experience.
+> Now that you have the basic data and API elements understood and tested, it is time to put them together in code to visulaize the data and orchestrate our actions all while creating a good experience for the end user.
 
 ### Create a new Web Component
 > Create a new file in the src directory named <copy>admin-actions.ts</copy>
@@ -374,7 +374,7 @@ You can now see the Arguments and Fields available
 
 ### Download the Desktop Layout
 > In [Control Hub](https://admin.webex.com){:target="_blank"} navigate to Contact Center => Desktop Layouts  
-> Locate the Desktop Layout named <w class="layoutName">placeholder for layout name</w>  
+> Locate the Desktop Layout named <copy><w class="layoutName">placeholder for layout name</w></copy>  
 > Click the name of the Desktop Layout to access the details  
 > !!! Note w50 
     - Desktop Layouts are assigned to agents based on the team they have logged in with.
@@ -464,12 +464,10 @@ You can now see the Arguments and Fields available
 > ---
 
 ### Save and update the new layout JSON
-> In the Desktop Layout  
-> > Save the file as ...  
->> Navigate to the Desktop Layout section of Control Hub
->> Locate your assigned Desktop Layout
->> Upload the new JSON by dragging the file into the import box or clicking Replace file and navigating to the file using the file explorer
->> Click Save in the lower right corner
+> Save the file as <copy><w class="Team">yourTeamName</w>.json</copy>   
+> Locate your assigned Desktop Layout <w class ="layout"></w>
+> Upload the new JSON by dragging the file into the import box or clicking Replace file and navigating to the file using the file explorer
+> Click Save in the lower right corner
 >
 > ---
 
