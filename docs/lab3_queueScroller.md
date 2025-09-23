@@ -163,7 +163,7 @@ For this query you will be using aggregations and a compound filter to retrieve 
 
 ### Create States for the required data elements
 > <copy>@state() queueStats = []</copy>    
-> <copy>@state() object[] = []</copy>    
+> <copy>@state() queueFilter: object[] = []</copy>    
 >
 > ---
 
@@ -245,6 +245,18 @@ For this query you will be using aggregations and a compound filter to retrieve 
 > Launch the [development server index page](http://localhost:5173/){:target="_blank"}  
 >> You should see your web component in the browser  
 >
+> Place a call to your inbound number <copy><w class="dn"></w></copy>  
+> Press the test button on the widget after you hear hold music  
+> > You should see two identical entries appear with the Queue Name, Number of Contacts, and longest wait time.  
+> > There is a reason which there are 2 identical entries which will be discussed later in the lab.  
+> 
+> Press the test button again.  
+> > The Longest Wait time should update.  
+> 
+> Disconnect the call.  
+> Press the test button again.  
+> > The queue information should disappear.  
+> 
 > ---
 
 
@@ -277,7 +289,7 @@ For this query you will be using aggregations and a compound filter to retrieve 
 
 > Wrap the try/catch section in a forEach method:  
 > > On the line above the try, insert: <copy>`paths.forEach(async (path, i) => {`</copy>  
-> > Below the closing curly brace of the catch. insert: <code>`})`</code>  
+> > Below the closing curly brace of the catch. insert: <copy>`})`</copy>  
 > 
 > Change the URL in the fetch command to <copy>`` `https://api.wxcc-us1.cisco.com/organization/${this.orgId}${path}` ``</copy>  
 > Change result to equal: <copy>response.json()</copy> instead of response.text()  
@@ -296,9 +308,18 @@ For this query you will be using aggregations and a compound filter to retrieve 
     ![](assets/update_queueFilter.gif)
 > ---
 
-### Update the testing button in the render function
-> In the html template of teh render function:  
-> > change the @click from this.getStats to <copy>this.getQueues</copy>  
+### Update the testing button in the render method
+> In the html template of the render method:  
+> > On the test button, change the @click from this.getStats to <copy>this.getQueues</copy>  
+> ---
+
+#### Testing 
+> Call your assigned DN to place a call in the queue <copy><w class="dn">dn</w></copy>  
+> Once the call is in queue, press the testing button  
+> > You should see two identical entries appear with the Queue Name, Number of Contacts, and longest wait time.  
+>
+> Disconnect the call.  
+>
 > ---
 
 ### Add CSS Styling
@@ -351,6 +372,9 @@ For this query you will be using aggregations and a compound filter to retrieve 
                 }
                 }
     ```
+>
+> Save the file
+> 
 > ---
 
 #### Testing 
@@ -358,7 +382,15 @@ For this query you will be using aggregations and a compound filter to retrieve 
 > Once the call is in queue, press the testing button  
 > > You should see the queue stats scrolling in your web component.
 >
+> Hover over the scrolling queue information   
+> > The scrolling should stop.  
+> > Note that the time value is not incrementing. 
+>
+> Disconnect the call
+> 
 > ---
+
+
 ### Add auto load and refresh functionality
 !!! abstract w50
     - Instead of updating the widget data only when you push a button, you can execute your code automatically once the web component is loaded using the **connectedCallback** lifecycle.  
@@ -381,8 +413,20 @@ For this query you will be using aggregations and a compound filter to retrieve 
         }
     ```
 
-> Remove the testing button
-> Save and test by placing a call into your DN.  
+> Remove the testing button from the html template of the render method.   
+> Save the file.  
+>   
+> ---
+
+ 
+#### Testing 
+> Call your assigned DN to place a call in the queue <copy><w class="dn">dn</w></copy>  
+> Once the call is in queue you should see the queue stats scrolling in your web component.  
+> > You should see the wait time increment by 30 seconds as long as you are still in the queue.  
+>
+> Disconnect the call.  
+> > Note that after disconnecting the call, the data still will not update until the 30 second timer hits.  
+>
 > ---
 
 
@@ -394,14 +438,23 @@ For this query you will be using aggregations and a compound filter to retrieve 
 > In the getStats method after the `const result = await response.json();` line, add: <copy>`this.queueData = await result.data.task.tasks`</copy>  
 > Remove the line which maps the returned data in the list items  
 > Create a new method named: <copy>updateTemplate(){}</copy>  
-> In the curly braces of updateTemplate, paste this code: <copy>this.queueStats = this.queueData.map((item: any) => { return html`<li> | Queue: ${item.lastQueue.name} Contacts: ${item.aggregation[1].value} Wait: ${new Date(Date.now() - item.aggregation[0].value).toISOString().slice(11, -5)} |</li>` })</copy>  
+> In the curly braces of updateTemplate, paste this code: <copy>``this.queueStats = this.queueData.map((item: any) => { return html`<li> | Queue: ${item.lastQueue.name} Contacts: ${item.aggregation[1].value} Wait: ${new Date(Date.now() - item.aggregation[0].value).toISOString().slice(11, -5)} |</li>` })``</copy>  
 > In the connectedCallback method add: <copy>this.mapUpdate = setInterval(() => this.updateTemplate(), 1000);</copy>  
 > In the disconnectedCallback method add: <copy>clearInterval(this.mapUpdate);</copy>  
 > In the ul opening tag of the render method, after `class="marquee"`, add: <copy>style="animation-duration: ${this.queueStats.length * 10}s"</copy>  
-> Save and test by placing a call into your DN.  
+> Save the file.  
 > ---
 
-
+#### Testing 
+> Call your assigned DN to place a call in the queue <copy><w class="dn">dn</w></copy>  
+> Once the call is in queue you should see the queue stats scrolling in your web component.  
+> > You should see the wait times increment by every second.  
+> 
+> Disconnect the call.
+> ??? question w50 "Notice that the call time will continue to increment even though the call is no longer in the queue.  Why?"
+    The data is only updating every 30 seconds, but the UI is updating every second.
+> 
+> ---
 
 
 ### Add to Desktop Layout
@@ -426,7 +479,7 @@ For this query you will be using aggregations and a compound filter to retrieve 
 > Upload the JSON file  
 > ---
 
-## Testing
+#### Testing
 > In the terminal of VS Code, press ctrl + c to terminate the development server  
 > In the terminal of VS Code run: <copy>yarn game</copy>  
 > Log into the [Agent Desktop](https://desktop.wxcc-us1.cisco.com/){:target="_blank"}
@@ -435,6 +488,8 @@ For this query you will be using aggregations and a compound filter to retrieve 
 > > Password: <copy><w class="PW">password</w></copy>  
 > > Team: <copy><w class="Team">team</w></copy> 
 > ---
-> Place a call into your DN
+> Call your assigned DN to place a call in the queue <copy><w class="dn">dn</w></copy>  
+>
+> Run the tests you think will test the functionality.
 >
 > ---
