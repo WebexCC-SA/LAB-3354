@@ -1,5 +1,9 @@
+# <center>Banking CRM with Webex CC SDK <w class="Name"></w>!</center>
+
+<iframe src="https://app.sli.do/event/m8T3HqZpUjQgbE4WFDjrLX/questions" height="100%" width="100%" frameBorder="0" style="min-height: 560px;" allow="clipboard-write" title="Slido"></iframe>
+
 ## Story
-> As a contact center developer, I want to integrate Webex Contact Center SDK capabilities into a custom CRM application, so that agents can handle calls directly within their familiar business interface without switching between multiple applications.
+> As a contact center developer, I want to integrate Webex Contact Center SDK capabilities into a banking CRM application, so that agents can handle calls directly within their familiar business interface without switching between multiple applications.
 
 !!! abstract w50 "Requirements"
     1. SDK Integration:
@@ -56,9 +60,7 @@
 
 ### Examine the SDK implementation architecture
 > Open `wx1-sdk.ts` and review the class structure and key methods:
-> > **@customElement("wx1-sdk")** - Defines the custom web component that you saw in previous step  
-> > **@property({ reflect: true }) accesstoken** - Access token property binding  
-> > **@state()** decorators - Component state management  
+> > **@customElement("wx1-sdk")** - Defines the custom web component that you saw in previous step   
 > > **startConnection()** - Initializes Webex SDK connection and obtains the webex object  
 > > **getOptions()** - Sets up agent information from profile object and registers event listeners for call handling  
 > > **actionTask()** - Handles call control operations like hold, resume, mute, unmute etc. 
@@ -91,7 +93,8 @@
         notes: 'Preferred customer, has premium account package.'
     }
     ```
-> Replace the firstName, lastName and phone number (the number you will be calling from use +1 prefix.)
+> Replace the firstName, lastName with your first and lastname  
+> Replace phone with Webex Phone Number: <copy><w class="WxC">Provided by proctor</w></copy>
 >
 > ---
 
