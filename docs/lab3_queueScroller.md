@@ -68,12 +68,12 @@ For this query you will be using aggregations and a compound filter to retrieve 
         ![](assets/GQL_token.gif)
     Set the URL: <copy>https://api.wxcc-us1.cisco.com/search</copy>  
 > Open the Docs pane and add the query for task using the ADD QUERY button  
-> Remove the has section  
-> Remove the intervalInfo and pageInfo sections  
+> Remove the **has** section  
+> Remove the **intervalInfo** and **pageInfo** sections  
 > Remove all fields in the tasks section except lastQueue and aggregation  
 > After lastQueue add: <copy>{name}</copy>  
 > After aggregation add: <copy>{name value}</copy>
-> In the Arguments section of the query, remove the lines for aggregation, aggregationInterval, and pagination  
+> In the Arguments section of the query, remove the lines for **aggregation**, **aggregationInterval**, and **pagination**  
 > Click the suitcase icon and select Prettify  
 > 
 > ---
