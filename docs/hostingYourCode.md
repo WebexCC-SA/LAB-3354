@@ -76,6 +76,12 @@
 > Login as an agent and test.  
 > ---
 
+### Add your JSON file to your new repository
+> Copy your JSON file into the root directory in VS Code  
+> Commit any sync the changes to GitHub  
+> ---
+
+
 ## Option 2: Using JSDelivr (Demo Only)
 > [Documentation](https://www.jsdelivr.com/documentation#id-github){:target="_blank"}  
 > 

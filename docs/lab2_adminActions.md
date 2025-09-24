@@ -350,7 +350,7 @@ You can now see the Arguments and Fields available
 > Between the curly braces, press enter then paste the copied code from postman.  
 > Make the following edits to the method code:  
 >> Change the Authorization header to use the token property  
->> Make requestOptions an object type  
+>> Set the **type** of requestOptions to be an object by adding this notation, after its name and before the equals sign: <copy>`: object`</copy>  
 >> Change the agentId in the raw variable to use <copy>`e.target.value`</copy>
 > ??? note w50 "Check your code"
     ![](assets/agentLogoutMethod.jpg)

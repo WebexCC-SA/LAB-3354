@@ -15,14 +15,14 @@ In this lab we will be using:
     Yarn  
     Vite + Lit  
     VS Code Extensions  
-    GraphQL Workbench  
-    Postman  
+    GraphQL Workbench    
     JSON Path Finder  
 
 !!! tool "Software Requirements (preinstalled in lab)"
     Node JS  
     Visual Studio Code  
     Git
+    Postman
 </div>
 
 ---
@@ -67,16 +67,11 @@ In this lab we will be using Webex for making calls into the Contact Center and 
 ### Testing your lab setup
 > 1. Launch the [Agent Desktop](https://desktop.wxcc-us1.cisco.com/){:target="_blank"} and log in selecting the Desktop option for your Voice connection.
 1. From the Webex App, dial <copy><w class="dn">Provided by proctor</w></copy>
-      1. You will hear a greeting message which will include the pod number which you have been assigned.
-      2. The call will be place in your queue.
-      3. You will hear the hold music until the call is answered
+      1. The call will be place in your queue without hearing a greeting message.
+      2. You will hear the hold music until the call is answered
 2. In the agent desktop, set your status to Available and answer the call.
       1. Confirm that you can hear audio being passed in both directions.
       2. Disconnect the call
       3. Select a Wrap-up Code
       4. Set your status to Meeting
 ---
-
-<!-- ## Getting Started
-
-This lab leverages Cisco dCloud ... -->

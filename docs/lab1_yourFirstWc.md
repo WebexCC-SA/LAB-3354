@@ -1,8 +1,5 @@
 # Your First Web Component
 
-<!-- > You are going to build a very basic web component  -->
-
-
 ## Create and scaffold a new file 
 > Create a new file in the src directory named <copy>hello-world.ts</copy>
 > ??? Note w50 "Show Me"
@@ -120,7 +117,6 @@
 > ---
 
 
-<!-- ### Change the value of the passed property from the browser's developer tools -->
 
 ## Add a new method to change the values of myprop and mystate
 > Above the render method create a new method called change values
@@ -156,7 +152,7 @@
 > In the render method, change the @click listener to: <copy>${this.changeValues.bind(this,"set by button")}</copy>
 >
 > ??? code w50 "This is how your code should look"
-    ![](assets/setByButton.jpg)
+    ![](assets/setByButton.jpg)-
 > Save the file
 >
 > Click the Call Method button
