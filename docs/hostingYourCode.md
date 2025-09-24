@@ -55,7 +55,7 @@
 
 
 ## Option 1: Using Github Pages 
-> In your github repository Click Seccings on the top ribbon  
+> In your github repository Click Settings on the top ribbon  
 > Select Pages on the left side menu  
 > Under Branch, Select main  
 > Leave /(root) selected  
@@ -78,13 +78,31 @@
 
 ### Add your JSON file to your new repository
 > Copy your JSON file into the root directory in VS Code  
-> Commit any sync the changes to GitHub  
+> Click the Source Control menu on the left menu bar  
+> Click the `+` sign next to the change  
+> Add a commit message  
+> Click the drop down menu which is part of the Commit button  
+> Select Commit & Sync  
+> ??? Note w50 "Show me"
+    ![](assets/addJSONtoGitHub.gif)  
+> 
 > ---
 
 
 ## Option 2: Using JSDelivr (Demo Only)
-> [Documentation](https://www.jsdelivr.com/documentation#id-github){:target="_blank"}  
+
+!!! note w50
+    - You do not need to enable GitHub Pages to use this method, but you will need to expose your dist folder.  
+    - This method will cache this specific version of your code and removing the cached version of your code will require additional steps requiring support from JSDelivr.  
+    [Documentation](https://www.jsdelivr.com/documentation#id-github){:target="_blank"}
+> ??? Note w50 "Locate the specific Commit ID you will be using"
+    ![](assets/commitID.gif)
+> Create a formatted URL and test using a browser  
+>> URL should be formatted like this `https://cdn.jsdelivr.net/gh/<GH userName>/<repository name>@<Commit ID>/dist/index.js` with the variables replaced  
+>
+> You can use this URL as your script URL in a desktop layout.  
 > 
+> ---
 
 
 
@@ -96,5 +114,7 @@
 > Under "Generic Credentials", look for entries that start with git: or github.com (e.g., git:https://github.com).  
 > Expand each relevant entry and click "Remove" or "Delete".  
 > Confirm the deletion.  
+>
+> ---
 
-
+### Delete the folder containing the code you created in this lab.
