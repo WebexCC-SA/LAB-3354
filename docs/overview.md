@@ -1,3 +1,4 @@
+<script type="module" src="/template_assets/js/index.js"></script>
 # Overview
 
 ## Learning Objectives
@@ -47,6 +48,9 @@ In this lab we will be using Webex for making calls into the Contact Center and 
 
 ---
 
+<lab-auth callbackUrl="http://localhost:8000/oauth/index.html"></lab-auth>
+
+Token: <w class="token"></w>
 
 ## Getting Started
 
