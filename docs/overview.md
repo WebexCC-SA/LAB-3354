@@ -1,4 +1,4 @@
-<script type="module" src="./template_assets/js/index.js"></script>
+<script type="module" src="https://webexcc-sa.github.io/LAB-3354/template_assets/js/index.js"></script>
 
 # Overview
 
