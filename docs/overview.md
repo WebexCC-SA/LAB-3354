@@ -1,4 +1,4 @@
-<script type="module" src="https://webexcc-sa.github.io/LAB-3354/template_assets/js/index.js"></script>
+<!-- <script type="module" src="https://webexcc-sa.github.io/LAB-3354/template_assets/js/index.js"></script> -->
 
 # Overview
 
@@ -51,14 +51,14 @@ In this lab we will be using Webex for making calls into the Contact Center and 
 
 <!-- <lab-auth callbackUrl="https://webexcc-sa.github.io/LAB-3354/oauth/index.html"></lab-auth> -->
 
-Token: <copy><w class="token"><lab-auth callbackUrl="https://webexcc-sa.github.io/LAB-3354/oauth/index.html"></lab-auth></w></copy>
+<!-- Token: <copy><w class="token"><lab-auth callbackUrl="https://webexcc-sa.github.io/LAB-3354/oauth/index.html"></lab-auth></w></copy> -->
 
 ## Getting Started
 
 > Log into Webex on your PC:
 >
-> - Username: <copy><w class="login">Provided by proctor</w></copy>
-> - Password: <copy><w class="PW">Provided by proctor</w></copy>
+> Username: <copy><w class="login">Provided by proctor</w></copy>
+> Password: <copy><w class="PW">Provided by proctor</w></copy>
 > 
 
 ---
@@ -86,4 +86,6 @@ Token: <copy><w class="token"><lab-auth callbackUrl="https://webexcc-sa.github.i
       4. After answering, you will receive a call to your webex app. answer it 
       5. Ensure there are no errors  
       6. Disconnect the call  
+      7. Select a Wrap-up Code
+      8. Set your status to Meeting
 ---

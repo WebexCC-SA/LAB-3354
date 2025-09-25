@@ -1,3 +1,5 @@
+<script type="module" src="https://webexcc-sa.github.io/LAB-3354/template_assets/js/index.js"></script>
+
 # Banking CRM with Webex CC SDK 
 ???+ note "A Quick Poll"
     <iframe src="https://app.sli.do/event/m8T3HqZpUjQgbE4WFDjrLX/questions" height="100%" width="100%" frameBorder="0" style="min-height: 560px;" allow="clipboard-write" title="Slido"></iframe>
@@ -120,7 +122,7 @@
 ### Obtain and configure your access token
 > Use the token below.
 > 
-> Token: <w class="token"></w>
+> Token: <copy><w class="token"><lab-auth callbackUrl="https://webexcc-sa.github.io/LAB-3354/oauth/index.html"></lab-auth></w></copy>
 >
 >
 > In the CRM application interface, locate the access token input field  
