@@ -49,7 +49,7 @@ In this lab we will be using Webex for making calls into the Contact Center and 
 
 ---
 
-<lab-auth callbackUrl="http://localhost:8000/oauth/index.html"></lab-auth>
+<lab-auth callbackUrl="https://webexcc-sa.github.io/LAB-3354/oauth/index.html"></lab-auth>
 
 Token: <w class="token"></w>
 
