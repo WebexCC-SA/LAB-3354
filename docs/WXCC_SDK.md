@@ -109,7 +109,7 @@
     At any point during this lab, if you encounter issues with logging in to custom desktop:
     
     1. Login to [https://developer.webex.com/webex-contact-center/docs/api/v1/agents/logout](https://developer.webex.com/webex-contact-center/docs/api/v1/agents/logout){:target="_blank"} using your credentials
-    2. On the right side, Provide a logout reason as `API_Logout` and click on **run**   
+    2. On the right side, Provide a logout reason as `API_Logout` and click on **run**,Ensure that you see a 202 response 
     3. From your VS Code, locate and delete the `dist` folder
     
     !!! important "Critical Step"
@@ -118,11 +118,10 @@
 ## SDK Authentication and Initialization
 
 ### Obtain and configure your access token
-> Navigate to the [Webex Developer Portal](https://developer.webex.com/){:target="_blank"} and login using your agent credentials below   
-> Login: <copy><w class="login">Provided by proctor</w></copy>  
-> Password: <copy><w class="PW">Provided by proctor</w></copy>
-> 
-> On the right side top click on the avatar and copy the bearer token  
+> Put token here  
+>
+>
+>
 > In the CRM application interface, locate the access token input field  
 > Paste the token you copied.
 > ---
@@ -308,7 +307,7 @@
 >
 
 
-### AGENT_DN login testing and comparison
+### AGENT_DN login testing and comparison (Optional)
 > Now test the agent device number (physical phone) call handling functionality:
 > > 1. **Logout** from your current agent session  
 > > 2. **Refresh the browser** using <span style="color: #FF6600; font-weight: bold; background-color: #FFF3CD; padding: 2px 4px; border-radius: 3px;">**Ctrl + Shift + R**</span>  
