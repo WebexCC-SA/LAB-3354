@@ -74,4 +74,12 @@ In this lab we will be using Webex for making calls into the Contact Center and 
       2. Disconnect the call
       3. Select a Wrap-up Code
       4. Set your status to Meeting
+3. In the agent desktop, click on the dial pad. ![](howToUse/assets/dialPad.png)
+      1. Enter your Webex Phone Number: <copy><w class="WxC">Provided by proctor</w></copy> in the text box 'Enter number to dial'
+      2. Click on dial icon at the botton of the dial pad pop up  
+      ![](howToUse/assets/dialOut.png)
+      3. Answer the call on your agent desktop  
+      4. After answering, you will receive a call to your webex app. answer it 
+      5. Ensure there are no errors  
+      6. Disconnect the call  
 ---
