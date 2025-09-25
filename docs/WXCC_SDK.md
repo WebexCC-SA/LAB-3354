@@ -118,8 +118,9 @@
 ## SDK Authentication and Initialization
 
 ### Obtain and configure your access token
-> Put token here  
->
+> Use the token below.
+> 
+> Token: <w class="token"></w>
 >
 >
 > In the CRM application interface, locate the access token input field  
