@@ -1,0 +1,1850 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Empowering agents with custom desktop experiences in Webex Contact Center">
+      
+      
+        <meta name="author" content="Kevin Simpson, Shrishail Doddalinganavar, David Finnegan">
+      
+      
+      
+        <link rel="prev" href="../lab2_adminActions/">
+      
+      
+        <link rel="next" href="../hostingYourCode/">
+      
+      
+      <link rel="icon" href="../template_assets/webex75.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Lab 3 - Scrolling Queue Statistics - LAB-3354: Empowering agents with custom desktop experiences in Webex Contact Center</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#story" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="LAB-3354: Empowering agents with custom desktop experiences in Webex Contact Center" class="md-header__button md-logo" aria-label="LAB-3354: Empowering agents with custom desktop experiences in Webex Contact Center" data-md-component="logo">
+      
+  <img src="../template_assets/webexLogo91.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LAB-3354: Empowering agents with custom desktop experiences in Webex Contact Center
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lab 3 - Scrolling Queue Statistics
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../welcome/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Welcome
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../lab1_exploring_wc/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Labs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../WXCC_SDK/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  SDK
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../WCfromScratch/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  References
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="LAB-3354: Empowering agents with custom desktop experiences in Webex Contact Center" class="md-nav__button md-logo" aria-label="LAB-3354: Empowering agents with custom desktop experiences in Webex Contact Center" data-md-component="logo">
+      
+  <img src="../template_assets/webexLogo91.png" alt="logo">
+
+    </a>
+    LAB-3354: Empowering agents with custom desktop experiences in Webex Contact Center
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Welcome
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../welcome/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Let's Set the Stage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Labs
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Labs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab1_exploring_wc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 1 - Exploring Web Components
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab2_adminActions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 2 - Admin Actions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Lab 3 - Scrolling Queue Statistics
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 3 - Scrolling Queue Statistics
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#story" class="md-nav__link">
+    <span class="md-ellipsis">
+      Story
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-and-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data and Actions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data and Actions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-all-queues-assigned-to-the-agent-by-the-team-they-are-logged-into" class="md-nav__link">
+    <span class="md-ellipsis">
+      List all queues assigned to the agent by the team they are logged into
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list-all-skilled-queues-from-which-the-agent-can-receive-calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      List all skilled queues from which the agent can receive calls
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list-all-queues-in-which-the-agent-is-directly-assigned" class="md-nav__link">
+    <span class="md-ellipsis">
+      List all queues in which the agent is directly assigned
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-the-search-api-to-retrieve-the-number-of-contacts-and-oldest-contact-createdtime-for-the-queues-which-the-agent-is-assigned" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use the Search API to retrieve the number of contacts and oldest contact createdTime for the queues which the agent is assigned
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Use the Search API to retrieve the number of contacts and oldest contact createdTime for the queues which the agent is assigned">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-the-aggregations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating the aggregations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-the-compound-filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating the compound filter
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-the-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing the query
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimizing-and-exporting-the-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optimizing and exporting the query
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-the-web-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating the Web Component
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating the Web Component">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-new-web-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create a new Web Component
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-properties-for-the-required-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create Properties for the required variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-states-for-the-required-data-elements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create States for the required data elements
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-a-new-async-method-to-query-the-search-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create a new async method to query the Search API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Create a new async method to query the Search API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#return-to-the-graphql-workbench-to-understand-how-to-use-the-returned-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Return to the GraphQL Workbench to understand how to use the returned data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-map-to-create-an-unordered-list-item-for-each-item-returned-in-the-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use map to create an unordered list item for each item returned in the query
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-the-render-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update the render method
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-to-indexhtml" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add to index.html
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start-the-development-server-and-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      Start the Development server and test
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-a-new-async-method-to-aggregate-a-list-of-queues-for-the-agent-signed-in-and-update-the-query-filter-with-those-queue-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create a new async method to aggregate a list of queues for the agent signed in and update the query filter with those queue values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-the-get-stats-method-to-use-the-new-filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update the get Stats method to use the new filter
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-the-testing-button-in-the-render-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update the testing button in the render method
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Update the testing button in the render method">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-css-styling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add CSS Styling
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Add CSS Styling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testing_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-auto-load-and-refresh-functionality" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add auto load and refresh functionality
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Add auto load and refresh functionality">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testing_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fine-tuning-the-experience" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fine tuning the experience
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fine tuning the experience">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testing_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-to-desktop-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add to Desktop Layout
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Add to Desktop Layout">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testing_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hostingYourCode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Hosting Your Code
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../WXCC_SDK/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SDK
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5">
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    References
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            References
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../WCfromScratch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create a Vite Web Component from Scratch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentationLinks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Documentation Links
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Lab 3 - Scrolling Queue Statistics</h1>
+
+<h2 id="story">Story</h2>
+<blockquote>
+<p>As a contact center director, I want my agents to have scrolling text on their agent desktop with call queue statistics for calls which they are eligible to receive, so they can see them without looking at another screen.</p>
+</blockquote>
+<div class="admonition abstract w50">
+<p class="admonition-title">Requirements</p>
+<ol>
+<li>Queues the agent is eligible to receive calls from:<ul>
+<li>Queues which include the agent's team</li>
+<li>Direct skilled queues where the agent's skills match</li>
+<li>Agent assigned queues where the agent is assigned</li>
+</ul>
+</li>
+<li>For all calls: <ul>
+<li>List the queue name</li>
+<li>List the number of calls</li>
+<li>Show the longest wait time in queue</li>
+</ul>
+</li>
+<li>Queue statistics should scroll on the agent desktop<ul>
+<li>Data should update automatically</li>
+</ul>
+</li>
+</ol>
+</div>
+<h2 id="data-and-actions">Data and Actions</h2>
+<h3 id="list-all-queues-assigned-to-the-agent-by-the-team-they-are-logged-into">List all queues assigned to the agent by the team they are logged into</h3>
+<blockquote>
+<p>Navigate to <a href="https://developer.webex.com/webex-contact-center/docs/api/v1/team/list-references-for-a-specific-team" target="_blank">List references for a specific Team API</a>  </p>
+<details class="note w50">
+<summary>Get the team ID for <w class="Team">your team</w> from Control Hub &gt; Contact Center &gt; Teams</summary>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/getTeamId.gif" data-desc-position="top"><img alt="" src="../assets/getTeamId.gif"></a>  </p>
+</details>
+<p>Fill in the required details<br>
+Click to run the request<br>
+Copy the cURL and import it into Postman</p>
+<hr>
+</blockquote>
+<h3 id="list-all-skilled-queues-from-which-the-agent-can-receive-calls">List all skilled queues from which the agent can receive calls</h3>
+<blockquote>
+<p>Navigate to <a href="https://developer.webex.com/webex-contact-center/docs/api/v1/contact-service-queues/list-skill-based-contact-service-queuesby-user-id" target="_blank">List skill based Contact Service Queue(s)by user ID</a>  </p>
+<details class="note w50">
+<summary>Get the userId for <w class="login">your user</w> from Control Hub &gt; Contact Center &gt; Contact Center Users</summary>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/getUserId.gif" data-desc-position="top"><img alt="" src="../assets/getUserId.gif"></a>  </p>
+</details>
+<p>Fill in the required details<br>
+Click to run the request<br>
+Copy the cURL and import it into Postman</p>
+<hr>
+</blockquote>
+<h3 id="list-all-queues-in-which-the-agent-is-directly-assigned">List all queues in which the agent is directly assigned</h3>
+<blockquote>
+<p>Navigate to <a href="https://developer.webex.com/webex-contact-center/docs/api/v1/contact-service-queues/list-agent-based-contact-service-queuesby-user-id" target="_blank">List agent based Contact Service Queue(s)by user ID</a><br>
+Use the same userId as the previous request to fill in the required details<br>
+Click to run the request<br>
+Copy the cURL and import it into Postman</p>
+<hr>
+</blockquote>
+<details class="question w50">
+<summary>Did you notice anything interesting about the API calls and responses?</summary>
+<ul>
+<li>All three use the same method (GET)</li>
+<li>The returned JSON has nearly the same structure</li>
+<li>All three calls are using the same headers</li>
+<li>All three are using the same URL root</li>
+</ul>
+</details>
+<p>Keep Postman open as we will be using the information in a future step</p>
+<hr>
+<h3 id="use-the-search-api-to-retrieve-the-number-of-contacts-and-oldest-contact-createdtime-for-the-queues-which-the-agent-is-assigned">Use the Search API to retrieve the number of contacts and oldest contact createdTime for the queues which the agent is assigned</h3>
+<p>For this query you will be using aggregations and a compound filter to retrieve the queue statistics.  </p>
+<blockquote>
+<p>Open the <a href="https://webexcc-sa.github.io/tools/gqlWorkbench/" target="_blank">Search API GraphQL Workbench</a>  </p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">If your previous session is still valid</label><label for="__tabbed_1_2">If your previous session is no longer valid</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Click the Add New button  </p>
+</div>
+<div class="tabbed-block">
+<p>Use the Authorization Tool (Tools &gt; Authorization)</p>
+<blockquote>
+<p>Login: <copy><w class="login">admin login</w></copy><br>
+Password: <copy><w class="PW">password</w></copy></p>
+</blockquote>
+<details class="note w50">
+<summary>Copy the authorization header into the environment variables</summary>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/GQL_token.gif" data-desc-position="top"><img alt="" src="../assets/GQL_token.gif"></a></p>
+</details>
+<p>Set the URL: <copy>https://api.wxcc-us1.cisco.com/search</copy>  </p>
+</div>
+</div>
+</div>
+<p>Open the Docs pane and add the query for task using the ADD QUERY button<br>
+Remove the <strong>has</strong> section<br>
+Remove the <strong>intervalInfo</strong> and <strong>pageInfo</strong> sections<br>
+Remove all fields in the tasks section except lastQueue and aggregation<br>
+After lastQueue add: <copy>{name}</copy><br>
+After aggregation add: <copy>{name value}</copy>
+In the Arguments section of the query, remove the lines for <strong>aggregation</strong>, <strong>aggregationInterval</strong>, and <strong>pagination</strong><br>
+Click the suitcase icon and select Prettify  </p>
+<hr>
+</blockquote>
+<h4 id="creating-the-aggregations">Creating the aggregations</h4>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p>An Aggregation can return a count, sum, average, max, min, or cardinality of a field along with a name you provide.  They can also have their own set of filters which can be used to further refine the data into the information you require. <br>
+In their most basic form an aggregation is represented like: <code>{ field: "string", type: count, name: "string" }</code> inside an array.
+They can be further bifurcated by having other fields in the query.  In our case we are going to slice our aggregations based on the lastQueue where they were assigned.  </p>
+</div>
+<blockquote>
+<details class="challenge w50">
+<summary>Create an aggregation to return the count of contact</summary>
+<p>{ field: "id", type: count, name: "contacts" }</p>
+<blockquote>
+<p>We are returning the count of the task IDs and naming is "contacts"</p>
+</blockquote>
+</details>
+<p>Replace the aggregating template example in the query with your new aggregation leaving the square brackets. Then press enter twice to move the closing square bracket down to make room for the next aggregation.</p>
+<details class="challenge w50">
+<summary>Create an aggregation to return the min createdTime and name it oldestStart</summary>
+<p>{ field: "createdTime", type: min, name: "oldestStart" }</p>
+<blockquote>
+<p>We are returning the min or lowest Epoch time</p>
+</blockquote>
+</details>
+<p>Add this aggregation directly below the one you just created.
+Prettify your query. </p>
+<details class="note w50">
+<summary>Check your Aggregations</summary>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/aggregations.jpg" data-desc-position="top"><img alt="" src="../assets/aggregations.jpg"></a></p>
+</details>
+<hr>
+</blockquote>
+<h4 id="creating-the-compound-filter">Creating the compound filter</h4>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p>In the previous lab, you used an <strong>and</strong> filter group to exclude records and fields which did not match the filter criteria.  In this query you will be nesting an inclusive <strong>or</strong> filter group inside an excluding <strong>and</strong> filter group.</p>
+</div>
+<blockquote>
+<p>Inside the curly braces of the filter, type: <code>and:[]</code>, then press enter between the square brackets  </p>
+<details class="challenge w50">
+<summary>How would you add a filter if you only want to return contacts which are active and in queue?</summary>
+<div class="highlight"><pre><span></span><code>{isActive:{equals:true}}
+{status:{equals:"parked"}}
+</code></pre></div>
+</details>
+<p>After adding the previous filters inside the and <strong>group</strong>, on the next line type: <code>{or:[]}</code>, then press enter between the square brackets.<br>
+Using the Queue IDs returned from the List references for a specific Team API query you have in Postman:  </p>
+<blockquote>
+<p>For each of the Queue IDs add a new filter inside the or square brackets with the Queue ID inside the quotes for equals:<br>
+<copy><code>{lastQueue:{id:{equals:""}}}</code></copy>  </p>
+<details class="note w50">
+<summary>Check your filters</summary>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/compoundFliterQueue.jpg" data-desc-position="top"><img alt="" src="../assets/compoundFliterQueue.jpg"></a></p>
+</details>
+</blockquote>
+<hr>
+</blockquote>
+<h4 id="testing-the-query">Testing the query</h4>
+<blockquote>
+<p>Place a call to your assigned inbound number: <copy><w class="dn"></w></copy>  </p>
+<blockquote>
+<p>You can mute the volume for the call as you will not actually be answering the call.  </p>
+</blockquote>
+<p>Use the time tool to set the from: 1 day ago and to: Now<br>
+Press the Send Request button<br>
+You can end the call once your query has returned the results  </p>
+<hr>
+</blockquote>
+<h4 id="optimizing-and-exporting-the-query">Optimizing and exporting the query</h4>
+<blockquote>
+<p>Using the options in the suitcase menu</p>
+<blockquote>
+<p>Refactor the query<br>
+Rename the query to <copy>queueStats</copy><br>
+Export the cURL and import it into Postman</p>
+</blockquote>
+<p>Do not close the browser tab</p>
+<p>In Postman:</p>
+<blockquote>
+<p>Uncheck all headers except: Content-Type and Accept<br>
+Add an Authorization Header:<br>
+Key: <copy>Authorization</copy><br>
+Value: <copy>Bearer placeHolder</copy><br>
+Change the body type to JSON and Beautify it  </p>
+</blockquote>
+<hr>
+</blockquote>
+<h2 id="creating-the-web-component">Creating the Web Component</h2>
+<h3 id="create-a-new-web-component">Create a new Web Component</h3>
+<blockquote>
+<p>Create a new file in the src directory named <copy>queue-scroll.ts</copy></p>
+<p>In the new file, type (not paste) littemplate</p>
+<p>Select the <strong>Create LitElement Component With lit-html</strong></p>
+<hr>
+</blockquote>
+<h3 id="create-properties-for-the-required-variables">Create Properties for the required variables</h3>
+<blockquote>
+<p><copy>@property() token?: string</copy><br>
+<copy>@property() orgId?: string</copy><br>
+<copy>@property() teamId?: string</copy><br>
+<copy>@property() agentId?: string</copy>  </p>
+<hr>
+</blockquote>
+<h3 id="create-states-for-the-required-data-elements">Create States for the required data elements</h3>
+<blockquote>
+<p><copy>@state() queueStats = []</copy>  <br>
+<copy>@state() queueFilter: object[] = []</copy>    </p>
+<hr>
+</blockquote>
+<h3 id="create-a-new-async-method-to-query-the-search-api">Create a new async method to query the Search API</h3>
+<blockquote>
+<p><copy>async getStats(){}</copy><br>
+In Postman, use the code feature to generate a JavaScript - Fetch using the async/await options and press copy<br>
+Between the curly braces of the getAgents method, press enter then paste the copied code from postman<br>
+In the headers section of the method, find the Authorization header and change "Bearer placeHolder" to <copy> <code>`Bearer ${this.token}`</code></copy><br>
+In the <strong>raw</strong> section which holds the stringified JSON:</p>
+<blockquote>
+<p>Change the from variable value to represent a time 24 hours (86400000 ms) before the current time (Date.now()) using a string literal expression: <copy><code>`${Date.now() - 86400000}`</code></copy>  </p>
+<p>Change the to variable value to represent the time now: <copy><code>`${Date.now()}`</code></copy>  </p>
+</blockquote>
+<p>Set the <strong>type</strong> of requestOptions to be an object by adding this notation, after its name and before the equals sign: <copy><code>: object</code></copy>  </p>
+<p>In the try section of the method:  </p>
+<blockquote>
+<p>Change result to equal: <copy>response.json()</copy> instead of response.text()  </p>
+</blockquote>
+<hr>
+</blockquote>
+<h4 id="return-to-the-graphql-workbench-to-understand-how-to-use-the-returned-data">Return to the GraphQL Workbench to understand how to use the returned data</h4>
+<blockquote>
+<p>In the center pane of Altair, copy the data returned from the query<br>
+Open <a href="https://jsonpathfinder.com" target="_blank">JSON Path Finder</a><br>
+Paste the copied data into the left pane<br>
+In the right pane, navigate until you find the array of queues and their aggregations   </p>
+<details class="question w50">
+<summary>What is the JSON path which will return the array of queues and their aggregations?</summary>
+<p>x.data.task.tasks</p>
+</details>
+<details class="question w50">
+<summary>What is the JSON path for the value of the queue name in the first array item?</summary>
+<p>x.data.task.tasks[0].lastQueue.name</p>
+</details>
+<details class="question w50">
+<summary>What is the JSON path for the value of the oldestStart aggregation in the first array item?</summary>
+<p>x.data.task.tasks[0].aggregation[0].value</p>
+</details>
+<details class="question w50">
+<summary>What is the JSON path for the value of the number of contacts in the first array item?</summary>
+<p>x.data.task.tasks[0].aggregation[1].value</p>
+</details>
+<hr>
+</blockquote>
+<h4 id="use-map-to-create-an-unordered-list-item-for-each-item-returned-in-the-query">Use map to create an unordered list item for each item returned in the query</h4>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p>In this line of code you are going set the value of the state <strong>queueStats</strong> using map on the JSON results from the Graph QL query. For each item in the array of queue information, you are going to create a list item of an unordered list using an html template.  Each list item will include; the queue name, number of contacts, and how long the contact has been in the queue. </p>
+</div>
+<blockquote>
+<p>In the try section of the getStats method, below the line <code>const result = await response.json();</code>:  </p>
+<details class="challenge">
+<summary>Insert this updated line of code using the information from JSON path Finder:<br> this.queueStats = await result.(JSON path to the array items).map((item: any) =&gt;{})</summary>
+<p><copy>this.queueStats = await result.data.task.tasks.map((item: any) =&gt; {})</copy></p>
+</details>
+<div class="admonition challenge">
+<p class="admonition-title">In the curly bracket of the arrow function use insert this html template then update the template to use the array values:</p>
+<p><copy><code>return html`&lt;li&gt; | Queue: ${&lt;replace with queue name&gt;} Contacts: ${&lt;replace with the count of contacts&gt;} Wait: ${new Date(Date.now() - &lt;replace with the oldestSrart time&gt;).toISOString().slice(11, -5)} |&lt;/li&gt;`</code></copy></p>
+<details class="answer">
+<summary>Answer</summary>
+<p><copy><code>return html`&lt;li&gt; | Queue: ${item.lastQueue.name} Contacts: ${item.aggregation[1].value} Wait: ${new Date(Date.now() - item.aggregation[0].value).toISOString().slice(11, -5)} |&lt;/li&gt;`</code></copy></p>
+</details>
+</div>
+<hr>
+</blockquote>
+<h3 id="update-the-render-method">Update the render method</h3>
+<blockquote>
+<p>Add this code, which includes an unordered list and a temporary testing button, into the html template of the render method:  </p>
+<div class="admonition blank w50">
+<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="o">&lt;</span><span class="nx">button</span><span class="w"> </span><span class="kd">@click</span><span class="o">=</span><span class="nx">$</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">getStats</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">test</span><span class="o">&lt;</span><span class="err">/button&gt;     </span>
+<span class="w">        </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="kd">class</span><span class="o">=</span><span class="s2">"marquee-container"</span><span class="o">&gt;</span>
+<span class="w">            </span><span class="o">&lt;</span><span class="nx">ul</span><span class="w"> </span><span class="kd">class</span><span class="o">=</span><span class="s2">"marquee"</span><span class="o">&gt;</span>
+<span class="w">                </span><span class="nx">$</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">queueStats</span><span class="p">}</span>
+<span class="w">                </span><span class="nx">$</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">queueStats</span><span class="p">}</span>
+<span class="w">            </span><span class="o">&lt;</span><span class="err">/ul&gt;</span>
+<span class="w">        </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+</code></pre></div>
+</div>
+<p>Save the file   </p>
+<hr>
+</blockquote>
+<h3 id="add-to-indexhtml">Add to index.html</h3>
+<blockquote>
+<p>In the index.html:  </p>
+</blockquote>
+<details class="challenge w50">
+<summary>Add the script tag for this web component into the header</summary>
+<p><copy><code>&lt;script type="module" src="/src/queue-scroll.ts"&gt;&lt;/script&gt;</code></copy></p>
+</details>
+<details class="challenge w50">
+<summary>Add the web component's html tag and pass the property values for token, orgId, teamId, and agentId</summary>
+<p>Fill in the empty values:<br>
+<copy><code>&lt;queue-scroll token="" orgId="" teamId=""  agentId=""&gt;&lt;/queue-scroll&gt;</code></copy></p>
+</details>
+<blockquote>
+<p>Save the file  </p>
+<hr>
+</blockquote>
+<h3 id="start-the-development-server-and-test">Start the Development server and test</h3>
+<blockquote>
+<p>In the terminal of VS Code run: <copy>yarn dev</copy><br>
+Launch the <a href="http://localhost:5173/" target="_blank">development server index page</a>  </p>
+<blockquote>
+<p>You should see your web component in the browser  </p>
+</blockquote>
+<p>Place a call to your inbound number <copy><w class="dn"></w></copy><br>
+Press the test button on the widget after you hear hold music  </p>
+<blockquote>
+<p>You should see two identical entries appear with the Queue Name, Number of Contacts, and longest wait time.<br>
+There is a reason which there are 2 identical entries which will be discussed later in the lab.  </p>
+</blockquote>
+<p>Press the test button again.  </p>
+<blockquote>
+<p>The Longest Wait time should update.  </p>
+</blockquote>
+<p>Disconnect the call.<br>
+Press the test button again.  </p>
+<blockquote>
+<p>The queue information should disappear.  </p>
+</blockquote>
+<hr>
+</blockquote>
+<h3 id="create-a-new-async-method-to-aggregate-a-list-of-queues-for-the-agent-signed-in-and-update-the-query-filter-with-those-queue-values">Create a new async method to aggregate a list of queues for the agent signed in and update the query filter with those queue values</h3>
+<div class="admonition abstract w50">
+<p class="admonition-title">Abstract</p>
+<p>There are three APIs you will need to call in order to retrieve a full list of queues from which the agent may receive calls.  However, this does not mean that you will need three different methods added to your web component, and with the URL paths and returned JSON being very similar, you have the ability to reuse code.</p>
+<p>The URLs are formatted with the root: <code>https://api.wxcc-us1.cisco.com/organization/{orgId}</code><br>
+And the paths:<br>
+<code>/team/{teamId}/incoming-references</code><br>
+<code>/v2/contact-service-queue/by-user-id/{agentId}/skill-based-queues</code><br>
+<code>/v2/contact-service-queue/by-user-id/{agentId}/agent-based-queues</code>  </p>
+</div>
+<blockquote>
+<p><copy>async getQueues(){}</copy><br>
+In Postman, copy the code (Javascript - Fetch with async/await) for the List references for a specific Team API call 
+Between the curly braces of the getAgents method, press enter then paste the copied code from postman  </p>
+<details class="challenge w50">
+<summary>Update the Authorization header to use the property token</summary>
+<p><copy> <code>`Bearer ${this.token}`</code></copy>  </p>
+</details>
+<p>Bellow the headers, add a new constant which holds an array of the URL paths:  </p>
+<blockquote>
+<p><copy><code>const paths = [`/v2/contact-service-queue/by-user-id/${this.agentId}/agent-based-queues`, `/v2/contact-service-queue/by-user-id/${this.agentId}/skill-based-queues`, `/team/${this.teamId}/incoming-references`]</code></copy>  </p>
+</blockquote>
+<p>On the next line, make sure that the state queueFilter is an empty array before you add values by setting like this: <copy>this.queueFilter = []</copy><br>
+Set the <strong>type</strong> of requestOptions to be an object by adding this notation, after its name and before the equals sign: <copy><code>: object</code></copy>  </p>
+</blockquote>
+<div class="admonition abstract w50">
+<p class="admonition-title">Abstract</p>
+<p>In the next steps you will use a forEach method iterate through the <strong>paths</strong> array, making an API call "for each" path in the array.  During each iteration you will use another forEach method to iterate through the returned data, then add a formatted object to the queueFilter array.  After creating the queueFilter, you will call the getStats() method to populate the queue information.</p>
+</div>
+<blockquote>
+<p>Wrap the try/catch section in a forEach method:  </p>
+<blockquote>
+<p>On the line above the try, insert: <copy><code>paths.forEach(async (path, i) =&gt; {</code></copy><br>
+Below the closing curly brace of the catch. insert: <copy><code>})</code></copy>  </p>
+</blockquote>
+<p>Change the URL in the fetch command to <copy><code>`https://api.wxcc-us1.cisco.com/organization/${this.orgId}${path}`</code></copy><br>
+Change result to equal: <copy>response.json()</copy> instead of response.text()<br>
+Add the forEach to iterate through the returned data and push the formatted object into the queueFilter array:  </p>
+<blockquote>
+<p><copy>result.data.forEach((q: any) =&gt; this.queueFilter.push({ lastQueue: { id: { equals: q.id } } }))</copy>  </p>
+</blockquote>
+<p>After the closing curly brace of the catch and before the closing <code>})</code>, add an if statement to check if the forEach method has completed so that you can call the getStats method and populate the UI:  </p>
+<blockquote>
+<p><copy>if (i &gt;= paths.length - 1) {this.getStats()}</copy></p>
+</blockquote>
+<hr>
+</blockquote>
+<h3 id="update-the-get-stats-method-to-use-the-new-filter">Update the get Stats method to use the new filter</h3>
+<blockquote>
+<p>In the getStats method, find the or filter group in the query variables:  </p>
+<blockquote>
+<p>Replace the square braces and JSON contained in the square braces with: <copy>this.queueFilter</copy></p>
+</blockquote>
+<details class="note w50">
+<summary>Show me</summary>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/update_queueFilter.gif" data-desc-position="top"><img alt="" src="../assets/update_queueFilter.gif"></a></p>
+</details>
+<hr>
+</blockquote>
+<h3 id="update-the-testing-button-in-the-render-method">Update the testing button in the render method</h3>
+<blockquote>
+<p>In the html template of the render method:  </p>
+<blockquote>
+<p>On the test button, change the @click from this.getStats to <copy>this.getQueues</copy>  </p>
+</blockquote>
+<hr>
+</blockquote>
+<h4 id="testing">Testing</h4>
+<blockquote>
+<p>Call your assigned DN to place a call in the queue <copy><w class="dn">dn</w></copy><br>
+Once the call is in queue, press the testing button  </p>
+<blockquote>
+<p>You should see two identical entries appear with the Queue Name, Number of Contacts, and longest wait time.  </p>
+</blockquote>
+<p>Disconnect the call.  </p>
+<hr>
+</blockquote>
+<h3 id="add-css-styling">Add CSS Styling</h3>
+<blockquote>
+<p>Replace the static CSS with this CSS  </p>
+<div class="admonition blank w50">
+<div class="highlight"><pre><span></span><code><span class="w">            </span><span class="p">:</span><span class="nd">host</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">flex</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="p">.</span><span class="nc">marquee-container</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="kt">vw</span><span class="p">;</span>
+<span class="w">            </span><span class="k">height</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="c">/* Set a fixed height for the container */</span>
+<span class="w">            </span><span class="k">overflow</span><span class="p">:</span><span class="w"> </span><span class="kc">hidden</span><span class="p">;</span><span class="w"> </span>
+<span class="w">            </span><span class="k">border</span><span class="p">:</span><span class="kc">solid</span><span class="p">;</span>
+<span class="w">            </span><span class="k">border-radius</span><span class="p">:</span><span class="mi">25</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="p">.</span><span class="nc">marquee</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">list-style</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span><span class="w"> </span><span class="c">/* Remove default list styles */</span>
+<span class="w">            </span><span class="k">display</span><span class="p">:</span><span class="kc">flex</span><span class="p">;</span>
+<span class="w">            </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">            </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">            </span><span class="k">height</span><span class="p">:</span><span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+<span class="w">            </span><span class="k">width</span><span class="p">:</span><span class="n">max-content</span><span class="p">;</span>
+<span class="w">            </span><span class="k">animation</span><span class="p">:</span><span class="w"> </span><span class="kc">scroll</span><span class="w"> </span><span class="kc">linear</span><span class="w"> </span><span class="kc">infinite</span><span class="p">;</span>
+<span class="w">            </span><span class="k">animation-duration</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">s</span><span class="p">;</span>
+<span class="w">            </span><span class="k">align-items</span><span class="p">:</span><span class="kc">center</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="p">.</span><span class="nc">marquee</span><span class="w"> </span><span class="nt">li</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">display</span><span class="p">:</span><span class="kc">flex</span><span class="p">;</span>
+<span class="w">            </span><span class="k">align-self</span><span class="p">:</span><span class="kc">center</span><span class="p">;</span>
+<span class="w">            </span><span class="k">align-items</span><span class="p">:</span><span class="kc">center</span><span class="p">;</span>
+<span class="w">            </span><span class="k">justify-content</span><span class="p">:</span><span class="kc">center</span><span class="p">;</span>
+<span class="w">            </span><span class="k">flex-shrink</span><span class="p">:</span><span class="mi">0</span><span class="p">;</span>
+<span class="w">            </span><span class="k">font-size</span><span class="p">:</span><span class="mi">2</span><span class="kt">rem</span><span class="p">;</span>
+<span class="w">            </span><span class="k">white-space</span><span class="p">:</span><span class="kc">nowrap</span><span class="p">;</span>
+<span class="w">            </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="kt">rem</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="p">.</span><span class="nc">marquee</span><span class="p">:</span><span class="nd">hover</span><span class="p">{</span>
+<span class="w">            </span><span class="k">animation-play-state</span><span class="p">:</span><span class="w"> </span><span class="kc">paused</span><span class="p">;</span>
+
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="p">@</span><span class="k">keyframes</span><span class="w"> </span><span class="nt">scroll</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">0</span><span class="o">%</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">transform</span><span class="p">:</span><span class="w"> </span><span class="nb">translateX</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c">/* Start position */</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="nt">100</span><span class="o">%</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">transform</span><span class="p">:</span><span class="w"> </span><span class="nb">translateX</span><span class="p">(</span><span class="mi">-50</span><span class="kt">%</span><span class="p">);</span><span class="w"> </span><span class="c">/* End position (fully scrolled) */</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+</code></pre></div>
+</div>
+<p>Save the file</p>
+<hr>
+</blockquote>
+<h4 id="testing_1">Testing</h4>
+<blockquote>
+<p>Call your assigned DN to place a call in the queue <copy><w class="dn">dn</w></copy><br>
+Once the call is in queue, press the testing button  </p>
+<blockquote>
+<p>You should see the queue stats scrolling in your web component.</p>
+</blockquote>
+<p>Hover over the scrolling queue information   </p>
+<blockquote>
+<p>The scrolling should stop.<br>
+Note that the time value is not incrementing. </p>
+</blockquote>
+<p>Disconnect the call</p>
+<hr>
+</blockquote>
+<h3 id="add-auto-load-and-refresh-functionality">Add auto load and refresh functionality</h3>
+<div class="admonition abstract w50">
+<p class="admonition-title">Abstract</p>
+<ul>
+<li>Instead of updating the widget data only when you push a button, you can execute your code automatically once the web component is loaded using the <strong>connectedCallback</strong> lifecycle.  </li>
+<li>You can also employ the <strong>setInterval</strong> method to run parts of your code on a set interval to refresh your data.  </li>
+<li>Since the queues the agent is assigned are not likely to change often, you only need to execute getQueues when the agent logs in.</li>
+<li>If you are setting up event listeners or timers via <strong>connectedCallback</strong>, it is a best practice to remove them from memory when you unload the web component using the <strong>disconnectedCallback</strong> lifecycle.  In order to clear the setInterval, you will create a state so that you can reference it with later.  </li>
+</ul>
+</div>
+<blockquote>
+<p>Add a new state <copy>@state() _timerInterval?: any </copy><br>
+Add the connectedCallback and disconnectedCallback methods  </p>
+<div class="admonition blank w50">
+<div class="highlight"><pre><span></span><code>    connectedCallback() {
+        super.connectedCallback()
+        this.getQueues()
+        this._timerInterval = setInterval(() =&gt; this.getStats(), 30000);
+    }
+    disconnectedCallback() {
+        super.disconnectedCallback();
+        clearInterval(this._timerInterval);
+    }
+</code></pre></div>
+</div>
+<p>Remove the testing button from the html template of the render method. <br>
+Save the file.  </p>
+<hr>
+</blockquote>
+<h4 id="testing_2">Testing</h4>
+<blockquote>
+<p>Call your assigned DN to place a call in the queue <copy><w class="dn">dn</w></copy><br>
+Once the call is in queue you should see the queue stats scrolling in your web component.  </p>
+<blockquote>
+<p>You should see the wait time increment by 30 seconds as long as you are still in the queue.  </p>
+</blockquote>
+<p>Disconnect the call.  </p>
+<blockquote>
+<p>Note that after disconnecting the call, the data still will not update until the 30 second timer hits.  </p>
+</blockquote>
+<hr>
+</blockquote>
+<h3 id="fine-tuning-the-experience">Fine tuning the experience</h3>
+<div class="admonition abstract w50">
+<p class="admonition-title">Abstract</p>
+<p>You may have noticed that the scroll speed and the time in queue fields are static, meaning that it will take 10 seconds for the entire list of queue stats to scroll by regardless of the number of queues you are displaying and the longest queue time only updates when the data gets updated.  In this step, you are going to address both shortcomings with just a few lanes of code.  </p>
+</div>
+<blockquote>
+<p>Create a new state to hold the data returned from the search API <copy>@state() queueData?: any</copy><br>
+Create a new state to hold the reference for a map update interval: <copy>@state() mapUpdate?: any</copy><br>
+In the getStats method after the <code>const result = await response.json();</code> line, add: <copy><code>this.queueData = await result.data.task.tasks</code></copy><br>
+Remove the line which maps the returned data in the list items<br>
+Create a new method named: <copy>updateTemplate(){}</copy><br>
+In the curly braces of updateTemplate, paste this code: <copy><code>this.queueStats = this.queueData.map((item: any) =&gt; { return html`&lt;li&gt; | Queue: ${item.lastQueue.name} Contacts: ${item.aggregation[1].value} Wait: ${new Date(Date.now() - item.aggregation[0].value).toISOString().slice(11, -5)} |&lt;/li&gt;` })</code></copy><br>
+In the connectedCallback method add: <copy>this.mapUpdate = setInterval(() =&gt; this.updateTemplate(), 1000);</copy><br>
+In the disconnectedCallback method add: <copy>clearInterval(this.mapUpdate);</copy><br>
+In the ul opening tag of the render method, after <code>class="marquee"</code>, add: <copy>style="animation-duration: ${this.queueStats.length * 10}s"</copy><br>
+Save the file.  </p>
+<hr>
+</blockquote>
+<h4 id="testing_3">Testing</h4>
+<blockquote>
+<p>Call your assigned DN to place a call in the queue <copy><w class="dn">dn</w></copy><br>
+Once the call is in queue you should see the queue stats scrolling in your web component.  </p>
+<blockquote>
+<p>You should see the wait times increment by every second.  </p>
+</blockquote>
+<p>Disconnect the call.</p>
+<details class="question w50">
+<summary>Notice that the call time will continue to increment even though the call is no longer in the queue.  Why?</summary>
+<p>The data is only updating every 30 seconds, but the UI is updating every second.</p>
+</details>
+<hr>
+</blockquote>
+<h3 id="add-to-desktop-layout">Add to Desktop Layout</h3>
+<blockquote>
+<details class="note w50">
+<summary>In the agent section of your desktop layout JSON file, locate the advancedHeader area.</summary>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/queue-scroll_JSON.jpg" data-desc-position="top"><img alt="" src="../assets/queue-scroll_JSON.jpg"></a></p>
+</details>
+<p>Add this JSON above the entry for the digital-outbound component</p>
+<div class="admonition blank w50">
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">"comp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"queue-scroll"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$STORE.agent.orgId"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$STORE.auth.accessToken"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"teamId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$STORE.agent.teamId"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"agentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$STORE.agent.agentId"</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"script"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:4173/index.js"</span>
+<span class="p">},</span>
+</code></pre></div>
+</div>
+<p>Save the JSON file as <copy><w class="Team">yourTeamName</w>.json</copy> <br>
+Upload the JSON file  </p>
+<hr>
+</blockquote>
+<h4 id="testing_4">Testing</h4>
+<blockquote>
+<p>In the terminal of VS Code, press ctrl + c to terminate the development server<br>
+In the terminal of VS Code run: <copy>yarn game</copy><br>
+Log into the <a href="https://desktop.wxcc-us1.cisco.com/" target="_blank">Agent Desktop</a></p>
+<blockquote>
+<p>Login: <copy><w class="login">admin login</w></copy><br>
+Password: <copy><w class="PW">password</w></copy><br>
+Team: <copy><w class="Team">team</w></copy> </p>
+</blockquote>
+<hr>
+<p>Call your assigned DN to place a call in the queue <copy><w class="dn">dn</w></copy>  </p>
+<p>Run the tests you think will test the functionality.</p>
+<hr>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../lab2_adminActions/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lab 2 - Admin Actions">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Lab 2 - Admin Actions
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../hostingYourCode/" class="md-footer__link md-footer__link--next" aria-label="Next: Hosting Your Code">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Hosting Your Code
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2025 Cisco
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.instant", "navigation.top", "navigation.footer", "search.suggest", "content.code.copy", "toc.integrate"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../template_assets/js/newLoad.js"></script>
+      
+        <script src="../template_assets/js/setInfo.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": false, "openEffect": "fade", "closeEffect": "fade", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

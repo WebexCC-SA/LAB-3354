@@ -1,0 +1,1510 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Empowering agents with custom desktop experiences in Webex Contact Center">
+      
+      
+        <meta name="author" content="Kevin Simpson, Shrishail Doddalinganavar, David Finnegan">
+      
+      
+      
+        <link rel="prev" href="../hostingYourCode/">
+      
+      
+        <link rel="next" href="../WCfromScratch/">
+      
+      
+      <link rel="icon" href="../template_assets/webex75.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>SDK - LAB-3354: Empowering agents with custom desktop experiences in Webex Contact Center</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#banking-crm-with-webex-cc-sdk" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="LAB-3354: Empowering agents with custom desktop experiences in Webex Contact Center" class="md-header__button md-logo" aria-label="LAB-3354: Empowering agents with custom desktop experiences in Webex Contact Center" data-md-component="logo">
+      
+  <img src="../template_assets/webexLogo91.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LAB-3354: Empowering agents with custom desktop experiences in Webex Contact Center
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              SDK
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../welcome/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Welcome
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../lab1_exploring_wc/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Labs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  SDK
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../WCfromScratch/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  References
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="LAB-3354: Empowering agents with custom desktop experiences in Webex Contact Center" class="md-nav__button md-logo" aria-label="LAB-3354: Empowering agents with custom desktop experiences in Webex Contact Center" data-md-component="logo">
+      
+  <img src="../template_assets/webexLogo91.png" alt="logo">
+
+    </a>
+    LAB-3354: Empowering agents with custom desktop experiences in Webex Contact Center
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Welcome
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../welcome/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Let's Set the Stage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Labs
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Labs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab1_exploring_wc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 1 - Exploring Web Components
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab2_adminActions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 2 - Admin Actions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab3_queueScroller/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 3 - Scrolling Queue Statistics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hostingYourCode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Hosting Your Code
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    SDK
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    SDK
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#story" class="md-nav__link">
+    <span class="md-ellipsis">
+      Story
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#start-here" class="md-nav__link">
+    <span class="md-ellipsis">
+      Start here
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Start here">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clone-the-repository-with-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clone the repository with git
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#review-the-project-structure-and-key-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Review the project structure and key files
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examine-the-sdk-implementation-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examine the SDK implementation architecture
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-crm-for-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure CRM for testing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#launch-the-crm-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Launch the CRM application
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdk-authentication-and-initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      SDK Authentication and Initialization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SDK Authentication and Initialization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#obtain-and-configure-your-access-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      Obtain and configure your access token
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initialize-sdk-connection-and-retrieve-agent-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initialize SDK connection and retrieve agent profile
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent-login-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Agent login process
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#call-handling-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Call Handling Implementation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Call Handling Implementation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#understanding-the-event-driven-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Understanding the event-driven architecture
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-incoming-call-handling-with-browser-login" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test incoming call handling with browser login
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-click-to-dial-functionality" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test click to dial functionality
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent_dn-login-testing-and-comparison-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      AGENT_DN login testing and comparison (Optional)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-testing-with-browser-console" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced testing with browser console
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5">
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    References
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            References
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../WCfromScratch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create a Vite Web Component from Scratch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentationLinks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Documentation Links
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<script type="module" src="https://webexcc-sa.github.io/LAB-3354/template_assets/js/index.js"></script>
+
+<h1 id="banking-crm-with-webex-cc-sdk">Banking CRM with Webex CC SDK</h1>
+<details class="note" open="open">
+<summary>A Quick Poll</summary>
+<p><iframe src="https://app.sli.do/event/m8T3HqZpUjQgbE4WFDjrLX/questions" height="100%" width="100%" frameborder="0" style="min-height: 560px;" allow="clipboard-write" title="Slido"></iframe></p>
+</details>
+<h2 id="story">Story</h2>
+<blockquote>
+<p>As a contact center developer, I want to integrate Webex Contact Center SDK capabilities into a banking CRM application, so that agents can handle calls directly within their familiar business interface without switching between multiple applications.</p>
+</blockquote>
+<div class="admonition abstract w50">
+<p class="admonition-title">Requirements</p>
+<ol>
+<li>SDK Integration:<ul>
+<li>Initialize Webex Contact Center SDK with OAuth token</li>
+<li>Register agent profile and retrieve available teams and login options</li>
+<li>Handle agent login/logout operations</li>
+</ul>
+</li>
+<li>Call Handling: <ul>
+<li>Receive incoming call events and display call details</li>
+<li>Provide call control functions (hold, resume, end)</li>
+<li>Handle wrap-up codes and call completion</li>
+</ul>
+</li>
+<li>CRM Integration:<ul>
+<li>Automatically search customer records when calls arrive</li>
+<li>Display caller information and call associated details  </li>
+<li>Click to dial integration</li>
+</ul>
+</li>
+<li>Real-time Updates:<ul>
+<li>Listen for agent state changes and task events</li>
+<li>Update UI dynamically based on call status</li>
+<li>Provide visual feedback for all operations</li>
+</ul>
+</li>
+</ol>
+</div>
+<h2 id="start-here">Start here</h2>
+<div class="admonition important">
+<p class="admonition-title">Critical First Step</p>
+<p>Ensure you have logged out of your existing agent desktop session.</p>
+</div>
+<h3 id="clone-the-repository-with-git">Clone the repository with git</h3>
+<blockquote>
+<p>Open Visual Studio Code</p>
+<p>Click the Source Control button in the left menu <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../howToUse/assets/sourceControl.png" data-desc-position="top"><img alt="" src="../howToUse/assets/sourceControl.png"></a></p>
+<p>Click Clone Repository</p>
+<p>Enter the repository source: <copy>https://github.com/shrishailsd/WX12025</copy></p>
+<p>Select or create a new folder to clone the repository into.</p>
+<p>When prompted to open the cloned repository, select open.
+</p>
+</blockquote>
+<hr>
+<h3 id="review-the-project-structure-and-key-files">Review the project structure and key files</h3>
+<blockquote>
+<p>Once the project is opened in the VS code and examine the three critical files:</p>
+<blockquote>
+<p><strong>banking-crm.html</strong> - Contains the HTML structure for the CRM application<br>
+<strong>crm-app.js</strong> - Handles CRM functionality and customer data management<br>
+<strong>wx1-sdk.ts</strong> - Implements Webex Contact Center SDK integration  </p>
+</blockquote>
+<p>Navigate to line 198 in <code>banking-crm.html</code> to see how the LitElement web component is integrated within the CRM html template<br>
+Notice line 206</p>
+<details class="note w50">
+<summary>LitElement Integration Example</summary>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">wx1-sdk</span><span class="p">&gt;&lt;/</span><span class="nt">wx1-sdk</span><span class="p">&gt;</span>
+</code></pre></div>
+</details>
+<hr>
+</blockquote>
+<h3 id="examine-the-sdk-implementation-architecture">Examine the SDK implementation architecture</h3>
+<blockquote>
+<p>Open <code>wx1-sdk.ts</code> and review the class structure and key methods:</p>
+<blockquote>
+<p><strong>@customElement("wx1-sdk")</strong> - Defines the custom web component that you saw in previous step <br>
+<strong>startConnection()</strong> - Initializes Webex SDK connection and obtains the webex object<br>
+<strong>getOptions()</strong> - Sets up agent information from profile object and registers event listeners for call handling<br>
+<strong>actionTask()</strong> - Handles call control operations like hold, resume, mute, unmute etc. </p>
+</blockquote>
+<details class="question w50">
+<summary>For example: Following are some of the SDK methods that are being used</summary>
+<ul>
+<li><code>this.webex.cc.register()</code> - Register to webex contact center to obtain agent profile details.</li>
+<li><code>this.webex.cc.on("AgentStateChangeSuccess", (event: any)</code> - Listen for events from webex contact center</li>
+<li><code>task.hold()</code>, <code>task.resume()</code>, <code>task.end()</code> - Call controls for hold, resume and end.</li>
+<li><code>this.task.wrapup({
+                wrapUpReason:</code>${aux2}<code>,
+                auxCodeId:</code>${aux1}<code>})</code> - Complete call with wrap-up reason</li>
+</ul>
+</details>
+<hr>
+</blockquote>
+<h3 id="configure-crm-for-testing">Configure CRM for testing</h3>
+<blockquote>
+<p>Before testing SDK with CRM, you need to configure the CRM with your phone number for automatic customer lookup and click to dial.
+Open <code>crm-app.js</code> and edit the customer record from line 40 with your details:</p>
+<details class="note w50">
+<summary>Update Customer Record</summary>
+<div class="highlight"><pre><span></span><code><span class="s1">'1'</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s1">'1'</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">firstName</span><span class="o">:</span><span class="w"> </span><span class="s1">'john'</span><span class="p">,</span><span class="w">         </span><span class="c1">// Your FirstName</span>
+<span class="w">    </span><span class="nx">lastName</span><span class="o">:</span><span class="w"> </span><span class="s1">'smith'</span><span class="p">,</span><span class="w">         </span><span class="c1">// Your lastName</span>
+<span class="w">    </span><span class="nx">phone</span><span class="o">:</span><span class="w"> </span><span class="s1">'(555) 987-6544'</span><span class="p">,</span><span class="w">  </span><span class="c1">// Replace with your ANI</span>
+<span class="w">    </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s1">'john.smith@email.com'</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">address</span><span class="o">:</span><span class="w"> </span><span class="s1">'123 Main St, Anytown, ST 12345'</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">dob</span><span class="o">:</span><span class="w"> </span><span class="s1">'1985-06-15'</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">memberSince</span><span class="o">:</span><span class="w"> </span><span class="s1">'2020-03-10'</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">notes</span><span class="o">:</span><span class="w"> </span><span class="s1">'Preferred customer, has premium account package.'</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<p>Replace the firstName, lastName with your first and lastname<br>
+Replace phone with Webex Phone Number: <copy><w class="WxC">Provided by proctor</w></copy></p>
+<hr>
+</blockquote>
+<h2 id="launch-the-crm-application">Launch the CRM application</h2>
+<blockquote>
+<p>From the terminal in VS code type 'npm install' and hit enter, This will download node dependencies<br>
+From the terminal in VS code type 'npm run build', and hit enter, This will build your application. ensure there are no errors  </p>
+</blockquote>
+<div class="admonition note">
+<p class="admonition-title">Build Error Recovery</p>
+<p>If you encounter an error during build, then delete the <code>dist</code> folder, re-attempt <code>npm run build</code>. </p>
+</div>
+<blockquote>
+<p>From the terminal type 'npm run dev', and hit enter, This will spin up your application automatically in the browser on http://localhost:1234</p>
+</blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Troubleshooting Login Issues</p>
+<p>At any point during this lab, if you encounter issues with logging in to custom desktop:</p>
+<ol>
+<li>Login to <a href="https://developer.webex.com/webex-contact-center/docs/api/v1/agents/logout" target="_blank">https://developer.webex.com/webex-contact-center/docs/api/v1/agents/logout</a> using your credentials</li>
+<li>On the right side, Provide a logout reason as <code>API_Logout</code> and click on <strong>run</strong>,Ensure that you see a 202 response </li>
+<li>From your VS Code, locate and delete the <code>dist</code> folder</li>
+</ol>
+<div class="admonition important">
+<p class="admonition-title">Critical Step</p>
+<p><strong>Hard refresh your application using Ctrl + Shift + R and try to relogin</strong></p>
+</div>
+</div>
+<h2 id="sdk-authentication-and-initialization">SDK Authentication and Initialization</h2>
+<h3 id="obtain-and-configure-your-access-token">Obtain and configure your access token</h3>
+<blockquote>
+<p>Use the token below.</p>
+<p>Token: <copy><w class="token"><lab-auth callbackurl="https://webexcc-sa.github.io/LAB-3354/oauth/index.html"></lab-auth></w></copy></p>
+<p>In the CRM application interface, locate the access token input field<br>
+Paste the token you copied.</p>
+<hr>
+</blockquote>
+<h3 id="initialize-sdk-connection-and-retrieve-agent-profile">Initialize SDK connection and retrieve agent profile</h3>
+<blockquote>
+<p>Click the "Login" button to initialize the SDK connection<br>
+The system will automatically:</p>
+<blockquote>
+<ul>
+<li>Validate your access token  </li>
+<li>Creates webex object and pulls your desktop profile </li>
+<li>Load available teams and telephony login options </li>
+</ul>
+</blockquote>
+<details class="challenge w50">
+<summary>What information is retrieved during agent registration?</summary>
+<p>The profile object contains multiple config entities but here the important ones we will be using for this lab:</p>
+<blockquote>
+<ul>
+<li>Agent name and ID</li>
+<li>Available teams</li>
+<li>Voice login options (BROWSER, AGENT_DN, etc.)</li>
+<li>Idle codes and wrap-up codes</li>
+<li>Dial number assignments</li>
+</ul>
+</blockquote>
+</details>
+<hr>
+</blockquote>
+<h3 id="agent-login-process">Agent login process</h3>
+<blockquote>
+<p>From the loaded profile information:</p>
+<blockquote>
+<p>Choose <strong>BROWSER</strong> as the login option<br>
+Select your assigned team from the teams dropdown<br>
+Click "Station Login" to establish your agent session , by default you will be in idle state.</p>
+</blockquote>
+<hr>
+</blockquote>
+<h2 id="call-handling-implementation">Call Handling Implementation</h2>
+<h3 id="understanding-the-event-driven-architecture">Understanding the event-driven architecture</h3>
+<blockquote>
+<p>The SDK uses an event-driven pattern for real-time updates from webex contact center.</p>
+<details class="note w75">
+<summary>Key Event Listeners</summary>
+<div class="highlight"><pre><span></span><code><span class="k">this</span><span class="p">.</span><span class="nx">webex</span><span class="p">.</span><span class="nx">cc</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">"task:incoming"</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">task</span><span class="o">:</span><span class="w"> </span><span class="kt">ITask</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="nx">Logger</span><span class="p">.</span><span class="nx">webex</span><span class="p">(</span><span class="s1">'TASK-INCOMING'</span><span class="p">,</span><span class="w"> </span><span class="s1">'New incoming task received'</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">            </span><span class="nx">taskUuid</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">task</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">any</span><span class="p">).</span><span class="nx">uuid</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="nx">ani</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">task</span><span class="p">.</span><span class="nx">data</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">any</span><span class="p">)</span><span class="o">?</span><span class="p">.</span><span class="nx">interaction</span><span class="o">?</span><span class="p">.</span><span class="nx">callAssociatedDetails</span><span class="o">?</span><span class="p">.</span><span class="nx">ani</span><span class="w"> </span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">task</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">task</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">cad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">entries</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">task</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">interaction</span><span class="p">.</span><span class="nx">callAssociatedDetails</span><span class="p">).</span><span class="nx">map</span><span class="p">(([</span><span class="nx">key</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">])</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nx">html</span><span class="sb">`&lt;p&gt;</span><span class="si">${</span><span class="nx">key</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">value</span><span class="si">}</span><span class="sb">&lt;/p&gt;`</span><span class="w"> </span><span class="p">})</span>
+
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">ani</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">task</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">interaction</span><span class="p">.</span><span class="nx">callAssociatedDetails</span><span class="p">.</span><span class="nx">ani</span>
+<span class="w">        </span><span class="nx">Logger</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="s1">'ANI-EXTRACT'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Extracted ANI from task'</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ani</span><span class="o">:</span><span class="w"> </span><span class="kt">this.ani</span><span class="w"> </span><span class="p">});</span>
+
+<span class="w">        </span><span class="c1">// Play incoming call audio notification</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">playIncomingCallAudio</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// Check if this is an outbound call we initiated - skip CRM search for outbound calls</span>
+<span class="w">        </span><span class="nx">Logger</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="s1">'OUTBOUND-FLAG'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Checking isOutboundCall flag in task:incoming'</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">isOutboundCall</span><span class="o">:</span><span class="w"> </span><span class="kt">this.isOutboundCall</span><span class="w"> </span><span class="p">});</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">isOutboundCall</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Only search CRM for inbound calls</span>
+<span class="w">            </span><span class="nx">Logger</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s1">'CRM-SEARCH'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Inbound call detected - performing CRM search'</span><span class="p">);</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">callCrmSearch</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">ani</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">Logger</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s1">'CRM-SEARCH'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Outbound call detected - skipping CRM search'</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Check if browser login is selected to show answer/decline buttons</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">isBrowserLogin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">agentLogin</span><span class="p">.</span><span class="nx">loginOption</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">'BROWSER'</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">Logger</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="s1">'LOGIN-OPTION'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Checking login option for task controls'</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">            </span><span class="nx">loginOption</span><span class="o">:</span><span class="w"> </span><span class="kt">this.agentLogin.loginOption</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="nx">isBrowserLogin</span><span class="o">:</span><span class="w"> </span><span class="kt">isBrowserLogin</span><span class="w"> </span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">isBrowserLogin</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Show answer/decline buttons for browser login</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">tControls</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">html</span><span class="sb">`</span>
+<span class="sb">                &lt;button @click=</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">actionTask</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="s1">'answer'</span><span class="p">)</span><span class="si">}</span><span class="sb">&gt;Answer&lt;/button&gt;</span>
+<span class="sb">                &lt;button @click=</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">actionTask</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="s1">'decline'</span><span class="p">)</span><span class="si">}</span><span class="sb">&gt;Decline&lt;/button&gt;</span>
+<span class="sb">            `</span>
+<span class="w">            </span><span class="nx">Logger</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s1">'TASK-CONTROLS'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Browser login detected - showing answer/decline buttons'</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// For non-browser login (phone/desk phone), show incoming call message only</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">tControls</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">html</span><span class="sb">`&lt;p&gt;📞 Incoming call from </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">ani</span><span class="si">}</span><span class="sb"> - Please answer on your phone&lt;/p&gt;`</span>
+<span class="w">            </span><span class="nx">Logger</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s1">'TASK-CONTROLS'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Non-browser login detected - showing incoming call message'</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">task</span><span class="p">.</span><span class="nx">once</span><span class="p">(</span><span class="s2">"task:end"</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">task</span><span class="o">:</span><span class="w"> </span><span class="kt">ITask</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">Logger</span><span class="p">.</span><span class="nx">webex</span><span class="p">(</span><span class="s1">'TASK-END'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Task ended'</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">taskUuid</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">task</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">any</span><span class="p">).</span><span class="nx">uuid</span><span class="w"> </span><span class="p">});</span>
+<span class="w">            </span><span class="c1">// Stop incoming call audio when task ends</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">stopIncomingCallAudio</span><span class="p">();</span>
+
+<span class="w">            </span><span class="c1">// alert(`end ${JSON.stringify(task)}`)</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">tControls</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">html</span><span class="sb">`&lt;select @change=</span><span class="si">${</span><span class="p">(</span><span class="nx">e</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">handleWrapupSelection</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="si">}</span><span class="sb">&gt;</span>
+<span class="sb">                &lt;option value=""&gt;Select wrap-up reason...&lt;/option&gt;</span>
+<span class="sb">                </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">task</span><span class="p">.</span><span class="nx">wrapupData</span><span class="p">.</span><span class="nx">wrapUpProps</span><span class="p">.</span><span class="nx">wrapUpReasonList</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">i</span><span class="o">:</span><span class="kt">any</span><span class="p">)=&gt;{</span><span class="k">return</span><span class="w"> </span><span class="nx">html</span><span class="sb">`&lt;option value=</span><span class="si">${</span><span class="nx">i</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span><span class="sb"> data-name=</span><span class="si">${</span><span class="nx">i</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">&gt;</span><span class="si">${</span><span class="nx">i</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">&lt;/option&gt;`</span><span class="si">}</span><span class="sb">)}</span>
+<span class="sb">            &lt;/select&gt;`</span>
+<span class="w">        </span><span class="p">})</span>
+<span class="w">    </span><span class="p">})</span>
+</code></pre></div>
+</details>
+<hr>
+</blockquote>
+<h3 id="test-incoming-call-handling-with-browser-login">Test incoming call handling with browser login</h3>
+<blockquote>
+<p><strong>Browser Login Test Steps:</strong></p>
+<blockquote>
+<ol>
+<li>Change agent state to available  </li>
+<li>Place an inbound call: <copy><w class="dn">Provided by proctor</w></copy> </li>
+<li>Notice that the lookup of your number in CRM succeeds and you will see a popup with your details. Close it.</li>
+<li><strong>Click "Answer"</strong> button in the SDK interface  </li>
+<li>Verify <strong>mute/unmute</strong> buttons appear in call controls  </li>
+<li>Test <strong>audio functionality</strong> - speak and listen through your computer  </li>
+<li>Test <strong>hold/resume</strong> and <strong>mute/unmute</strong> functions  </li>
+<li><strong>End the call</strong> from your phone where you called from and complete wrap-up  </li>
+</ol>
+</blockquote>
+<details class="challenge w50">
+<summary>How does the CRM integration work with incoming calls?</summary>
+<div class="highlight"><pre><span></span><code><span class="k">this</span><span class="p">.</span><span class="nx">webex</span><span class="p">.</span><span class="nx">cc</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">"task:incoming"</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">task</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">ani</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">task</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">interaction</span><span class="p">.</span><span class="nx">callAssociatedDetails</span><span class="p">.</span><span class="nx">ani</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// Automatically trigger CRM customer search</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">callCrmSearch</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">ani</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+</details>
+<hr>
+<details class="question w50">
+<summary>What happens when you end a call?</summary>
+<p>The system automatically presents a wrap-up code selection interface, requiring the agent to categorize the call before becoming available for new calls.</p>
+</details>
+<p>When a call ends, the wrap-up selection interface appears:</p>
+<details class="note w50">
+<summary>Wrap-up Implementation</summary>
+<div class="highlight"><pre><span></span><code><span class="nx">handleWrapupSelection</span><span class="p">(</span><span class="nx">e</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">selectedValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">selectedOption</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">selectedOptions</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">selectedValue</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">selectedOption</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">wrapupName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">selectedOption</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">actionTask</span><span class="p">(</span><span class="s2">"wrapup"</span><span class="p">,</span><span class="w"> </span><span class="nx">selectedValue</span><span class="p">,</span><span class="w"> </span><span class="nx">wrapupName</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// SDK wrapup method</span>
+
+<span class="k">this</span><span class="p">.</span><span class="nx">task</span><span class="p">.</span><span class="nx">wrapup</span><span class="p">({</span><span class="nx">wrapUpReason</span><span class="o">:</span><span class="sb">`</span><span class="si">${</span><span class="nx">aux2</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
+<span class="w">                  </span><span class="nx">auxCodeId</span><span class="o">:</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">aux1</span><span class="si">}</span><span class="sb">`</span>
+<span class="w">                </span><span class="p">})</span>
+</code></pre></div>
+</details>
+<p>The call will be completed and you'll return to available status  </p>
+<p>The SDK automatically tracks and responds to agent state changes:</p>
+<blockquote>
+<ul>
+<li>Login/logout events  </li>
+<li>Available/Idle events.</li>
+</ul>
+</blockquote>
+<details class="challenge w50">
+<summary>How can you extend this to add custom state monitoring?</summary>
+<p>Add additional event listeners for specific state changes:
+</p><div class="highlight"><pre><span></span><code><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">webex</span><span class="p">.</span><span class="nx">cc</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">"AgentStateChangeSuccess"</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">Logger</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="s1">'AGENT-STATE'</span><span class="p">,</span><span class="w"> </span><span class="s1">'AgentStateChangeSuccess event'</span><span class="p">,</span><span class="w"> </span><span class="nx">event</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">idleCode</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">auxCodeId</span>
+<span class="w">    </span><span class="p">});</span>
+</code></pre></div><p></p>
+</details>
+<hr>
+</blockquote>
+<h3 id="test-click-to-dial-functionality">Test click to dial functionality</h3>
+<blockquote>
+<p>Now test the outbound calling capability integrated into the CRM interface:</p>
+<blockquote>
+<ol>
+<li><strong>Ensure agent is logged in</strong>  </li>
+<li><strong>Navigate to the CRM customer list</strong> in the banking application  </li>
+<li><strong>Look for clickable phone numbers</strong> (they should appear as blue, underlined links)  </li>
+<li><strong>Click on  phone number</strong> that you added earlier to initiate an outbound call  </li>
+<li><strong>Verify call controls appear</strong>, Click on answer button.</li>
+<li><strong>Note that CRM search is skipped</strong> for outbound calls.</li>
+<li><strong>System will dial to your number</strong>, Answer it.</li>
+<li><strong>Disconnect</strong> the call from phone.</li>
+</ol>
+</blockquote>
+<details class="note w50">
+<summary>Click-to-Dial Implementation</summary>
+<p>The CRM application automatically makes phone numbers clickable:
+</p><div class="highlight"><pre><span></span><code><span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="nx">placeClicktoDialcall</span><span class="p">(</span><span class="nx">phone</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">//Following is the SDK method used for outdial call.</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">webex</span><span class="p">.</span><span class="nx">cc</span><span class="p">.</span><span class="nx">startOutdial</span><span class="p">(</span><span class="nx">cleanedPhone</span><span class="p">);</span>
+</code></pre></div>
+<p></p>
+</details>
+</blockquote>
+<h3 id="agent_dn-login-testing-and-comparison-optional">AGENT_DN login testing and comparison (Optional)</h3>
+<blockquote>
+<p>Now test the agent device number (physical phone) call handling functionality:</p>
+<blockquote>
+<ol>
+<li><strong>Logout</strong> from your current agent session  </li>
+<li><strong>Refresh the browser</strong> using <span style="color: #FF6600; font-weight: bold; background-color: #FFF3CD; padding: 2px 4px; border-radius: 3px;"><strong>Ctrl + Shift + R</strong></span>  </li>
+<li><strong>Login again</strong> using the <strong>'AGENT_DN'</strong> option instead of BROWSER  </li>
+<li><strong>Input your mobile number</strong> with +1 prefix  </li>
+<li>**Repeat the inbound and outdial call that you tested in previous step.
+</li>
+</ol>
+</blockquote>
+</blockquote>
+<details class="challenge w50">
+<summary>Compare the Two Login Methods</summary>
+<p><strong>AGENT_DN (Physical Phone):</strong></p>
+<blockquote>
+<ul>
+<li>Calls are answered on a physical desk phone/mobile</li>
+<li>Limited browser-based call controls</li>
+<li>Traditional telephony experience</li>
+</ul>
+</blockquote>
+<p><strong>BROWSER (Software):</strong></p>
+<blockquote>
+<ul>
+<li>Calls are answered directly in the web browser</li>
+<li>Full WebRTC functionality with mute/unmute</li>
+<li>Complete software-based call handling</li>
+<li>Enhanced integration with CRM interface</li>
+</ul>
+</blockquote>
+</details>
+<blockquote></blockquote>
+<h3 id="advanced-testing-with-browser-console">Advanced testing with browser console</h3>
+<blockquote>
+<p>On your current session -</p>
+<blockquote>
+<p>Open browser Developer Tools (F12)<br>
+Navigate to the Console tab<br>
+Place an inbound call  <br>
+Observe the SDK event logs, Filter console logs with [WX1-SDK] to see SDK related logs and [BANKING-CRM] to see CRM related logging<br>
+Review the source code implementation during testing based on logs you see on the console.</p>
+</blockquote>
+<hr>
+<p><strong>Advanced Click-to-Dial Testing:</strong> </p>
+<blockquote>
+<ol>
+<li><strong>Verify error handling</strong> - try clicking while already on a call    </li>
+<li><strong>Check console logs</strong> for detailed outbound call tracking<br>
+</li>
+</ol>
+</blockquote>
+</blockquote>
+<details class="question w50">
+<summary>What validation occurs before placing an outbound call?</summary>
+<p>The <code>placeClicktoDialcall()</code> method performs several validations:<br>
+- Agent login status verification<br>
+- Phone number format validation and cleaning<br>
+- Existing call conflict detection<br>
+- SDK initialization check  </p>
+</details>
+<blockquote>
+<p><strong>Browser vs Phone Login Differences for Outbound:</strong></p>
+<blockquote>
+<ul>
+<li><strong>BROWSER login</strong>: Full WebRTC outbound calling through browser  </li>
+<li><strong>AGENT_DN login</strong>: Outbound calls bridge through assigned desk phone  </li>
+<li><strong>Both modes</strong>: Support click-to-dial from CRM interface  </li>
+</ul>
+</blockquote>
+<hr>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../hostingYourCode/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Hosting Your Code">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Hosting Your Code
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../WCfromScratch/" class="md-footer__link md-footer__link--next" aria-label="Next: Create a Vite Web Component from Scratch">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Create a Vite Web Component from Scratch
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2025 Cisco
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.instant", "navigation.top", "navigation.footer", "search.suggest", "content.code.copy", "toc.integrate"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../template_assets/js/newLoad.js"></script>
+      
+        <script src="../template_assets/js/setInfo.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": false, "openEffect": "fade", "closeEffect": "fade", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

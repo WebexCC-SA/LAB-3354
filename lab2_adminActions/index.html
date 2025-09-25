@@ -1,0 +1,1895 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Empowering agents with custom desktop experiences in Webex Contact Center">
+      
+      
+        <meta name="author" content="Kevin Simpson, Shrishail Doddalinganavar, David Finnegan">
+      
+      
+      
+        <link rel="prev" href="../lab1_exploring_wc/">
+      
+      
+        <link rel="next" href="../lab3_queueScroller/">
+      
+      
+      <link rel="icon" href="../template_assets/webex75.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Lab 2 - Admin Actions - LAB-3354: Empowering agents with custom desktop experiences in Webex Contact Center</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#story" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="LAB-3354: Empowering agents with custom desktop experiences in Webex Contact Center" class="md-header__button md-logo" aria-label="LAB-3354: Empowering agents with custom desktop experiences in Webex Contact Center" data-md-component="logo">
+      
+  <img src="../template_assets/webexLogo91.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LAB-3354: Empowering agents with custom desktop experiences in Webex Contact Center
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lab 2 - Admin Actions
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="indigo" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../welcome/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Welcome
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../lab1_exploring_wc/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Labs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../WXCC_SDK/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  SDK
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../WCfromScratch/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  References
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="LAB-3354: Empowering agents with custom desktop experiences in Webex Contact Center" class="md-nav__button md-logo" aria-label="LAB-3354: Empowering agents with custom desktop experiences in Webex Contact Center" data-md-component="logo">
+      
+  <img src="../template_assets/webexLogo91.png" alt="logo">
+
+    </a>
+    LAB-3354: Empowering agents with custom desktop experiences in Webex Contact Center
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Welcome
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../welcome/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Let's Set the Stage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Labs
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Labs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab1_exploring_wc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 1 - Exploring Web Components
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Lab 2 - Admin Actions
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 2 - Admin Actions
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#story" class="md-nav__link">
+    <span class="md-ellipsis">
+      Story
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-and-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data and Actions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data and Actions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#log-into-the-agent-desktop-so-that-you-have-data-to-query-against" class="md-nav__link">
+    <span class="md-ellipsis">
+      Log into the Agent Desktop (so that you have data to query against)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-the-search-api-graphql-workbench-to-create-the-query-for-the-search-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use the Search API GraphQL Workbench to create the query for the Search API
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-api-to-log-out-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use API to log out agents
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-the-web-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating the Web Component
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating the Web Component">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-new-web-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create a new Web Component
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-a-string-property-to-hold-your-access-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add a string Property to hold your Access Token
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-an-array-state-to-hold-the-data-you-will-return-in-the-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add an array State to hold the data you will return in the query
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-an-async-method-to-call-the-search-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create an Async method to call the search API
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#refactor-and-export-your-graph-ql-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      Refactor and Export your Graph QL Query
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#import-curl-into-postman" class="md-nav__link">
+    <span class="md-ellipsis">
+      Import cURL into Postman
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-headers-in-postman" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update Headers in Postman
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#format-the-request-body" class="md-nav__link">
+    <span class="md-ellipsis">
+      Format the request Body
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#turn-the-request-into-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Turn the request into code
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-the-code-to-the-getagents-method-and-make-these-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add the code to the getAgents method and make these changes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#return-to-the-graphql-workbench-to-understand-how-to-use-the-returned-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Return to the GraphQL Workbench to understand how to use the returned data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-the-html-template-in-the-render-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update the html template in the render method
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-the-table-body-using-the-data-from-the-agentlist-array" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create the table body using the data from the agentList array
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Create the table body using the data from the agentList array">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-the-map-method-to-render-the-html-of-the-table-body-below-the-thead-closing-tag" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use the map method to render the html of the table body below the &lt;/thead&gt; closing tag
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inside-the-tbody-tags-create-the-table-data-cells" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inside the tbody tags create the table data cells
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-to-indexhtml-passing-the-bearer-token-as-a-property" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add to index.html passing the Bearer token as a property
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start-the-development-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Start the Development server
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-into-the-agent-desktop-so-that-you-will-have-data-to-populate-the-web-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      Log into the Agent Desktop (so that you will have data to populate the web component)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make-the-output-look-a-better-by-adding-this-css-to-the-static-styles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Make the output look a better by adding this CSS to the static styles:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convert-the-logout-agents-api-call-into-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Convert the Logout Agents API call into code
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-a-new-async-method-to-log-out-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create a new async method to log out agents
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-a-button-to-log-out-the-agent-in-every-row-of-the-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add a button to log out the agent in every row of the table
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-the-web-component-to-the-agent-desktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding the Web Component to the agent desktop
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding the Web Component to the agent desktop">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#download-the-desktop-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      Download the Desktop Layout
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-your-widget-to-a-navigation-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding your widget to a Navigation Page
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save-and-update-the-new-layout-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      Save and update the new layout JSON
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build-and-server-your-widget-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build and server your widget code
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-into-the-agent-desktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Log into the agent desktop
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing steps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stop-the-testing-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stop the testing server
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab3_queueScroller/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 3 - Scrolling Queue Statistics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hostingYourCode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Hosting Your Code
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../WXCC_SDK/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SDK
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5">
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    References
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            References
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../WCfromScratch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create a Vite Web Component from Scratch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentationLinks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Documentation Links
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Lab 2 - Admin Actions</h1>
+
+<h2 id="story">Story</h2>
+<blockquote>
+<p>As a contact center administrator, I need to log out agents which have not logged out after their shift, so that the contact center reporting statistics are accurate. </p>
+</blockquote>
+<div class="admonition abstract w50">
+<p class="admonition-title">Requirements</p>
+<ol>
+<li>Need a list of logged in agents which includes:<ul>
+<li>Agent name</li>
+<li>Team name</li>
+<li>Login time</li>
+<li>Current Status</li>
+<li>Last Activity time</li>
+</ul>
+</li>
+<li>Need to be able to log out an agent</li>
+</ol>
+</div>
+<h2 id="data-and-actions">Data and Actions</h2>
+<h3 id="log-into-the-agent-desktop-so-that-you-have-data-to-query-against">Log into the Agent Desktop (so that you have data to query against)</h3>
+<blockquote>
+<p>Launch the <a href="https://desktop.wxcc-us1.cisco.com/" target="_blank">Agent Desktop</a></p>
+<blockquote>
+<p>Login: <copy><w class="login">admin login</w></copy><br>
+Password: <copy><w class="PW">password</w></copy><br>
+Team: <copy><w class="Team">team</w></copy> </p>
+</blockquote>
+<hr>
+</blockquote>
+<h3 id="use-the-search-api-graphql-workbench-to-create-the-query-for-the-search-api">Use the Search API GraphQL Workbench to create the query for the Search API</h3>
+<blockquote>
+<p>Open the <a href="https://webexcc-sa.github.io/tools/gqlWorkbench/" target="_blank">Search API GraphQL Workbench</a></p>
+<blockquote>
+<p>Use the Authorization Tool (Tools &gt; Authorization)</p>
+<blockquote>
+<p>Login: <copy><w class="login">admin login</w></copy><br>
+Password: <copy><w class="PW">password</w></copy></p>
+</blockquote>
+<details class="note w50">
+<summary>Copy the authorization header into the environment variables</summary>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/GQL_token.gif" data-desc-position="top"><img alt="" src="../assets/GQL_token.gif"></a></p>
+</details>
+<p>Set the URL: <copy>https://api.wxcc-us1.cisco.com/search</copy></p>
+</blockquote>
+<p>Open the Docs Panel 
+Click Query to see which fields are available  </p>
+<details class="question w50">
+<summary>Which Fields are we going to use to find information about agents?</summary>
+<p>agentSession  </p>
+</details>
+<p>Click on the blue text of the name of the field you want to use<br>
+You can now see the Arguments and Fields available  </p>
+<details class="note w50">
+<summary>Hover over the name of the fields you selected in the previous step at the top of the frame and the ADD QUERY button will appear, click it</summary>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/addQuery_agentSession.gif" data-desc-position="top"><img alt="" src="../assets/addQuery_agentSession.gif"></a></p>
+</details>
+<p>You now have a query template in the first pane of Altair     </p>
+<details class="note w50">
+<summary>Delete the "has" section and all of its fields</summary>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/removeHas_agentSession.gif" data-desc-position="top"><img alt="" src="../assets/removeHas_agentSession.gif"></a></p>
+</details>
+<p>In the Fields section of the query (agentSessions section):  </p>
+<blockquote>
+<p>Delete the lines for intervalStartTime(sort: asc) and aggregation as we are not using them in this query.</p>
+</blockquote>
+<p>In the Arguments section of the query (top section):</p>
+<blockquote>
+<p>Delete the lines for aggregation, aggregations, and aggregationInterval as we are not using aggregations in this query.  </p>
+</blockquote>
+<details class="question w50">
+<summary>Based on the requirements listed above in the story, what fields do you need to return in your query?</summary>
+<ul>
+<li>Agent name = agentName</li>
+<li>Team name = teamName</li>
+<li>Login time = startTime</li>
+<li>Current Status = channelInfo =&gt; currentState (note that this is not the same as the state field)</li>
+<li>Last Activity time = channelInfo =&gt; lastActivityTime</li>
+</ul>
+<details class="note">
+<summary>currentState and lastActivityTime have a special method of being addressed in the query</summary>
+<p></p><div class="highlight"><pre><span></span><code><span class="err">channelInfo</span><span class="p">{</span>
+<span class="w">    </span><span class="n">currentState</span>
+<span class="w">    </span><span class="n">lastActivityTime</span>
+<span class="p">}</span>
+</code></pre></div>
+Update the channelInfo fields in the query.<p></p>
+</details>
+</details>
+<details class="note w50">
+<summary>Use the Time Widget in the Graph QL Workbench to update the Arguments section of the query selecting From: 1 day ago and To: Now.  Then copy the values into the query.</summary>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/timeWidget.gif" data-desc-position="top"><img alt="" src="../assets/timeWidget.gif"></a></p>
+</details>
+<p>Press the green Send Request button<br>
+Scroll through the results in the middle pane of Altair  </p>
+<blockquote>
+<p>Note that there is a lot of extra information you will not need to satisfy the requirements. </p>
+</blockquote>
+<p>Add filters to the Arguments section of the query to only return agent data for agent which are currently active (logged in) and only return the status information for the telephony channel
+Inside the curly braces after filter add this compound filter  </p>
+<div class="admonition blank w50">
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="err">and:[</span>
+<span class="w">    </span><span class="p">{</span><span class="nl">isActive</span><span class="p">:{</span><span class="nl">equals</span><span class="p">:</span><span class="n">true</span><span class="p">}}</span>
+<span class="w">    </span><span class="p">{</span><span class="nl">channelInfo</span><span class="p">:{</span><span class="nl">channelType</span><span class="p">:{</span><span class="nl">equals</span><span class="p">:</span><span class="err">"</span><span class="n">telephony</span><span class="err">"</span><span class="p">}}}</span>
+<span class="w">    </span><span class="err">]</span>
+</code></pre></div>
+</div>
+<p>Press the green Send Request button </p>
+<blockquote>
+<p>Note there are still fields you will not need to satisfy your requirements</p>
+</blockquote>
+<p>Comment out any fields you will not need by using ctrl + / in front of the field name (you can comment more than one line at a time by selecting multiple lines)<br>
+Press the green Send Request button to see the results.</p>
+<p>Do not close this tab as you will be using it in an upcoming step</p>
+<hr>
+</blockquote>
+<h3 id="use-api-to-log-out-agents">Use API to log out agents</h3>
+<blockquote>
+<p>Navigate to the <a href="https://developer.webex.com/webex-contact-center/docs/api/v1/agents/logout" target="_blank">Agent Logout API documentation</a></p>
+<p>Log into the developer portal using your admin credentials  </p>
+<blockquote>
+<p>Login: <copy><w class="login">admin login</w></copy><br>
+Password: <copy><w class="PW">password</w></copy> </p>
+</blockquote>
+<p>In the logoutReason field enter <copy>Admin Logout</copy></p>
+<p>In the search API results in the the GraphQL Workbench, find your agent's information.</p>
+<details class="question w50">
+<summary>Do you have all of the data we need to to make the logout API call?</summary>
+<p>You will also need the agentID of the agent you want to log out.  </p>
+<blockquote>
+<p>Uncomment out agentId in the fields of the GQL query if they were previously commented out and rerun the request</p>
+</blockquote>
+</details>
+<p>Enter your agent's agentId in the agentId field<br>
+Click on the option to see the Request Body (JSON)<br>
+Click on the RUN button</p>
+<blockquote>
+<p>You should receive a 202 response  </p>
+</blockquote>
+<p>Do not close this tab as you will be using it in an upcoming step  </p>
+<hr>
+</blockquote>
+<h2 id="creating-the-web-component">Creating the Web Component</h2>
+<blockquote>
+<p>Now that you have the basic data and API elements understood and tested, it is time to put them together in code to visualize the data and orchestrate our actions all while creating a good experience for the end user.</p>
+</blockquote>
+<h3 id="create-a-new-web-component">Create a new Web Component</h3>
+<blockquote>
+<p>Create a new file in the src directory named <copy>admin-actions.ts</copy></p>
+<p>In the new file type (not paste) littemplate</p>
+<p>Select the <strong>Create LitElement Component With lit-html</strong></p>
+<hr>
+</blockquote>
+<h3 id="add-a-string-property-to-hold-your-access-token">Add a string Property to hold your Access Token</h3>
+<blockquote>
+<p><copy>@property() token?: string</copy></p>
+<hr>
+</blockquote>
+<h3 id="add-an-array-state-to-hold-the-data-you-will-return-in-the-query">Add an array State to hold the data you will return in the query</h3>
+<blockquote>
+<p><copy>@state() agentList = []</copy></p>
+<hr>
+</blockquote>
+<h3 id="create-an-async-method-to-call-the-search-api">Create an Async method to call the search API</h3>
+<blockquote>
+<p><copy>async getAgents(){}</copy></p>
+</blockquote>
+<h3 id="refactor-and-export-your-graph-ql-query">Refactor and Export your Graph QL Query</h3>
+<blockquote>
+<details class="note w50">
+<summary>In your GraphQL Workbench browser tab, click on the "suitcase" icon on the left menu bar then click Refactor Query</summary>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/refactorQuery.gif" data-desc-position="top"><img alt="" src="../assets/refactorQuery.gif"></a></p>
+</details>
+<p>Change the name of the query from refactored### to: <copy>activeAgents</copy><br>
+Compress the query (suitcase menu &gt; Compress)<br>
+Copy as cURL (suitcase menu &gt; Copy as cURL)  </p>
+<details class="note w50">
+<summary>Show me the steps</summary>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/compressAndCopy.gif" data-desc-position="top"><img alt="" src="../assets/compressAndCopy.gif"></a></p>
+</details>
+<hr>
+</blockquote>
+<h3 id="import-curl-into-postman">Import cURL into Postman</h3>
+<blockquote>
+<p>Open Postman
+Click Import  </p>
+<details class="note w50">
+<summary>Paste the cURL from the GraphQL Workbench into the import text box</summary>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/importToPostman.gif" data-desc-position="top"><img alt="" src="../assets/importToPostman.gif"></a></p>
+</details>
+<hr>
+</blockquote>
+<h3 id="update-headers-in-postman">Update Headers in Postman</h3>
+<blockquote>
+<p>Uncheck all headers except: Content-Type and Accept<br>
+Add an Authorization Header:  </p>
+<blockquote>
+<p>Key: <copy>Authorization</copy><br>
+Value: <copy>Bearer placeHolder</copy></p>
+</blockquote>
+<hr>
+</blockquote>
+<h3 id="format-the-request-body">Format the request Body</h3>
+<blockquote>
+<p>Click on Body<br>
+Click the Text dropdown and select JSON<br>
+Click Beautify  </p>
+<hr>
+</blockquote>
+<h3 id="turn-the-request-into-code">Turn the request into code</h3>
+<blockquote>
+<p>Click the Code button  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/codeButtonPostman.jpg" data-desc-position="top"><img alt="" src="../assets/codeButtonPostman.jpg"></a><br>
+Select JavaScript - Fetch for the language<br>
+Click the settings cog and ensure the Use async/await is toggled on<br>
+Copy the code using the copy button.  </p>
+<details class="note w50">
+<summary>Show me</summary>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/codeFromPostman.gif" data-desc-position="top"><img alt="" src="../assets/codeFromPostman.gif"></a></p>
+</details>
+<hr>
+</blockquote>
+<h3 id="add-the-code-to-the-getagents-method-and-make-these-changes">Add the code to the getAgents method and make these changes</h3>
+<blockquote>
+<p>Between the curly braces of the getAgents method, press enter then paste the copied code from postman<br>
+In the headers section of the method, find the Authorization header and change "Bearer placeHolder" to <copy> <code>`Bearer ${this.token}`</code></copy><br>
+In the <strong>raw</strong> section which holds the stringified JSON:</p>
+<blockquote>
+<p>Change the from variable value to represent a time 24 hours (86400000 ms) before the current time (Date.now()) using a string literal expression: <copy><code>`${Date.now() - 86400000}`</code></copy>  </p>
+<p>Change the to variable value to represent the time now: <copy><code>`${Date.now()}`</code></copy>  </p>
+</blockquote>
+<p>Set the <strong>type</strong> of requestOptions to be an object by adding this notation, after its name and before the equals sign: <copy><code>: object</code></copy>    </p>
+<p>In the try section of the method:  </p>
+<blockquote>
+<p>Change result to equal: <copy>response.json()</copy> instead of response.text()  </p>
+</blockquote>
+<hr>
+</blockquote>
+<h3 id="return-to-the-graphql-workbench-to-understand-how-to-use-the-returned-data">Return to the GraphQL Workbench to understand how to use the returned data</h3>
+<blockquote>
+<p>In the center pane of Altair, copy the data returned from the query<br>
+Open <a href="https://jsonpathfinder.com" target="_blank">JSON Path Finder</a><br>
+Paste the copied data into the left pane<br>
+In the right pane, navigate until you find the array of agentSessions  </p>
+<details class="question w50">
+<summary>What is the JSON path which will return the array of agentSessions?</summary>
+<p>x.data.agentSession.agentSessions</p>
+<details class="challenge">
+<summary>In the agent-actions.ts file, set the value of agentList to this JSON path</summary>
+<p>Add <copy>this.agentList = result.data.agentSession.agentSessions;</copy> in the try section of the getAgents method, below the <strong>const result = await response.json();</strong> line
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/addJSONpathAgent_actions.jpg" data-desc-position="top"><img alt="" src="../assets/addJSONpathAgent_actions.jpg"></a></p>
+</details>
+</details>
+<p>Back in JSON Path Finder, make the data mimic what you set agentList to in the previous step and only keeping the agentSessions array</p>
+<blockquote>
+<p>On line 4 double click next to the opening bracket of agentSessions to select the entire array.<br>
+Copy the array (ctrl + c)<br>
+Delete all the data (ctrl + a and delete)<br>
+Paste the previously copied array (ctrl + v)</p>
+<details class="note w50">
+<summary>Show me</summary>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/jsonPathDig.gif" data-desc-position="top"><img alt="" src="../assets/jsonPathDig.gif"></a></p>
+</details>
+</blockquote>
+<hr>
+</blockquote>
+<h3 id="update-the-html-template-in-the-render-method">Update the html template in the render method</h3>
+<blockquote>
+<p>In the render() method add a few lines between the back ticks in of the <code>return html``</code> line<br>
+Add a title header for the web component: <copy><code>&lt;h1 class="title"&gt;Admin Actions&lt;/h1&gt;</code></copy><br>
+Add a button to call the getAgents method: <copy><code>&lt;div&gt;&lt;button @click=${this.getAgents}&gt;Refresh Agent List&lt;/button&gt;&lt;/div&gt;</code></copy><br>
+Create a table with headers for Agent Name, Team, Login Time, and Status  </p>
+<blockquote>
+<p>Add a <code>&lt;table&gt;</code> tag<br>
+Inside the table tags add a table head tag <code>&lt;thead&gt;</code><br>
+Inside the table head tag add table headers for the table as listed above.  Example: <copy><code>&lt;th&gt;Agent Name&lt;/th&gt;</code></copy></p>
+</blockquote>
+<details class="note w50">
+<summary>Check your code</summary>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/tableHeaders.jpg" data-desc-position="top"><img alt="" src="../assets/tableHeaders.jpg"></a></p>
+</details>
+<hr>
+</blockquote>
+<h3 id="create-the-table-body-using-the-data-from-the-agentlist-array">Create the table body using the data from the agentList array</h3>
+<blockquote>
+<p>In this section you are going to use the map method which will preform an action for each object in an array.  Each iteration of the map method will produce an object from that index of the array which you will refer to as t and will represent the root of the JSON path.  You will be using JSON Path Finder to understand the JSON path addresses as you progress through the fields.  You will also be doing some math and other formatting to the returned values to produce a more user friendly table.</p>
+</blockquote>
+<h4 id="use-the-map-method-to-render-the-html-of-the-table-body-below-the-thead-closing-tag">Use the map method to render the html of the table body below the <code>&lt;/thead&gt;</code> closing tag</h4>
+<blockquote>
+<div class="admonition blank w50">
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="nx">$</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">agentList</span><span class="o">?</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">t</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">html</span><span class="sb">`</span>
+<span class="sb">    &lt;tbody&gt;</span>
+
+<span class="sb">    &lt;/tbody&gt;</span>
+<span class="sb">    `</span><span class="p">)}</span>
+</code></pre></div>
+</div>
+<hr>
+</blockquote>
+<h4 id="inside-the-tbody-tags-create-the-table-data-cells">Inside the tbody tags create the table data cells</h4>
+<blockquote>
+<p>Using JSON Path Finder, Create the field for agentName  </p>
+<blockquote>
+<p><copy><code>&lt;td&gt;${t.agentName}&lt;/td&gt;</code></copy>  </p>
+</blockquote>
+<details class="challenge w50">
+<summary>Create the field for Team</summary>
+<p><copy><code>&lt;td&gt;${t.teamName}&lt;/td&gt;</code></copy>  </p>
+</details>
+<p>Create the value of startTime in a human readable datetime stamp  </p>
+<blockquote>
+<p><copy><code>&lt;td&gt;${new Date(t.startTime).toLocaleString()}&lt;/td&gt;</code></copy>  </p>
+</blockquote>
+<details class="challenge w50">
+<summary>Create the value of currentState</summary>
+<p><copy><code>&lt;td&gt;${t.channelInfo[0].currentState}&lt;/td&gt;</code></copy></p>
+</details>
+<p>Create the duration of time in the current state  </p>
+<blockquote>
+<p><copy><code>&lt;td&gt;${new Date(Date.now() - t.channelInfo[0].lastActivityTime).toISOString().slice(11, -5)}&lt;/td&gt;</code></copy></p>
+</blockquote>
+<details class="note w50">
+<summary>Check your code</summary>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/adminActionsTable1.jpg" data-desc-position="top"><img alt="" src="../assets/adminActionsTable1.jpg"></a></p>
+</details>
+<p>Save the TS file  </p>
+<hr>
+</blockquote>
+<h3 id="add-to-indexhtml-passing-the-bearer-token-as-a-property">Add to index.html passing the Bearer token as a property</h3>
+<blockquote>
+<details class="challenge w50">
+<summary>Add the script tag in the header of index.html</summary>
+<p><copy><code>&lt;script type="module" src="/src/admin-actions.ts"&gt;&lt;/script&gt;</code></copy></p>
+</details>
+<details class="challenge w50">
+<summary>Add the custom element tag to the html body of index.html</summary>
+<p><copy><code>&lt;admin-actions token="Replace with the token value from the GraphQL Workbench"&gt;&lt;/admin-actions&gt;</code></copy></p>
+</details>
+<hr>
+</blockquote>
+<h3 id="start-the-development-server">Start the Development server</h3>
+<blockquote>
+<p>In the terminal of VS Code run: <copy>yarn dev</copy><br>
+Launch the <a href="http://localhost:5173/" target="_blank">development server index page</a>  </p>
+<blockquote>
+<p>You should see your web component in the browser  </p>
+</blockquote>
+<hr>
+</blockquote>
+<h3 id="log-into-the-agent-desktop-so-that-you-will-have-data-to-populate-the-web-component">Log into the Agent Desktop (so that you will have data to populate the web component)</h3>
+<blockquote>
+<p>Launch the <a href="https://desktop.wxcc-us1.cisco.com/" target="_blank">Agent Desktop</a></p>
+<blockquote>
+<p>Login: <copy><w class="login">admin login</w></copy><br>
+Password: <copy><w class="PW">password</w></copy><br>
+Team: <copy><w class="Team">team</w></copy> </p>
+</blockquote>
+<p>Click the Refresh Agent List button  </p>
+<blockquote>
+<p>You should see the list of logged in agents populate  </p>
+</blockquote>
+<p>Keep this tab open for additional testing.  </p>
+<hr>
+</blockquote>
+<h3 id="make-the-output-look-a-better-by-adding-this-css-to-the-static-styles">Make the output look a better by adding this CSS to the static styles:</h3>
+<blockquote>
+<div class="admonition blank w50">
+<div class="highlight"><pre><span></span><code><span class="w">            </span><span class="p">:</span><span class="nd">host</span><span class="p">{</span>
+<span class="w">            </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">flex</span><span class="p">;</span>
+<span class="w">            </span><span class="k">flex-direction</span><span class="p">:</span><span class="w"> </span><span class="kc">column</span><span class="p">;</span>
+<span class="w">            </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="mi">3</span><span class="kt">px</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--md-primary-text-color</span><span class="p">);</span>
+<span class="w">            </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="kt">em</span><span class="p">;</span>
+<span class="w">            </span><span class="k">color</span><span class="p">:</span><span class="nf">var</span><span class="p">(</span><span class="nv">--md-primary-text-color</span><span class="p">)</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="p">.</span><span class="nc">title</span><span class="p">{</span>
+<span class="w">            </span><span class="k">text-align</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="nt">table</span><span class="p">{</span>
+<span class="w">            </span><span class="k">display</span><span class="p">:</span><span class="kc">table</span><span class="p">;</span>
+<span class="w">            </span><span class="k">border-collapse</span><span class="p">:</span><span class="kc">collapse</span><span class="p">;</span>
+<span class="w">            </span><span class="k">border-spacing</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">            </span><span class="k">margin-top</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="nt">tr</span><span class="o">,</span><span class="w"> </span><span class="nt">th</span><span class="o">,</span><span class="w"> </span><span class="nt">td</span><span class="p">{</span>
+<span class="w">            </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">            </span><span class="k">text-align</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="p">.</span><span class="nc">hidden</span><span class="p">{</span>
+<span class="w">            </span><span class="k">display</span><span class="p">:</span><span class="kc">none</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+</code></pre></div>
+</div>
+<p>Save the file<br>
+Click the Refresh Agent List button<br>
+Observe the changes to your web component  </p>
+<hr>
+</blockquote>
+<h3 id="convert-the-logout-agents-api-call-into-code">Convert the Logout Agents API call into code</h3>
+<blockquote>
+<p>In the browser tab with the developer portal open to the agent logout API:  </p>
+<blockquote>
+<p>Click on Code Snippets<br>
+Select Curl<br>
+Click the Copy button in the upper right corner of the code <br>
+ Open Postman and import the cURL<br>
+Click the code button in Postman</p>
+<blockquote>
+<p>Make sure that you have selected Javascript - Fetch with async/await<br>
+Copy the code  </p>
+</blockquote>
+</blockquote>
+<hr>
+</blockquote>
+<h3 id="create-a-new-async-method-to-log-out-agents">Create a new async method to log out agents</h3>
+<blockquote>
+<p><copy>async logOutAgent(e: any){}</copy><br>
+Between the curly braces, press enter then paste the copied code from postman.<br>
+Make the following edits to the method code:  </p>
+<blockquote>
+<p>Change the Authorization header to use the token property<br>
+Set the <strong>type</strong> of requestOptions to be an object by adding this notation, after its name and before the equals sign: <copy><code>: object</code></copy><br>
+Change the agentId in the raw variable to use <copy><code>e.target.value</code></copy></p>
+</blockquote>
+<details class="note w50">
+<summary>Check your code</summary>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/agentLogoutMethod.jpg" data-desc-position="top"><img alt="" src="../assets/agentLogoutMethod.jpg"></a></p>
+</details>
+<hr>
+</blockquote>
+<h3 id="add-a-button-to-log-out-the-agent-in-every-row-of-the-table">Add a button to log out the agent in every row of the table</h3>
+<blockquote>
+<p>Add a header to the bottom of the <code>&lt;thead&gt;</code> section: <copy><code>&lt;th&gt;Action&lt;/th&gt;</code></copy><br>
+Add another column to the table data map at the bottom of the <code>&lt;tbody&gt;</code> section:  <copy><code>&lt;td&gt;&lt;button value=${t.agentId} @click="${this.logOutAgent}"&gt;Log Out&lt;/button&gt;&lt;/td&gt;</code></copy></p>
+<details class="note w50">
+<summary>Check your code</summary>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/admin-actionsRender.jpg" data-desc-position="top"><img alt="" src="../assets/admin-actionsRender.jpg"></a></p>
+</details>
+<p>Save the file<br>
+Click the Refresh Agent List button<br>
+Observe the changes to your web component  </p>
+<hr>
+</blockquote>
+<h2 id="adding-the-web-component-to-the-agent-desktop">Adding the Web Component to the agent desktop</h2>
+<h3 id="download-the-desktop-layout">Download the Desktop Layout</h3>
+<blockquote>
+<p>In <a href="https://admin.webex.com" target="_blank">Control Hub</a> navigate to Contact Center =&gt; Desktop Layouts<br>
+Locate the Desktop Layout named <copy><w class="layoutName">placeholder for layout name</w></copy><br>
+Click the name of the Desktop Layout to access the details  </p>
+<div class="admonition note w50">
+<p class="admonition-title">Note</p>
+<ul>
+<li>Desktop Layouts are assigned to agents based on the team they have logged in with.</li>
+<li>You can download the existing Desktop Layout JSON if you would like to see the configuration or make edits.</li>
+<li>You can download the default Desktop Layout if you want to start fresh or see what new options may be available on the agent desktop.</li>
+<li>If you do not upload a custom desktop layout, new features will automatically appear on the agent desktop for the assigned teams as they become available.</li>
+</ul>
+</div>
+<p>Click the button to download the default desktop layout.<br>
+Open the JSON file in Visual Studio Code  </p>
+<blockquote>
+<p>In the Explorer pane (left pane) of VS Code, click on the Outline to expand it.  </p>
+<blockquote>
+<p>You may choose to click on HELLO-WORLD at the top of the Explored pane to collapse the file list of your web components while you explore the Desktop Layout outline.<br>
+Hover over OUTLINE to expose the Collapse All <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/outlineCollapseAll.jpg" data-desc-position="top"><img alt="" src="../assets/outlineCollapseAll.jpg"></a> button and click on it.  </p>
+</blockquote>
+<div class="admonition note w50">
+<p class="admonition-title">Note</p>
+<ul>
+<li>The JSON layout contains sections for agent, supervisor, and supervisorAgent</li>
+<li>The layout options will be based on the role the user is logging in with in addition to the team they are logging into.</li>
+</ul>
+</div>
+<p>Expand agent &gt; area &gt; advancedHeader and click on advancedHeader to jump to that section
+</p>
+</blockquote>
+</blockquote>
+<div class="grid">
+<div class="admonition question">
+<p class="admonition-title">Look at the first entry in the advancedHeader array</p>
+<ul>
+<li>Based on what you have been adding to the index.html file, what similarities do you notice?<ul>
+<li>comp - component and is the same as the html tag value you would put in the html body</li>
+<li>script - same as the script src value in the html header</li>
+<li>attributes - similar to properties, but limited to only containing strings, are the same (well similar) as passing a property in the opening component tag in the html  </li>
+</ul>
+</li>
+<li>Notice that the attributes (similar to properties) are being set with a variable<ul>
+<li>There is a data provider named STORE which will pass realtime updated to your web component so that it can update.</li>
+<li><a href="https://developer.webex-cx.com/documentation/guides/desktop" target="_blank">STORE attribute documentation for reference</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="admonition code">
+<p class="admonition-title">Code</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"comp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"digital-outbound"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"script"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://wc.imiengage.io/AIC/engage_aic.js"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"darkmode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$STORE.app.darkMode"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"accessToken"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$STORE.auth.accessToken"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$STORE.agent.orgId"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"dataCenter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$STORE.app.datacenter"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"emailCount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$STORE.agent.channels.emailCount"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"socialCount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$STORE.agent.channels.socialCount"</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+<hr>
+<h3 id="adding-your-widget-to-a-navigation-page">Adding your widget to a Navigation Page</h3>
+<blockquote>
+<p>In the Desktop Layout Outline, Expand agent &gt; area &gt; navigation and click on navigation to jump to that section of the JSON.  </p>
+<blockquote>
+<details class="note w50">
+<summary>After the closing curly brace of the last item in the navigation array and before the closing square bracket of the navigation array:</summary>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/aa_layout_here.jpg" data-desc-position="top"><img alt="" src="../assets/aa_layout_here.jpg"></a></p>
+</details>
+<p>Add a comma and press enter<br>
+Paste this JSON into the layout  </p>
+<div class="admonition blank w50">
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">        </span><span class="nt">"nav"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Admin Actions"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"icon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin-regular"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"iconType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"momentumDesign"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"navigateTo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aActions"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"align"</span><span class="p">:</span><span class="w"> </span><span class="s2">"top"</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">"page"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aActions"</span><span class="p">,</span>
+
+<span class="w">            </span><span class="nt">"widgets"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"comp1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"comp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin-actions"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"script"</span><span class="p">:</span><span class="s2">"http://localhost:4173/index.js"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$STORE.auth.accessToken"</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">"layout"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"areas"</span><span class="p">:</span><span class="w"> </span><span class="p">[[</span><span class="s2">"comp1"</span><span class="p">]],</span>
+<span class="w">        </span><span class="nt">"size"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"cols"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="w">            </span><span class="nt">"rows"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+</code></pre></div>
+</div>
+</blockquote>
+<hr>
+</blockquote>
+<h3 id="save-and-update-the-new-layout-json">Save and update the new layout JSON</h3>
+<blockquote>
+<p>Save the file as <copy><w class="Team">yourTeamName</w>.json</copy> <br>
+Locate your assigned Desktop Layout <w class="layout"></w>
+Upload the new JSON by dragging the file into the import box or clicking Replace file and navigating to the file using the file explorer
+Click Save in the lower right corner</p>
+<hr>
+</blockquote>
+<h2 id="testing">Testing</h2>
+<h3 id="build-and-server-your-widget-code">Build and server your widget code</h3>
+<blockquote>
+<p>In the terminal at the bottom of VS Code:<br>
+Use press ctrl + c to shut down the development server<br>
+Build the externally usable code by entering the command: <copy>yarn build</copy><br>
+Start the preview server with the build command in watch mode by entering the command: <copy>yarn game</copy>  </p>
+<hr>
+</blockquote>
+<h3 id="log-into-the-agent-desktop">Log into the agent desktop</h3>
+<blockquote>
+<p>Log into the <a href="https://desktop.wxcc-us1.cisco.com" target="_blank">Agent Desktop</a> if you are not already logged in.  </p>
+<blockquote>
+<p>Login: <copy><w class="login">admin login</w></copy><br>
+Password: <copy><w class="PW">password</w></copy><br>
+Team: <copy><w class="Team">team</w></copy> </p>
+</blockquote>
+<hr>
+</blockquote>
+<h3 id="testing-steps">Testing steps</h3>
+<blockquote>
+<p>The Navigation pane should include the icon you defined in the agent desktop <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../assets/AAicon.jpg" data-desc-position="top"><img alt="" src="../assets/AAicon.jpg" style="height:.8rem"></a><br>
+Click on the icon to show the Admin Actions screen</p>
+<blockquote>
+<p>Does the tool render?  </p>
+</blockquote>
+<p>Click the Refresh Agent List button  </p>
+<blockquote>
+<p>Do you see a list of logged in users with all of the fields populated?  </p>
+</blockquote>
+<p>Click on the avatar (your initials) in the upper right corner of the screen to open the desktop settings  </p>
+<blockquote>
+<p>Toggle to dark mode  </p>
+<blockquote>
+<p>Does the tool render correctly in both light and dark mode?  </p>
+</blockquote>
+</blockquote>
+<p>Find a buddy next to you in the room and one of you log the other person out using the logout button.</p>
+<blockquote>
+<p>Did the agent get logged out?</p>
+<blockquote>
+<p>Refresh the list using the button to make sure.  </p>
+</blockquote>
+</blockquote>
+<hr>
+</blockquote>
+<h3 id="stop-the-testing-server">Stop the testing server</h3>
+<blockquote>
+<p>In the terminal of VS Code press ctrl + c  </p>
+<hr>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../lab1_exploring_wc/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lab 1 - Exploring Web Components">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Lab 1 - Exploring Web Components
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../lab3_queueScroller/" class="md-footer__link md-footer__link--next" aria-label="Next: Lab 3 - Scrolling Queue Statistics">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Lab 3 - Scrolling Queue Statistics
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2025 Cisco
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.instant", "navigation.top", "navigation.footer", "search.suggest", "content.code.copy", "toc.integrate"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../template_assets/js/newLoad.js"></script>
+      
+        <script src="../template_assets/js/setInfo.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": false, "openEffect": "fade", "closeEffect": "fade", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
