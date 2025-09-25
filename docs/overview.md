@@ -1,4 +1,5 @@
-<script type="module" src="/template_assets/js/index.js"></script>
+<script type="module" src="./template_assets/js/index.js"></script>
+
 # Overview
 
 ## Learning Objectives
